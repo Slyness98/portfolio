@@ -1,6 +1,7 @@
+//this file is necessary to the npm script "start". The app can't be run locally without this file. 
+//This file should be unneccessary once the app is in production.
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
