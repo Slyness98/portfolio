@@ -11,13 +11,16 @@
     "react-draggable": "^4.2.0",
     "react-scripts": "3.4.1"
   },
+  "homepage":"https://slyness98.github.io/portfolio",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "compile:sass": "node-sass sass/main.scss css/style.css",
-    "watch:sass": "nodemon -e scss -x \"npm run compile:sass\""
+    "compile:sass": "node-sass src/scss/main.scss public/style.css",
+    "watch:sass": "nodemon -e scss -x \"npm run compile:sass\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2"
   }
