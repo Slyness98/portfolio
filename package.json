@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "compile:sass": "node-sass src/scss/main.scss public/style.css",
+    "compile:sass": "node-sass src/scss/main.scss src/assets/css/style.css",
     "watch:sass": "nodemon -e scss -x \"npm run compile:sass\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
