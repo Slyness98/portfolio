@@ -10,6 +10,7 @@
   /*force box-sizing property to be an inherited property amongst all selectors, effectively changing its default behavior. Our root for this property is now what we declare in the body selector */ }
 
 html {
+  min-height: 100%;
   font-size: 62.5%;
   /*Declare default font-size here so we can easily scale all padding and related font-sizing with rem values. We use 62.5% because we want to take the browser default of 16px and bring it down to a default of ten. This way, people with poor vision can resize their default browser font sizes and responsiveness wont be affected.  
 			 				this really just changes the definition of what a rem unit is, and thus is more structural than a typography setting*/ }
@@ -27,10 +28,11 @@ html {
       font-size: 75%; } }
 
 body {
-  height: 100%;
+  min-height: 100vh;
   box-sizing: border-box;
   /* Padding and border no longer included when we express size for elements. This is the only structural property included in the body. All other styles are typography related and thus can be found in _typograhy.scss */
-  padding: 1rem; }
+  padding: 1rem;
+  background-color: black; }
   @media (max-width: 56.25em) {
     body {
       padding: 0; } }
@@ -40,9 +42,8 @@ body {
 
 .row {
   max-width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  background-color: #eee; }
+  min-height: 100%;
+  margin: 0 auto; }
   .row:not(:last-child) {
     /* The not pseudo-class will select everything except for what we specify. In this case, every child but the last child of row. */
     margin-bottom: 8rem; }
@@ -53,7 +54,7 @@ body {
   .row [class^="col-"] {
     /*added caret is what specifies the behavior of selecting all classes beginning with the given phrase. If it were simply just class = "col-", it would take that literally and nothing would be selected. */
     float: left;
-    background-color: green; }
+    overflow: hidden; }
     .row [class^="col-"]:not(:last-child) {
       margin-right: 6rem; }
   .row .col-eighth {
@@ -64,6 +65,30 @@ body {
     width: calc(((100% - 7 * 6rem) / 8) * 5 + 4 * 6rem); }
   .row .col-sevenEighths {
     width: calc(((100% - 7 * 6rem) / 8) * 7 + 6 * 6rem); }
+  .row .col-seventh {
+    width: calc((100% - 6 * 6rem) / 7); }
+  .row .col-twoSevenths {
+    width: calc(((100% - 6 * 6rem) / 7) * 2 + 6rem); }
+  .row .col-threeSevenths {
+    width: calc(((100% - 6 * 6rem) / 7) * 3 + 2 * 6rem); }
+  .row .col-fourSevenths {
+    width: calc(((100% - 6 * 6rem) / 7) * 4 + 3 * 6rem); }
+  .row .col-fiveSevenths {
+    width: calc(((100% - 6 * 6rem) / 7) * 5 + 4 * 6rem); }
+  .row .col-sixSevenths {
+    width: calc(((100% - 6 * 6rem) / 7) * 6 + 5 * 6rem); }
+  .row .col-sixth {
+    width: calc((100% - 5 * 6rem) / 6); }
+  .row .col-fiveSixths {
+    width: calc(((100% - 5 * 6rem) / 6) * 5 + 4 * 6rem); }
+  .row .col-fifth {
+    width: calc((100% - 4 * 6rem) / 5); }
+  .row .col-twoFifths {
+    width: calc(((100% - 4 * 6rem) / 5) * 2 + 6rem); }
+  .row .col-threeFifths {
+    width: calc(((100% - 4 * 6rem) / 5) * 3 + 2 * 6rem); }
+  .row .col-fourFifths {
+    width: calc(((100% - 4 * 6rem) / 5) * 4 + 3 * 6rem); }
   .row .col-fourth {
     width: calc((100% - 3 * 6rem) / 4); }
   .row .col-threeFourths {
@@ -76,5 +101,9 @@ body {
     width: calc((100% - 6rem) / 2);
     /* in order t0 use a SASS variable in calc we need to wrap our usual variable in curly brackets and precede those set of braackets with a # */ }
 
-.color {
-  color: #1ebba3; }
+.logoContainer {
+  height: 12rem; }
+
+.logo {
+  height: 100%;
+  width: 27.9rem; }
