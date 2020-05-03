@@ -1,16 +1,54 @@
 import React, {Component} from 'react';
 import './assets/css/style.css';
 import {ReactComponent as Logo} from './assets/images/lyness.svg';
+import MobileNavigation from './components/mobileNav.js';
+
+const initialState = {
+	platform : 'desktop'
+};
+
 
 class App extends Component {
-render() {
-return (
-	<div className="App">
-		<div className="row">
-		   <div className="col-fourth logoContainer">
-	     		<Logo className="logo"/>
-	  	   </div>
-		</div>
+	constructor() {
+	  super();
+	  this.state = initialState;
+	}
+
+	detectMobile = () => {
+		let mql = window.matchMedia("(max-width: 550px)");
+		console.log(mql.matches);
+		if(mql.matches) {
+			this.setState({platform: 'mobile'});
+			console.log(this.state);
+		}else {
+			this.setState({platform: 'desktop'});
+			console.log(this.state);
+		}
+	}
+
+  componentDidMount() {
+    window.addEventListener("resize", this.detectMobile.bind(this));
+  }
+   
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.detectMobile.bind(this));
+  }
+
+	render() {
+	const {platform} = this.state; //platform property of state object imported into render() method and read as current state. Render now has local reference to this property.
+	
+	return (
+		<div className="App">
+			<div className="row">
+			   <div className="col-fourth logoContainer">
+		     		<Logo className="logo"/>
+	  	       </div>
+		    </div>
+			
+			{platform === 'mobile' ?  //if state of platform is 'mobile' render MobileNavigation component.
+	 		<MobileNavigation /> : (null)  //Else don't render the component.
+			}
+ 
 	</div>
 );
 }
