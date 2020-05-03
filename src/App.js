@@ -27,10 +27,12 @@ class App extends Component {
 	}
 
   componentDidMount() {
+  	window.addEventListener("load", this.detectMobile.bind(this));
     window.addEventListener("resize", this.detectMobile.bind(this));
   }
    
   componentWillUnmount() {
+  	window.removeEventListener("load", this.detectMobile.bind(this));
     window.removeEventListener("resize", this.detectMobile.bind(this));
   }
 
