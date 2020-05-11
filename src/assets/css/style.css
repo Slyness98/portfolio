@@ -49,15 +49,15 @@ body {
   cursor: pointer;
   position: fixed; }
   .fab__main {
-    height: 5rem;
-    width: 5rem;
+    height: 7rem;
+    width: 7rem;
     bottom: 5%;
     right: 50%; }
   .fab__checkbox {
     display: none; }
   .fab__icon {
     position: relative;
-    margin-top: 2.5rem; }
+    margin-top: 3.5rem; }
     .fab__icon, .fab__icon::before, .fab__icon::after {
       width: 3rem;
       height: 2px;
@@ -87,23 +87,23 @@ body {
 
 /* The <MenuItem> component makes use of .fab, which is already defined in _mainButton.scss */
 .fab__item {
-  height: 3rem;
-  width: 3rem; }
+  height: 5rem;
+  width: 5rem; }
   .fab__item--1 {
     bottom: 4.5%;
-    right: 25%; }
+    right: 28%; }
   .fab__item--2 {
     bottom: 13%;
     right: 38%; }
   .fab__item--3 {
     bottom: 20%;
-    right: 53%; }
+    right: 50%; }
   .fab__item--4 {
     bottom: 13%;
-    left: 23%; }
+    left: 30%; }
   .fab__item--5 {
     bottom: 4.5%;
-    left: 10%; }
+    left: 20%; }
   .fab__item__icon {
     position: relative;
     margin-top: 1rem; }
