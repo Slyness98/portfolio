@@ -40,56 +40,73 @@ body {
 #root {
   height: 100%; }
 
-.mobileNav__checkbox {
-  display: none; }
-
-.mobileNav__button {
+.fab, .fab__item {
   background-color: #fff;
-  height: 5rem;
-  width: 5rem;
-  position: fixed;
-  bottom: 5%;
-  right: 50%;
   border-radius: 50%;
   z-index: 2000;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
   text-align: center;
-  cursor: pointer; }
+  cursor: pointer;
+  position: fixed; }
+  .fab__main {
+    height: 5rem;
+    width: 5rem;
+    bottom: 5%;
+    right: 50%; }
+  .fab__checkbox {
+    display: none; }
+  .fab__icon {
+    position: relative;
+    margin-top: 2.5rem; }
+    .fab__icon, .fab__icon::before, .fab__icon::after {
+      width: 3rem;
+      height: 2px;
+      background-color: #333;
+      display: inline-block; }
+    .fab__icon::before, .fab__icon::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all .2s; }
+    .fab__icon::before {
+      top: -.8rem; }
+    .fab__icon::after {
+      top: .8rem; }
+  .fab:hover .fab__icon::before, .fab__item:hover .fab__icon::before {
+    top: -1.2rem; }
+  .fab:hover .fab__icon::after, .fab__item:hover .fab__icon::after {
+    top: 1.2rem; }
+  .fab__checkbox:checked + .fab .fab__icon, .fab__checkbox:checked + .fab__item .fab__icon {
+    background-color: transparent; }
+  .fab__checkbox:checked + .fab .fab__icon::before, .fab__checkbox:checked + .fab__item .fab__icon::before {
+    top: 0;
+    transform: rotate(135deg); }
+  .fab__checkbox:checked + .fab .fab__icon::after, .fab__checkbox:checked + .fab__item .fab__icon::after {
+    top: 0;
+    transform: rotate(-135deg); }
 
-.mobileNav__icon {
-  position: relative;
-  margin-top: 2.5rem; }
-  .mobileNav__icon, .mobileNav__icon::before, .mobileNav__icon::after {
-    width: 3rem;
-    height: 2px;
-    background-color: #333;
-    display: inline-block; }
-  .mobileNav__icon::before, .mobileNav__icon::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    transition: all .2s; }
-  .mobileNav__icon::before {
-    top: -.8rem; }
-  .mobileNav__icon::after {
-    top: .8rem; }
-
-.mobileNav__button:hover .mobileNav__icon::before {
-  top: -1.2rem; }
-
-.mobileNav__button:hover .mobileNav__icon::after {
-  top: 1.2rem; }
-
-.mobileNav__checkbox:checked + .mobileNav__button .mobileNav__icon {
-  background-color: transparent; }
-
-.mobileNav__checkbox:checked + .mobileNav__button .mobileNav__icon::before {
-  top: 0;
-  transform: rotate(135deg); }
-
-.mobileNav__checkbox:checked + .mobileNav__button .mobileNav__icon::after {
-  top: 0;
-  transform: rotate(-135deg); }
+/* The <MenuItem> component makes use of .fab, which is already defined in _mainButton.scss */
+.fab__item {
+  height: 3rem;
+  width: 3rem; }
+  .fab__item--1 {
+    bottom: 4.5%;
+    right: 25%; }
+  .fab__item--2 {
+    bottom: 13%;
+    right: 38%; }
+  .fab__item--3 {
+    bottom: 20%;
+    right: 53%; }
+  .fab__item--4 {
+    bottom: 13%;
+    left: 23%; }
+  .fab__item--5 {
+    bottom: 4.5%;
+    left: 10%; }
+  .fab__item__icon {
+    position: relative;
+    margin-top: 1rem; }
 
 .row {
   max-width: 100%;

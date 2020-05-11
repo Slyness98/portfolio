@@ -1,0 +1,39 @@
+//Assign Breakpoint Definitions
+@mixin respond($breakpoint) {
+	@if $breakpoint == phone {
+		@media (max-width: 37.5em) { @content }; //600px
+	}
+
+	@if $breakpoint == tab-port {
+		@media (max-width: 56.25em) { @content };  //900px
+	}
+
+	@if $breakpoint == tab-land {
+		@media (max-width: 75em) {	@content }; //1200px
+	}
+
+	@if $breakpoint == big-desktop {
+		@media (min-width: 112.5em) { @content }; //1800px
+	}
+}
+
+//Clearfix hack for grid system, helping to define the containment behavior of columns
+@mixin clearfix {
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+
+// RECURRING/REUSABLE COMPONENT ABSTRACTIONS
+@mixin button {
+	background-color: $color-white;
+	border-radius: 50%;
+	z-index: 2000;
+	box-shadow: 0 1rem 3rem rgba($color-black, .1);
+	text-align: center;
+	cursor: pointer;
+}
+

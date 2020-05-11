@@ -1,0 +1,33 @@
+/* The <MenuItem> component makes use of .fab, which is already defined in _mainButton.scss */
+.fab__item {
+	@extend .fab;
+	height: 3rem;
+	width: 3rem;
+
+	&--1 {
+		bottom: 4.5%;
+		right: 25%;
+	}
+
+	&--2 {
+		bottom: 13%;
+		right: 38%;
+	}
+	&--3 {
+		bottom: 20%;
+		right: 53%;
+	}
+	&--4 {
+		bottom: 13%;
+		left: 23%;	
+	}
+	&--5 {
+		bottom: 4.5%;
+		left: 10%;
+	}
+
+	&__icon {
+		position: relative;
+		margin-top: 1rem;
+	}
+}

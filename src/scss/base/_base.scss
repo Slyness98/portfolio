@@ -1,0 +1,48 @@
+*,
+*::after,
+*::before {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: inherit; /*force box-sizing property to be an inherited property amongst all selectors, effectively changing its default behavior. Our root for this property is now what we declare in the body selector */
+}
+
+html {
+	min-height: 100%;
+	font-size: 62.5%; /*Declare default font-size here so we can easily scale all padding and related font-sizing with rem values. We use 62.5% because we want to take the browser default of 16px and bring it down to a default of ten. This way, people with poor vision can resize their default browser font sizes and responsiveness wont be affected.  
+			 				this really just changes the definition of what a rem unit is, and thus is more structural than a typography setting*/
+	
+
+	
+	@include respond(tab-land) { //width < 900?
+		font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
+	}
+
+	@include respond(tab-port) {// width < 600?
+		font-size: 50%; //1 rem = 8px, 8/16 = 50%
+	}
+
+	
+	@include respond(phone) {// width < 600?
+		font-size: 37.5%; //1 rem = 6px, 6/16 = 37.5%
+	}
+
+	@include respond(big-desktop) {
+		font-size: 75%; //1rem = 12px, 12/16 = 75%
+	}
+}
+
+body {
+	min-height: 100vh;
+	box-sizing: border-box; /* Padding and border no longer included when we express size for elements. This is the only structural property included in the body. All other styles are typography related and thus can be found in _typograhy.scss */
+	padding: 1rem;
+	background-color: black;
+
+	@include respond(tab-port) {// width < 600?
+		padding: 0; //1 rem = 8px, 8/16 = 50%
+	}
+
+}
+
+#root {
+	height: 100%;
+}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './assets/css/style.css';
 import {ReactComponent as Logo} from './assets/images/lyness.svg';
-import MobileNavigation from './components/mobileNav.js';
+import MobileNavigation from './components/navigation/mobile/mobileNav.js';
 
 const initialState = {
 	platform : 'desktop'

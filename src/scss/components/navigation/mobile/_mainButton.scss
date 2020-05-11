@@ -1,0 +1,65 @@
+.fab{
+	@include button;
+	position: fixed;
+
+	&__main {
+	height: 5rem;
+	width: 5rem;
+	bottom: 5%;
+	right: 50%;
+	}
+
+	&__checkbox {
+		display: none;
+	}
+
+
+
+	&__icon{
+		position: relative;
+		margin-top: 2.5rem;
+		&,
+		&::before,
+		&::after {
+			width: 3rem;
+			height: 2px;
+			background-color: $color-grey51;
+			display: inline-block;
+		}
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			transition: all .2s;
+		}
+
+		&::before { top: -.8rem; }
+		&::after { top: .8rem;}
+
+	}
+
+	&:hover &__icon::before {
+		top: -1.2rem;
+	}
+
+	&:hover &__icon::after {
+		top: 1.2rem;
+	}
+
+	&__checkbox:checked + & &__icon {
+		background-color: transparent;
+	}
+
+	&__checkbox:checked + & &__icon::before {
+		top: 0;
+		transform: rotate(135deg);
+	}
+
+	&__checkbox:checked + & &__icon::after{
+	top: 0;
+	transform: rotate(-135deg);
+	}
+}
+
