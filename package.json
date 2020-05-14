@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -11,7 +12,7 @@
     "react-draggable": "^4.2.0",
     "react-scripts": "3.4.1"
   },
-  "homepage":"https://slyness98.github.io/portfolio",
+  "homepage": "https://slyness98.github.io/portfolio",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -39,7 +40,7 @@
   },
   "devDependencies": {
     "gh-pages": "^2.2.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "nodemon": "^2.0.2"
   }
 }

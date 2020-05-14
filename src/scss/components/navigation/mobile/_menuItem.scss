@@ -1,33 +1,43 @@
 /* The <MenuItem> component makes use of .fab, which is already defined in _mainButton.scss */
 .fab__item {
 	@extend .fab;
-	height: 5rem;
-	width: 5rem;
+	height: 6rem;
+	width: 6rem;
 
 	&--1 {
 		bottom: 4.5%;
-		right: 28%;
+		right: calc((100%-6rem) * .25);
 	}
 
 	&--2 {
 		bottom: 13%;
-		right: 38%;
+		right: calc((100%-6rem) * .35);
 	}
 	&--3 {
 		bottom: 20%;
-		right: 50%;
+		left: calc((100%-6rem) * .465);
 	}
 	&--4 {
 		bottom: 13%;
-		left: 30%;	
+		left: calc((100%-6rem) * .35);	
 	}
 	&--5 {
 		bottom: 4.5%;
-		left: 20%;
+		left: calc((100%-6rem) * .25);
 	}
 
 	&__icon {
 		position: relative;
-		margin-top: 1rem;
+		margin-top: 2.5rem;
+		transform: scale(3);
+		color: #1ebba3;
+	background: #360033;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	
+
 	}
 }

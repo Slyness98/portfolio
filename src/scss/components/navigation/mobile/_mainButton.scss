@@ -3,10 +3,10 @@
 	position: fixed;
 
 	&__main {
-	height: 7rem;
-	width: 7rem;
+	height: 10rem;
+	width: 10rem;
 	bottom: 5%;
-	right: 50%;
+	right: calc((100% - 10rem)/2);
 	}
 
 	&__checkbox {
@@ -17,12 +17,12 @@
 
 	&__icon{
 		position: relative;
-		margin-top: 3.5rem;
+		margin-top: 5rem;
 		&,
 		&::before,
 		&::after {
-			width: 3rem;
-			height: 2px;
+			width: 5rem;
+			height: 3px;
 			background-color: $color-grey51;
 			display: inline-block;
 		}
@@ -35,17 +35,17 @@
 			transition: all .2s;
 		}
 
-		&::before { top: -.8rem; }
-		&::after { top: .8rem;}
+		&::before { top: -1.5rem; }
+		&::after { top: 1.5rem;}
 
 	}
 
 	&:hover &__icon::before {
-		top: -1.2rem;
+		top: -2rem;
 	}
 
 	&:hover &__icon::after {
-		top: 1.2rem;
+		top: 2rem;
 	}
 
 	&__checkbox:checked + & &__icon {

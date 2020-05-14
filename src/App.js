@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './assets/css/style.css';
 import {ReactComponent as Logo} from './assets/images/lyness.svg';
 import MobileNavigation from './components/navigation/mobile/mobileNav.js';
 
@@ -47,9 +46,9 @@ class App extends Component {
 	  	       </div>
 		    </div>
 			
-			{platform === 'mobile' ?  //if state of platform is 'mobile' render MobileNavigation component.
-	 		<MobileNavigation /> : (null)  //Else don't render the component.
-			}
+			
+	 		<MobileNavigation /> 
+			
  
 	</div>
 );

@@ -8,11 +8,11 @@ const MobileNavigation = () => {
 	return(
 	  <div className="mobileNav">
 	  	  <MainButton />
-		  <MenuItem passClass="fa-bar-chart" position="1"/>
-		  <MenuItem passClass="fa-plus"      position="2"/>
-		  <MenuItem passClass="fa-heart"     position="3"/>
-		  <MenuItem passClass="fa-envelope"  position="4" />
-		  <MenuItem passClass="fa-cog"       position="5" />
+		  <MenuItem passClass="fa-home"      position="5"/>
+		  <MenuItem passClass="fa-vector-square"      position="4"/>
+		  <MenuItem passClass="fa-laptop-code"     position="3"/>
+		  <MenuItem passClass="fa-user-secret"  position="2" />
+		  <MenuItem passClass="fa-mail-bulk"       position="1" />
 	  </div>   
 	);
 }
