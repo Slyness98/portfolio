@@ -118,6 +118,11 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; }
 
+.menu {
+  opacity: 0; }
+  .menu--open {
+    opacity: 1; }
+
 .row {
   max-width: 100%;
   min-height: 100%;

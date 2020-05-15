@@ -46,9 +46,9 @@ class App extends Component {
 	  	       </div>
 		    </div>
 			
-			
-	 		<MobileNavigation /> 
-			
+			{platform === 'mobile' ?
+	 		<MobileNavigation /> : (null)
+			}
  
 	</div>
 );

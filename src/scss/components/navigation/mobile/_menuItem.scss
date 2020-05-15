@@ -41,3 +41,11 @@ background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, F
 
 	}
 }
+
+.menu {
+	opacity: 0;
+
+	&--open {
+		opacity: 1;
+	}
+}
