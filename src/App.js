@@ -15,7 +15,6 @@ class App extends Component {
 
 	detectMobile = () => {
 		let mql = window.matchMedia("(max-width: 550px)");
-		console.log(mql.matches);
 		if(mql.matches) {
 			this.setState({platform: 'mobile'});
 			console.log(this.state);
