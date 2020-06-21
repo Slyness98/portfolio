@@ -1,42 +1,55 @@
 /* The <MenuItem> component makes use of .fab, which is already defined in _mainButton.scss */
 .fab__item {
-	@extend .fab;  
+	@include button;
+	position: fixed;
+    transition: all .5s;  
 	height: 6rem;
 	width: 6rem;
-
-	&--position{
-		animation-name: spin;
-		animation-duration: 2s;
-		animation-timing-function: ease;
-		animation-delay: 0s;
-		animation-iteration-count: 1;
-		animation-direction: normal;
-		animation-fill-mode: forwards;
-		animation-play-state: running;
-		transition: all 2s;
 		
-		&--1 {
-			bottom: 4.5%;
-			right: calc(25% - 3rem);
-		}
+	&--1 {
+		bottom: 4.5%;
+		right: calc(25% - 3rem);
 
-		&--2 {
-			bottom: 13%;
-			right: calc(35% - 3rem);
+		@include respond(phone-land){
+			bottom: 5%;
+			left: calc(85% - 3rem);
 		}
-		&--3 {
-			bottom: 20%;
-			left: calc(50% - 3rem);
-		}
-		&--4 {
-			bottom: 13%;
-			left: calc(35% - 3rem);	
-		}
-		&--5 {
-			bottom: 4.5%;
-			left: calc(25% - 3rem);
-		}	
 	}
+
+	&--2 {
+		bottom: 13%;
+		right: calc(35% - 3rem);
+
+		@include respond(phone-land){
+			bottom: 5%;
+			left: calc(70% - 3rem);
+		}
+	}
+	&--3 {
+		bottom: 20%;
+		left: calc(50% - 3rem);
+		@include respond(phone-land) {
+			bottom: 5%;
+			left: calc(55% - 3rem);
+		}
+	}
+	&--4 {
+		bottom: 13%;
+		left: calc(35% - 3rem);	
+
+		@include respond(phone-land){
+			bottom: 5%;
+			left: calc(40% - 3rem);
+		}
+	}
+	&--5 {
+		bottom: 4.5%;
+		left: calc(25% - 3rem);
+
+		@include respond(phone-land){
+			bottom: 5%;
+		}
+	}		
 
 	&__icon {
 		position: relative;
@@ -48,5 +61,31 @@
         background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+
 	}
 }
+
+#nav ul li {
+	transition: all 2s;
+}
+
+#nav ul li i{
+    display: block;
+}
+#nav ul li:hover i {
+   display: none;
+}
+#nav ul li a{
+    display: none;
+}
+#nav ul li:hover a{
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.6rem;
+   font-weight: 2rem;
+   color: white;
+   text-decoration: none;
+}
+

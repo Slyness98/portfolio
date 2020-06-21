@@ -1,112 +1,212 @@
 .row {
 	max-width: $grid-width;
-	min-height: 100%;
 	margin: 0 auto;
-	
+	display: flex;
 	&:not(:last-child) { /* The not pseudo-class will select everything except for what we specify. In this case, every child but the last child of row. */
 		margin-bottom: $gutter-vertical;
+		// @include respond(phone){
+		//   margin-bottom: $gutter-vertical-sm;
+		// }
 	}
 
-	@include clearfix;
-
-	[class^="col-"] { /*added caret is what specifies the behavior of selecting all classes beginning with the given phrase. If it were simply just class = "col-", it would take that literally and nothing would be selected. */
-		float: left;
-		overflow: hidden;
-
-		&:not(:last-child){
-			margin-right: $gutter-horizontal;
-		}
+	&::after{
+		@include clearfix;
 	}
 
-	// ------------------------------------------------------------------------------------------
-	.col-eighth {
-		width: calc((100% - 7 * #{$gutter-horizontal}) / 8);
-	}
+}
 
-	.col-threeEighths {
-		width: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 3 + 2 * #{$gutter-horizontal});
+[class^="col-"] { /*added caret is what specifies the behavior of selecting all classes beginning with the given phrase. If it were simply just class = "col-", it would take that literally and nothing would be selected. */
+	float: left;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+    flex-basis: 100%;
+	&:not(:last-child){
+		margin-right: $gutter-horizontal;
 	}
+}
 
-	.col-fiveEighths {
-		width: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 5 + 4 * #{$gutter-horizontal});
-	}
+.col-twelfth {
+  width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+}
 
-	.col-sevenEighths {
-		width: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 7 + 6 * #{$gutter-horizontal});
-	}
-	// -------------------------------------------------------------------------------------------
-	
-	.col-seventh {
-		width: calc((100% - 6 * #{$gutter-horizontal}) / 7);
-	}
+.col-fiveTwelfths {
+  width: calc(((100% - 11 * #{$gutter-horizontal}) / 12) * 5 + 4 * #{$gutter-horizontal});		
+}
 
-	.col-twoSevenths {
-		width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 2 + #{$gutter-horizontal});
-	}
-	.col-threeSevenths {
-		width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 3 + 2 * #{$gutter-horizontal});
-	}
-	.col-fourSevenths {
-		width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 4 + 3 * #{$gutter-horizontal});
-	}
-	.col-fiveSevenths {
-		width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 5 + 4 * #{$gutter-horizontal});
-	}
-	.col-sixSevenths {
-		width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 6 + 5 * #{$gutter-horizontal});
-	}
-	// -------------------------------------------------------------------------------------------
+.col-sevenTwelfths {
+  width: calc(((100% - 11 * #{$gutter-horizontal}) / 12) * 7 + 6 * #{$gutter-horizontal});		
+}
 
-	.col-sixth {
-		width: calc((100% - 5 * #{$gutter-horizontal}) / 6);
-	}
+.col-elevenTwelfths {
+  width: calc(((100% - 11 * #{$gutter-horizontal}) / 12) * 11 + 10 * #{$gutter-horizontal});		
+}
 
-	.col-fiveSixths {
-		width: calc(((100% - 5 * #{$gutter-horizontal}) / 6) * 5 + 4 * #{$gutter-horizontal});
-	}
-	// -------------------------------------------------------------------------------------------
-	.col-fifth {
-	    width: calc((100% - 4 * #{$gutter-horizontal}) / 5);
-	}
+// ------------------------------------------------------------------------------------------
 
-	.col-twoFifths {
-	    width: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 2 + #{$gutter-horizontal});
-	}
+.col-eleventh {
+  width: calc((100% - 10 * #{$gutter-horizontal}) / 11);
+}
 
-	.col-threeFifths {
-	    width: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 3 + 2 * #{$gutter-horizontal});
-	}
+.col-twoElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 2 + #{$gutter-horizontal});	
+}
 
-	.col-fourFifths {
-	    width: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 4 + 3 * #{$gutter-horizontal});
-	}
-	// -------------------------------------------------------------------------------------------
-	
-	.col-fourth {
-		width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
-	}
-	.col-threeFourths {
-		width: calc(((100% - 3 * #{$gutter-horizontal}) / 4) * 3 + 2 * #{$gutter-horizontal});
-	}
-	
-	// -------------------------------------------------------------------------------------------
-	.col-third {
-		width: calc((100% - 2 * #{$gutter-horizontal}) / 3);;
-	}
-	.col-twoThirds {
-		width: calc(((100% - 2 * #{$gutter-horizontal}) / 3) * 2 + #{$gutter-horizontal});
-	}
+.col-threeElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 3 + 2 * #{$gutter-horizontal});	
+}
 
-	// -------------------------------------------------------------------------------------------
-	.col-half {
-		width: calc((100% - #{$gutter-horizontal}) / 2); /* in order t0 use a SASS variable in calc we need to wrap our usual variable in curly brackets and precede those set of braackets with a # */
-	}
+.col-fourElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 4 + 3 * #{$gutter-horizontal});	
+}
 
+.col-fiveElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 5 + 4 * #{$gutter-horizontal});		
+}
 
+.col-sixElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 6 + 5 * #{$gutter-horizontal});	
+}
 
-	
+.col-sevenElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 7 + 6 * #{$gutter-horizontal});	
+}
 
-	
+.col-eightElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 8 + 7 * #{$gutter-horizontal});	
+}
 
+.col-nineElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 9 + 8 * #{$gutter-horizontal});		
+}
 
+.col-tenElevenths {
+  width: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 10 + 9 * #{$gutter-horizontal});	
+}
+
+// ------------------------------------------------------------------------------------------
+
+.col-tenth {
+  width: calc((100% - 9 * #{$gutter-horizontal}) / 10);
+}
+
+.col-threeTenths {
+  width: calc(((100% - 9 * #{$gutter-horizontal}) / 10) * 3 + 2 * #{$gutter-horizontal});
+}
+
+.col-sevenTenths {
+  width: calc(((100% - 9 * #{$gutter-horizontal}) / 10) * 7 + 6 * #{$gutter-horizontal});
+}
+
+.col-nineTenths {
+  width: calc(((100% - 9 * #{$gutter-horizontal}) / 10) * 9 + 8 * #{$gutter-horizontal});
+}
+
+// ------------------------------------------------------------------------------------------
+.col-ninth {
+  width: calc((100% - 8 * #{$gutter-horizontal}) / 9);
+}
+
+.col-twoNinths {
+  width: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 2 + #{$gutter-horizontal});
+}
+
+.col-fourNinths {
+  width: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 4 + 3 * #{$gutter-horizontal});
+}
+
+.col-fiveNinths {
+  width: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 5 + 4 * #{$gutter-horizontal});	
+}
+
+.col-sevenNinths {
+  width: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 7 + 6 * #{$gutter-horizontal});	
+}
+
+.col-eightNinths {
+  width: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 8 + 7 * #{$gutter-horizontal});	
+}
+
+// ------------------------------------------------------------------------------------------
+.col-eighth {
+	width: calc((100% - 7 * #{$gutter-horizontal}) / 8);
+}
+
+.col-threeEighths {
+	width: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 3 + 2 * #{$gutter-horizontal});
+}
+
+.col-fiveEighths {
+	width: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 5 + 4 * #{$gutter-horizontal});
+}
+
+.col-sevenEighths {
+	width: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 7 + 6 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+
+.col-seventh {
+	width: calc((100% - 6 * #{$gutter-horizontal}) / 7);
+}
+
+.col-twoSevenths {
+	width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 2 + #{$gutter-horizontal});
+}
+.col-threeSevenths {
+	width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 3 + 2 * #{$gutter-horizontal});
+}
+.col-fourSevenths {
+	width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 4 + 3 * #{$gutter-horizontal});
+}
+.col-fiveSevenths {
+	width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 5 + 4 * #{$gutter-horizontal});
+}
+.col-sixSevenths {
+	width: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 6 + 5 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+
+.col-sixth {
+	width: calc((100% - 5 * #{$gutter-horizontal}) / 6);
+}
+
+.col-fiveSixths {
+	width: calc(((100% - 5 * #{$gutter-horizontal}) / 6) * 5 + 4 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+.col-fifth {
+    width: calc((100% - 4 * #{$gutter-horizontal}) / 5);
+}
+
+.col-twoFifths {
+    width: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 2 + #{$gutter-horizontal});
+}
+
+.col-threeFifths {
+    width: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 3 + 2 * #{$gutter-horizontal});
+}
+
+.col-fourFifths {
+    width: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 4 + 3 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+
+.col-fourth {
+	width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+}
+.col-threeFourths {
+	width: calc(((100% - 3 * #{$gutter-horizontal}) / 4) * 3 + 2 * #{$gutter-horizontal});
+}
+
+// -------------------------------------------------------------------------------------------
+.col-third {
+	width: calc((100% - 2 * #{$gutter-horizontal}) / 3);;
+}
+.col-twoThirds {
+	width: calc(((100% - 2 * #{$gutter-horizontal}) / 3) * 2 + #{$gutter-horizontal});
+}
+
+// -------------------------------------------------------------------------------------------
+.col-half {
+	width: calc((100% - #{$gutter-horizontal}) / 2); /* in order t0 use a SASS variable in calc we need to wrap our usual variable in curly brackets and precede those set of braackets with a # */
 }

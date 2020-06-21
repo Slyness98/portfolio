@@ -1,58 +1,54 @@
 import React, {Component} from 'react';
 import {ReactComponent as Logo} from './assets/images/lyness.svg';
-import MobileNavigation from './components/navigation/mobile/mobileNav.js';
+import {debounce, ternary} from './assets/utilities';
+import Navigation from './components/navigation/Navigation';
 
 const initialState = {
-	platform : 'desktop'
+	platform : ''
 };
 
-
 class App extends Component {
-	constructor() {
-	  super();
-	  this.state = initialState;
-	}
+  constructor() {
+    super();
+    this.state = initialState;
+    this.detectMobile = this.detectMobile.bind(this);
+  }
 
-	detectMobile = () => {
-		let mql = window.matchMedia("(max-width: 550px)");
-		if(mql.matches) {
-			this.setState({platform: 'mobile'});
-			console.log(this.state);
-		}else {
-			this.setState({platform: 'desktop'});
-			console.log(this.state);
-		}
+
+  detectMobile = debounce(function() {
+	let mql = window.matchMedia("(max-width: 767px)");
+	if(mql.matches) {
+		this.setState({platform: 'mobile'});
+		console.log(this.state);
+	} else {
+		this.setState({platform: 'desktop'});
+		console.log(this.state);
 	}
+  },250);
+
 
   componentDidMount() {
-  	window.addEventListener("load", this.detectMobile.bind(this));
-    window.addEventListener("resize", this.detectMobile.bind(this));
+  	window.addEventListener("load",   this.detectMobile);
+    window.addEventListener("resize", this.detectMobile);
   }
    
   componentWillUnmount() {
-  	window.removeEventListener("load", this.detectMobile.bind(this));
-    window.removeEventListener("resize", this.detectMobile.bind(this));
+  	window.removeEventListener("load",   this.detectMobile);
+    window.removeEventListener("resize", this.detectMobile);
   }
 
-	render() {
-	const {platform} = this.state; //platform property of state object imported into render() method and read as current state. Render now has local reference to this property.
+  render() {
+	const {platform} = this.state; 
 	
 	return (
-		<div className="App">
-			<div className="row">
-			   <div className="col-fourth logoContainer">
-		     		<Logo className="logo"/>
-	  	       </div>
-		    </div>
-			
-			{platform === 'mobile' ?
-	 		<MobileNavigation /> : (null)
-			}
- 
-	</div>
-);
-}
-
+	 <div className="App">
+     <header className={ ternary(platform, 'mobile', 'headContainer', 'fullWindow') }>
+       { ternary( platform, 'mobile', <Logo className="logo"/>, null ) }
+	     <Navigation platform={platform} />	
+     </header>    
+	 </div>
+    );
+  }
 }
 
 export default App;

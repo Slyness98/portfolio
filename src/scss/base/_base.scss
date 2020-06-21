@@ -8,33 +8,34 @@
 
 html {
 	min-height: 100%;
-	font-size: 62.5%; /*Declare default font-size here so we can easily scale all padding and related font-sizing with rem values. We use 62.5% because we want to take the browser default of 16px and bring it down to a default of ten. This way, people with poor vision can resize their default browser font sizes and responsiveness wont be affected.  
-			 				this really just changes the definition of what a rem unit is, and thus is more structural than a typography setting*/
+	font-size: 31.25%; /*Declare default font-size here so we can easily scale all padding and related font-sizing with rem values. We use 31.25% because we want to take the browser default of 16px and bring it down to a default of five.  
+			 			this changes the definition of what a rem unit is */
 	
+	@include respond(desktop-lg) {
+		font-size: 75%; //1rem = 12px, 12/16 = 75%
+	}
 
 	
-	@include respond(tab-land) { //width < 900?
+	
+	@include respond(tab-land) { //width >= 900?
 		font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
 	}
 
-	@include respond(tab-port) {// width < 600?
+	@include respond(tab-port) {// width >= 768?
 		font-size: 50%; //1 rem = 8px, 8/16 = 50%
 	}
 
 	
-	@include respond(phone) {// width < 600?
+	@include respond(phone) {// width >= 480?
 		font-size: 37.5%; //1 rem = 6px, 6/16 = 37.5%
 	}
 
-	@include respond(big-desktop) {
-		font-size: 75%; //1rem = 12px, 12/16 = 75%
-	}
+	
 }
 
 body {
 	min-height: 100vh;
 	box-sizing: border-box; /* Padding and border no longer included when we express size for elements. This is the only structural property included in the body. All other styles are typography related and thus can be found in _typograhy.scss */
-	padding: 1rem;
 	background-color: black;
 
 	@include respond(tab-port) {// width < 600?
@@ -44,5 +45,9 @@ body {
 }
 
 #root {
-	height: 100%;
+	height: 100vh;
+}
+
+.App {
+	min-height: 100vh;
 }

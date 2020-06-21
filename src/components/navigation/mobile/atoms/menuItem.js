@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {Spin, Floating} from '../../../animations/animations'
+import {Spin, Floating} from '../../../animations/animations';
 
 
 // Styled components are used here to build in animations rather than attach them. This is to make animations more convenient to apply in a component life-cycle setting. Only animation properties are specified here. Everything else is associated with the component's respective .scss file.
-const FabItem = styled.a.attrs(props => ({
-	className: `fab__item fab__item--position--${props.num}`,
+const FabItem = styled.li.attrs(props => ({
+	className: `fab__item fab__item--${props.num}`,
 
 }))`
 	display: none;
@@ -44,11 +44,11 @@ const Icon = styled.i.attrs(props => ({
 	-webkit-text-fill-color: transparent;
 `;
 
-const MenuItem = ({icon, num, toggleOpen}) => {
+const MenuItem = ({icon, num, toggleOpen, text}) => {
 	return(
-	<FabItem href="#" num={num} toggleOpen={toggleOpen ? true : false}> 
-		<Icon icon={icon} toggleOpen={toggleOpen}></Icon> 
-	</FabItem>
+	  <FabItem num={num} toggleOpen={toggleOpen ? true : false}> 
+		<Icon icon={icon}></Icon> <a href="#" alt="menu icons">{text}</a>
+	  </FabItem>
 	);
 }
 
