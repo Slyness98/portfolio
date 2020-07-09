@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "font-awesome": "^4.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -20,10 +21,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "compile:sass": "node-sass src/scss/main.scss src/assets/css/style.css",
     "watch:sass": "nodemon -e scss -x \"npm run compile:sass\"",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" src/assets/css/style.css -o src/assets/css/style.prefix.css",
+    "compress:css": "node-sass src/assets/css/style.prefix.css src/assets/css/style.css --output-style compressed",
+    "build:css": "npm run compile:sass && npm run prefix:css && npm run compress:css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,17 +36,19 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "last 5 versions"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 5 chrome version",
+      "last 5 firefox version",
+      "last 5 safari version"
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^9.8.4",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "postcss-cli": "^7.1.1"
   }
 }

@@ -1,61 +1,30 @@
-import React, {Component, Fragment} from 'react';
-// import NavContainer from './atoms/NavContainer';
+import React, {Fragment} from 'react';
+
 import Draggable from '../../dnd/Draggable';
 import Droppable from '../../dnd/Droppable';
-import Navbar from './atoms/Navbar';
-import styled, {css} from 'styled-components';
+import Navbar from './Navbar';
 
-// const containerTop = {
+const DesktopNavigation = () => {
+  return(
+    <React.Fragment>
+  	<Droppable id="drop1" className="navbar__container">
+      <Draggable id="dragItem"> <Navbar /> </Draggable>
+    </Droppable>
 
-// }
+    <Droppable id="drop2" className="navbar__container invertGrid">
 
-// const containerRight = {
+    </Droppable>
 
-// }
+    <Droppable id="drop3" className="navbar__container">
 
-// const containerBottom = {
+    </Droppable>
 
-// }
+    <Droppable id="drop4" className="navbar__container invertGrid">
 
-// const containerLeft = {
-
-// }
-
-
-
-class DesktopNavigation extends Component{
-  constructor(props) {
-	super(props);
-  
-  this.state = {
-    position: 'left'
-  }
-
-  // this.positionNav = this.positionNav.bind(this);
-  }
-
-
-  render() {
-    return(
-      <React.Fragment>
-    	<Droppable id="dr1" class="row navbar__container navbar__container--top">
-        <Draggable id="dragItem"> <Navbar /> </Draggable>
-      </Droppable>
-
-      <Droppable id="dr2" class="navbar__container navbar__container--right">
-
-      </Droppable>
-
-      <Droppable id="dr3" class="row navbar__container navbar__container--bottom">
-
-      </Droppable>
-
-      <Droppable id="dr4" class="navbar__container navbar__container--left">
-
-      </Droppable>
-      </React.Fragment>
-    );
-  }
+    </Droppable>
+    </React.Fragment>
+  );
 }
+
 
 export default DesktopNavigation;

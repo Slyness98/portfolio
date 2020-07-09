@@ -4,9 +4,9 @@
 	display: flex;
 	&:not(:last-child) { /* The not pseudo-class will select everything except for what we specify. In this case, every child but the last child of row. */
 		margin-bottom: $gutter-vertical;
-		// @include respond(phone){
-		//   margin-bottom: $gutter-vertical-sm;
-		// }
+		@include respond(phone){
+		  margin-bottom: $gutter-vertical-sm;
+		}
 	}
 
 	&::after{
@@ -15,12 +15,11 @@
 
 }
 
+
 [class^="col-"] { /*added caret is what specifies the behavior of selecting all classes beginning with the given phrase. If it were simply just class = "col-", it would take that literally and nothing would be selected. */
 	float: left;
 	overflow: hidden;
 	display: flex;
-	flex-direction: column;
-    flex-basis: 100%;
 	&:not(:last-child){
 		margin-right: $gutter-horizontal;
 	}
@@ -210,3 +209,216 @@
 .col-half {
 	width: calc((100% - #{$gutter-horizontal}) / 2); /* in order t0 use a SASS variable in calc we need to wrap our usual variable in curly brackets and precede those set of braackets with a # */
 }
+
+
+.invertGrid .row {
+	max-width: 100%;
+	width: 100%;
+	max-height: $grid-height;
+	// margin: auto 0;
+	display: flex;
+	flex-direction: column;
+	&:not(:last-child){
+	  margin-right: $gutter-horizontal;
+	}
+	&::after{
+		@include clearfix;
+	}
+}
+
+.invertGrid [class^="col-"] {
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	&:not(:last-child){
+		margin-bottom: $gutter-horizontal;
+	}
+}
+
+
+.invertGrid .col-twelfth {
+  height: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+}
+
+.invertGrid .col-fiveTwelfths {
+  height: calc(((100% - 11 * #{$gutter-horizontal}) / 12) * 5 + 4 * #{$gutter-horizontal});		
+}
+
+.invertGrid .col-sevenTwelfths {
+  height: calc(((100% - 11 * #{$gutter-horizontal}) / 12) * 7 + 6 * #{$gutter-horizontal});		
+}
+
+.invertGrid .col-elevenTwelfths {
+  height: calc(((100% - 11 * #{$gutter-horizontal}) / 12) * 11 + 10 * #{$gutter-horizontal});		
+}
+
+// ------------------------------------------------------------------------------------------
+
+.invertGrid .col-eleventh {
+  height: calc((100% - 10 * #{$gutter-horizontal}) / 11);
+}
+
+.invertGrid .col-twoElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 2 + #{$gutter-horizontal});	
+}
+
+.invertGrid .col-threeElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 3 + 2 * #{$gutter-horizontal});	
+}
+
+.invertGrid .col-fourElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 4 + 3 * #{$gutter-horizontal});	
+}
+
+.invertGrid .col-fiveElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 5 + 4 * #{$gutter-horizontal});		
+}
+
+.invertGrid .col-sixElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 6 + 5 * #{$gutter-horizontal});	
+}
+
+.invertGrid .col-sevenElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 7 + 6 * #{$gutter-horizontal});	
+}
+
+.invertGrid .col-eightElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 8 + 7 * #{$gutter-horizontal});	
+}
+
+.invertGrid .col-nineElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 9 + 8 * #{$gutter-horizontal});		
+}
+
+.invertGrid .col-tenElevenths {
+  height: calc(((100% - 10 * #{$gutter-horizontal}) / 11) * 10 + 9 * #{$gutter-horizontal});	
+}
+
+// ------------------------------------------------------------------------------------------
+
+.invertGrid .col-tenth {
+  height: calc((100% - 9 * #{$gutter-horizontal}) / 10);
+}
+
+.invertGrid .col-threeTenths {
+  height: calc(((100% - 9 * #{$gutter-horizontal}) / 10) * 3 + 2 * #{$gutter-horizontal});
+}
+
+.invertGrid .col-sevenTenths {
+  height: calc(((100% - 9 * #{$gutter-horizontal}) / 10) * 7 + 6 * #{$gutter-horizontal});
+}
+
+.invertGrid .col-nineTenths {
+  height: calc(((100% - 9 * #{$gutter-horizontal}) / 10) * 9 + 8 * #{$gutter-horizontal});
+}
+
+// ------------------------------------------------------------------------------------------
+.invertGrid .col-ninth {
+  height: calc((100% - 8 * #{$gutter-horizontal}) / 9);
+}
+
+.invertGrid .col-twoNinths {
+  height: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 2 + #{$gutter-horizontal});
+}
+
+.invertGrid .col-fourNinths {
+  height: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 4 + 3 * #{$gutter-horizontal});
+}
+
+.invertGrid .col-fiveNinths {
+  height: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 5 + 4 * #{$gutter-horizontal});	
+}
+
+.invertGrid .col-sevenNinths {
+  height: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 7 + 6 * #{$gutter-horizontal});	
+}
+
+.invertGrid .col-eightNinths {
+  height: calc(((100% - 8 * #{$gutter-horizontal}) / 9) * 8 + 7 * #{$gutter-horizontal});	
+}
+
+// ------------------------------------------------------------------------------------------
+.invertGrid .col-eighth {
+	height: calc((100% - 7 * #{$gutter-horizontal}) / 8);
+}
+
+.invertGrid .col-threeEighths {
+	height: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 3 + 2 * #{$gutter-horizontal});
+}
+
+.invertGrid .col-fiveEighths {
+	height: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 5 + 4 * #{$gutter-horizontal});
+}
+
+.invertGrid .col-sevenEighths {
+	height: calc(((100% - 7 * #{$gutter-horizontal}) / 8) * 7 + 6 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+
+.invertGrid .col-seventh {
+	height: calc((100% - 6 * #{$gutter-horizontal}) / 7);
+}
+
+.invertGrid .col-twoSevenths {
+	height: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 2 + #{$gutter-horizontal});
+}
+.invertGrid .col-threeSevenths {
+	height: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 3 + 2 * #{$gutter-horizontal});
+}
+.invertGrid .col-fourSevenths {
+	height: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 4 + 3 * #{$gutter-horizontal});
+}
+.invertGrid .col-fiveSevenths {
+	height: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 5 + 4 * #{$gutter-horizontal});
+}
+.invertGrid .col-sixSevenths {
+	height: calc(((100% - 6 * #{$gutter-horizontal}) / 7) * 6 + 5 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+
+.invertGrid .col-sixth {
+	height: calc((100% - 5 * #{$gutter-horizontal}) / 6);
+}
+
+.invertGrid .col-fiveSixths {
+	height: calc(((100% - 5 * #{$gutter-horizontal}) / 6) * 5 + 4 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+.invertGrid .col-fifth {
+    height: calc((100% - 4 * #{$gutter-horizontal}) / 5);
+}
+
+.invertGrid .col-twoFifths {
+    height: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 2 + #{$gutter-horizontal});
+}
+
+.invertGrid .col-threeFifths {
+    height: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 3 + 2 * #{$gutter-horizontal});
+}
+
+.invertGrid .col-fourFifths {
+    height: calc(((100% - 4 * #{$gutter-horizontal}) / 5) * 4 + 3 * #{$gutter-horizontal});
+}
+// -------------------------------------------------------------------------------------------
+
+.invertGrid .col-fourth {
+	height: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+}
+.invertGrid .col-threeFourths {
+	height: calc(((100% - 3 * #{$gutter-horizontal}) / 4) * 3 + 2 * #{$gutter-horizontal});
+}
+
+// -------------------------------------------------------------------------------------------
+.invertGrid .col-third {
+	height: calc((100% - 2 * #{$gutter-horizontal}) / 3);;
+}
+.invertGrid .col-twoThirds {
+	height: calc(((100% - 2 * #{$gutter-horizontal}) / 3) * 2 + #{$gutter-horizontal});
+}
+
+// -------------------------------------------------------------------------------------------
+.invertGrid .col-half {
+	height: calc((100% - #{$gutter-horizontal}) / 2); /* in order t0 use a SASS variable in calc we need to wrap our usual variable in curly brackets and precede those set of braackets with a # */
+}
+

@@ -36,6 +36,7 @@ class App extends Component {
   	window.removeEventListener("load",   this.detectMobile);
     window.removeEventListener("resize", this.detectMobile);
   }
+  
 
   render() {
 	const {platform} = this.state; 

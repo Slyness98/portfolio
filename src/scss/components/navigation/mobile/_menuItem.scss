@@ -1,50 +1,58 @@
-/* The <MenuItem> component makes use of .fab, which is already defined in _mainButton.scss */
-.fab__item {
+/* The <MenuItem> component makes use of .mobMenu, which is already defined in _mainButton.scss */
+.mobMenu__item {
 	@include button;
 	position: fixed;
     transition: all .5s;  
-	height: 6rem;
-	width: 6rem;
+	display: none;
+	position: fixed;
+	height: 8rem;
+	width: 8rem;
+    background-color: #01353F;
+	border-radius: 50%;
+	z-index: 2000;
+	box-shadow: 0.14rem 0.14rem 0rem 0rem #1ebba3 inset, -0.14rem -0.14rem 0rem 0rem violet inset;
+	text-align: center;
+	cursor: pointer;
 		
 	&--1 {
 		bottom: 4.5%;
-		right: calc(25% - 3rem);
+		right: calc(25% - 4rem);
 
 		@include respond(phone-land){
 			bottom: 5%;
-			left: calc(85% - 3rem);
+			left: calc(85% - 4rem);
 		}
 	}
 
 	&--2 {
 		bottom: 13%;
-		right: calc(35% - 3rem);
+		right: calc(35% - 4rem);
 
 		@include respond(phone-land){
 			bottom: 5%;
-			left: calc(70% - 3rem);
+			left: calc(70% - 4rem);
 		}
 	}
 	&--3 {
 		bottom: 20%;
-		left: calc(50% - 3rem);
+		left: calc(50% - 4rem);
 		@include respond(phone-land) {
 			bottom: 5%;
-			left: calc(55% - 3rem);
+			left: calc(55% - 4rem);
 		}
 	}
 	&--4 {
 		bottom: 13%;
-		left: calc(35% - 3rem);	
+		left: calc(35% - 4rem);	
 
 		@include respond(phone-land){
 			bottom: 5%;
-			left: calc(40% - 3rem);
+			left: calc(40% - 4rem);
 		}
 	}
 	&--5 {
 		bottom: 4.5%;
-		left: calc(25% - 3rem);
+		left: calc(25% - 4rem);
 
 		@include respond(phone-land){
 			bottom: 5%;
@@ -53,15 +61,14 @@
 
 	&__icon {
 		position: relative;
-		margin-top: 2.5rem;
+		margin-top: 3.5rem;
 		transform: scale(3);
-		color: #1ebba3;
-	    background: #360033;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		color: white;
+		background: #fff;
+	    background: -webkit-linear-gradient(to right bottom, #fff, #1ebba3);
+	    background: linear-gradient(to right bottom, #fff, #1ebba3); 
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
-
 	}
 }
 
@@ -85,7 +92,12 @@
    align-items: center;
    font-size: 1.6rem;
    font-weight: 2rem;
+   font-family: monaco, courier, monospace;
    color: white;
    text-decoration: none;
+   text-shadow: 3px 1px black;
+   text-transform: uppercase;
+   letter-spacing: .25px;
+
 }
 
