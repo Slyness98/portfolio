@@ -1,0 +1,65 @@
+// @import 'blinking' from '../abstract/animations';
+// @use '../abstract/animations';
+
+.typewriter-text {
+  display: inline;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 4rem;
+  background-image: linear-gradient(white, cyan);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include respond(phone, phone-land) {
+    font-size: 4.46rem;
+  }
+
+  @include bp('phone-lg', 'phone-lg--ol') {
+    font-size: 5.25rem;
+  }
+
+  @include respond(desktop) {
+    font-size: 6rem;
+  }
+}
+.cursor {
+    display: inline-block;
+    margin-left: 2px;
+    width: 2px;
+    background-color: #ccc;
+    animation: blinking 1s infinite;
+
+    @include respond(phone, phone-land) {
+      font-size: 4.46rem;
+    }
+  
+    @include bp('phone-lg', 'phone-lg--ol') {
+      font-size: 5.25rem;
+    }
+  
+    @include respond(desktop) {
+      margin-left: 5px;
+      font-size: 6rem;
+    }
+
+    &--typing {
+      animation: none;
+    }
+}
+
+
+@keyframes blinking {
+  0% {
+    opacity: 1;  
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  65% {
+    opacity: 1;
+  }
+}

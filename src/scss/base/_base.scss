@@ -7,47 +7,67 @@
 }
 
 html {
-	min-height: 100%;
+	
 	font-size: 31.25%; /*Declare default font-size here so we can easily scale all padding and related font-sizing with rem values. We use 31.25% because we want to take the browser default of 16px and bring it down to a default of five.  
 			 			this changes the definition of what a rem unit is */
-	
-	@include respond(desktop-lg) {
-		font-size: 75%; //1rem = 12px, 12/16 = 75%
-	}
-
-	
-	
-	@include respond(tab-land) { //width >= 900?
-		font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
-	}
-
-	@include respond(tab-port) {// width >= 768?
-		font-size: 50%; //1 rem = 8px, 8/16 = 50%
-	}
 
 	
 	@include respond(phone) {// width >= 480?
 		font-size: 37.5%; //1 rem = 6px, 6/16 = 37.5%
+	}	
+
+	@include respond(tab-md-land) { //width >= 900?
+		font-size: 46.875%; //1 rem = 7.5px
 	}
 
-	
+	@include bp('tab-md--ar2/1') {
+		font-size: 37.5%; 
+	}
+
+	@include bp('tab-md--ar3/1') {
+		font-size: 25%; 
+	}
+
+	@include bp('desktop') {
+		font-size: 50%; //1rem = 8px
+	}
+
+	@include bp('desktop--ar21/9') {
+		font-size: 37.5%;
+	}
+
+	@include bp('desktop--ar32/9') {
+		font-size: 30%; 
+	}
+
+	// @include bp('desktop--ar2/1') {
+	// 	font-size: 37.5%; 
+	// }
 }
 
 body {
-	min-height: 100vh;
-	box-sizing: border-box; /* Padding and border no longer included when we express size for elements. This is the only structural property included in the body. All other styles are typography related and thus can be found in _typograhy.scss */
+	width: auto;
+	height: 100vh; 
+	margin: 0;
+	box-sizing: border-box; /* Padding and border no longer included when we express size for elements.*/
 	background-color: black;
-
+	// overflow: hidden;  uncomment to disable android chrome's pull-to-refresh feature, if desired
 	@include respond(tab-port) {// width < 600?
 		padding: 0; //1 rem = 8px, 8/16 = 50%
 	}
-
 }
 
 #root {
-	height: 100vh;
+	width: inherit;
+	height: inherit;
 }
 
 .App {
-	min-height: 100vh;
+	width: inherit;
+	height: inherit;
+}
+
+canvas {
+	width: 100%;
+	height: 100%;
 }

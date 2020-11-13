@@ -1,11 +1,4 @@
 /* COLORS */
-$color-primary: #55c57a;
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485;
-
-$color-secondary-light: #2998ff;
-$color-secondary-dark: #5643fa;
-
 
 $color-black: #000;
 $color-white: #fff;
@@ -15,7 +8,7 @@ $color-grey247: #f7f7f7;
 $color-grey238: #eee;
 $color-grey153: #999;
 
-$fg: #e91e63;
+$magenta: #c509bc;
 	
 	//GRADIENTS
 $gradient-primary: linear-gradient(to right, #0b8793, #360033);
@@ -31,5 +24,16 @@ $gutter-horizontal: 6rem;
 
 
 /* FONT-SIZE */
-$default-font-size: 1.6rem;
+$default-font-size: 1em;
+// Breakpoints
+$bp-map: (
+"standard-land": "(max-width: 56.24em) and (orientation: landscape)", 
+"phone": "(min-width: 27.5em)", //440px
+"phone-lg": "(min-width: 37.5em)", //600px
+"tab": "(min-width: 48em)", //768px
+"tab-md": "(min-width: 56.25em)", //900px
+"tab-lg": "(min-width: 62em)", //992px
+"desktop": "(min-width: 75em)" //1200px
+);
+// $bp-list: $standard-land, $phone, $phone-land, $phone-lg, $phone-lg-land, $tab, $tab-land, $tab-md, $tab-md-land, $tab-lg, $tab-lg-land, $desktop;
 

@@ -1,0 +1,16 @@
+.headContainer {
+	height: 7vh;
+
+	@include respond(standard-land) {
+		height: 0;
+	}
+}
+
+.fullWindow {
+	min-height: 100vh;
+}
+
+.logo {
+	height: 100%;
+	width: 27.9rem;
+}

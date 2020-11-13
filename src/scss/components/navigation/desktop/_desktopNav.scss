@@ -1,18 +1,13 @@
+@import '../../../abstract/variables';
 .navbar{
   height: 100%;
   width: 100%;
   transition: all .8s;
-
+  font-size: 2.75rem;
+  @include dndCursor;
+  
   &__container {
     margin: 0!important;
-
-    &--logo {
-
-    }
-
-    &--links {
-
-    }
 
     &--socialMedia{
       justify-content: flex-end;
@@ -28,7 +23,7 @@
   }
 
   #drop2 &__bg {
-    background-image: linear-gradient(to right, #0b8793 1%,#323b41 0%,#000 40%);
+    background-image: linear-gradient(to right, transparent, #000 40%);
   }
 
   #drop3 &__bg {
@@ -36,28 +31,37 @@
   }
 
   #drop4 &__bg {
-    background-image: linear-gradient(to left, #0b8793 2%,#323b41 0%,#000 50%);
+    background-image: linear-gradient(to left, transparent,#000 50%);
   }
 
   &__icon {
-    transition: all 2.5s;
     color: #1ebba3;
     background: #360033;  /* fallback for old browsers */
     background: $gradient-secondary; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: flex;
+    cursor: pointer;
+
+    @include bp("tab-md--ar4/1") {
+      font-size: 4rem;
+    }
 
       &:hover::before {
-          transition: all .5s ease;
-
+        transition: all .5s ease;
         width: 100%;
         content: attr(content);
         background: white;
+        background-clip: text;
         -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-        font-size: initial;
-    }
+        -webkit-text-fill-color: transparent;
+        font-size: 2rem;
+
+        @include bp("tab-md--ar6/1") {
+          font-size: 2.5rem;
+        }
+      }
 
 
       &--social {
@@ -65,20 +69,24 @@
         color: #1ebba3;
         background: #360033;  /* fallback for old browsers */
         background: $gradient-secondary; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         display: flex;
         z-index: 5000!important;
-
+        cursor: pointer;
         &:hover {
-          transform: scale(1.25);
+          transform: scale(1.5);
+        }
+
+        @include bp("tab-md--ar4/1") {
+          font-size: 4rem;
         }
       }
   }
 
   &__item {
   	display: flex;
-  	font-size: 3rem;
   	width: 100%;
   	height: 100%; 
 
@@ -91,6 +99,7 @@
     display: flex;
     align-items: center;
     justify-content: center; 
+    @include dndCursor;
   }
 
   &__logo {
@@ -109,13 +118,12 @@
     display: flex;
     align-items: center;
     justify-content: center;   
-    background-image: url(../images/lyness.svg);
+    background-image: url(../../assets/images/lyness.svg);
     background-repeat: no-repeat; 
   }
 
   &__social {
     display: flex;
-    font-size: 3rem;
     width: 15%;
   }
 
@@ -134,6 +142,10 @@
  flex-direction: row;
  width: 100%;
  height: 7vh;
+
+ @include bp("tab-md--ar6/1") {
+   height: 20vh;
+ }
 }
 
 #drop2, #drop4 {
@@ -142,6 +154,7 @@
  flex-direction: column;
  position: absolute;
  top:0;
+
 }
 
 #drop2 {
@@ -156,7 +169,8 @@
 
 #drop4 {
   right: 0;
-}
+  }
+
 
 #drop1 li, #drop3 li{
   justify-content: center;

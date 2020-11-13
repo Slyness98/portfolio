@@ -1,5 +1,9 @@
-//Assign Breakpoint Definitions
-@mixin respond($breakpoint) {
+@import 'variables';
+@use 'sass:list';
+//-- Breakpoint Definitions - DECLARE IN ORDER!
+//Takes variable # of args of various MQs generating the lgsame css. 
+@mixin respond($breakpoints...) {
+  @each $breakpoint in $breakpoints {
 	//1800px
 	@if $breakpoint == desktop-lg {
 		@media (min-width: 112.5em) { @content }; 
@@ -16,24 +20,80 @@
 	@if $breakpoint == tab-lg-land {
 		@media (min-width: 62em) and (orientation: landscape) { @content }; 
 	}
-	//768px -- this is where our mobile scheme ends. Anything below 768px is considered mobile content and will be considered to be the standard layout.
+
+	//900px -- this is where our mobile scheme ends. Anything below 900px is considered mobile content and is the standard layout.
+	@if $breakpoint == tab-md {
+		@media (min-width: 56.25em) { @content }; 
+	}
+
+	@if $breakpoint == tab-md-land {
+		@media (min-width: 56.25em) and (orientation: landscape) { @content }; 
+	}
+
+	    // @if $breakpoint == tab-md-land-ar92 {
+		//   @media (min-width: 56.25em) and (min-aspect-ratio: 16/9){ @content }; 
+		// }
+		
+		@if(str-index($breakpoint,  "--ar")) { //if MQ has --ar modifier
+			$endOfModifierIdx: str-index($breakpoint, "--ar") + 4; //grab idx of character (that is a number) directly after the "r" in "--ar" 
+			$numDelimiter: str-index($breakpoint, "/"); //grab delimiting char "/", representing divide in our aspect ratio
+            $lengthAfterDelim : str-length(str-slice($breakpoint,1)) - str-length(str-slice($breakpoint, 1, $numDelimiter));//grab reference to length of whole string after the delimiter(not including delimiter)		
+			$strAfterDelim : str-slice($breakpoint, $numDelimiter + 1, $numDelimiter + $lengthAfterDelim);//actually grab the whole string by using reference above
+			$endNum2: str-index($strAfterDelim, "--");//the end of second batch of number(s) comes when there is either another modifier or the breakpoint string has been iterated through, (i.e, "")
+			   @if($endNum2 == null) {
+				  $endNum2: str-length(str-slice($strAfterDelim, 1, str-length($strAfterDelim)));//if there is no other modifier, we can safely grab the length of everything after delimiter
+			   }
+			
+		    $num1: unquote(str-slice($breakpoint, $endOfModifierIdx, $numDelimiter - 1));//first number of aspect ratio in string, coerced to number
+			$num2: unquote(str-slice($strAfterDelim, 1, $endNum2));//second number of aspect ratio in string, coerced to number
+			@media (min-width: 56.25em) and (min-aspect-ratio: $num1/$num2){ @content }; 
+		}
+
+	//768px 
 	@if $breakpoint == tab {
-		@media (min-width: 48em) { @content }; 
+		@media (min-width: 48em) and (orientation: portrait) { @content }; 
 	}
 
 	@if $breakpoint == tab-land {
 		@media (min-width: 48em) and (orientation: landscape) { @content }; 
 	}
-	//480px
+
+
+	//600px {
+	@if $breakpoint == phone-lg {
+		@media (min-width: 37.5em) and (orientation: portrait) { @content };
+	}
+
+	@if $breakpoint == phone-lg-land {
+		@media (min-width: 37.5em) and (orientation: landscape) { @content };
+	}
+
+	//440px
 	@if $breakpoint == phone {
-		@media (min-width: 30em) { @content };
+		@media (min-width: 27.5em) and (orientation: portrait) { @content };
 	}
 
 	@if $breakpoint == phone-land {
-		@media (min-width: 30em) and (orientation: landscape) { @content };
+		@media (min-width: 27.5em) and (orientation: landscape) { @content };
 	}
-}
 
+
+	//WARNING-- 
+	 // ALWAYS DECLARE THIS MQ LAST IF BEING USED. IT WILL OVERWRITE ALL BP SPECIFIC LANDSCAPE MQs IF DECLARED, SO USE SPARINGLY
+	 // DO NOT USE THE FOLLOWING FOR TARGETING A SPECIFIC BREAKPOINT THAT FALLS WITHIN OUR MOBILE SCHEME (<768px)
+	 // IN LANDSCAPE ORIENTATION. ALWAYS FAVOR A BREAKPOINT SPECIFIC LANDSCAPE MQ (I.E 'phone-land'); 
+	 // the below MQ targets entire mobile layout range whenever viewed in a landscape orientation,
+	 // including outlier XS device widths that fall outside standard design range.
+
+	 //tab-land is the first MQ we can safely use standard-land w/o overwriting styles.
+	 //the only possibility of conflict if used as directed is with phone-land and phone-lg-land breakpoints.
+	  
+
+	@if $breakpoint == standard-land {
+		@media (max-width: 56.24em ) and (orientation: landscape) { @content };
+	}
+  }
+};
 //Clearfix hack for grid system, helping to define the containment behavior of columns
 @mixin clearfix {
 	&::after {
@@ -41,7 +101,7 @@
 		display: table;
 		clear: both;
 	}
-}
+};
 
 
 // RECURRING/REUSABLE COMPONENT ABSTRACTIONS
@@ -51,4 +111,71 @@
 	box-shadow: 0 1rem 3rem rgba($color-black, .1);
 	text-align: center;
 	cursor: pointer;
+	-webkit-tap-highlight-color: transparent; //get rid of highlight on tap
+};
+
+@mixin dndCursor {
+	cursor: grab;
+    &:active {
+      cursor: grabbing;
+    }
+}
+// $validList: map-keys($bp-map);
+// $validListValues: map-values($bp-map);
+
+@mixin bp($breakpoints...) {
+
+  @each $breakpoint in $breakpoints {
+	//identify baseMQ of breakpoint passed, if any
+    @if(str-index($breakpoint, "--")) {
+		 $firstModIdx: str-index($breakpoint, "--");
+		 $base: str-slice($breakpoint, 1, $firstModIdx - 1) !global;
+	}
+	    @else {
+			$base: $breakpoint !global;
+		}
+
+	@if(map-has-key($bp-map, $base)) {
+	  $baseMQ: map-get($bp-map, $base) !global;
+	} 
+	  @else {
+	    @error "No base MQ by the name of #{$breakpoint} is defined in your breakpoint map. Please provide a valid base media query to generate";
+	  }
+		
+	
+	 //Aspect-ratio MQ modifier
+	@if(str-index($breakpoint,  "--ar")) { //if MQ has --ar modifier
+		$endOfModifierIdx: str-index($breakpoint, "--ar") + 4; //grab idx of character (which is a number) directly after the "r" in "--ar" 
+		$numDelimiter: str-index($breakpoint, "/"); //grab delimiting char "/", representing divide in our aspect ratio
+		$lengthAfterDelim : str-length(str-slice($breakpoint,1)) - str-length(str-slice($breakpoint, 1, $numDelimiter));//grab reference to length of whole string after the delimiter(not including delimiter)		
+		$strAfterDelim : str-slice($breakpoint, $numDelimiter + 1, $numDelimiter + $lengthAfterDelim);
+		$endNum2: str-index($strAfterDelim, "--");//the end of second batch of number(s) comes when there is either another modifier or the breakpoint string has been iterated through, (i.e, "")
+		   @if($endNum2 == null) {
+			  $endNum2: str-length(str-slice($strAfterDelim, 1, str-length($strAfterDelim)));//if there is no other modifier, we can safely grab the length of everything after delimiter
+		   }
+		
+		$num1: unquote(str-slice($breakpoint, $endOfModifierIdx, $numDelimiter - 1));
+		$num2: unquote(str-slice($strAfterDelim, 1, $endNum2));
+		$ar: ' and (min-aspect-ratio: #{$num1}/#{$num2})' !global; 
+	} @else {
+		$ar: "" !global;
+	}
+
+	//Orientation MQ Modifier
+    @if(str-index($breakpoint,  "--o")) {
+		$endOfModifierIdx: str-index($breakpoint, "--o") + 3;
+		$lp: str-slice($breakpoint, $endOfModifierIdx, $endOfModifierIdx);
+		@if($lp == "l") {
+		  $o: ' and (orientation: landscape)' !global;
+		}
+		@if($lp == "p") {
+		  $o: ' and (orientation: portrait)' !global;
+		}
+	}  	@else {
+		$o: "" !global;
+	}
+
+	// Compiled MQ, concatenating all MQ chunks from the baseMQ and all subsequent modifiers
+    @media #{$baseMQ + $ar + $o} { @content };
+}
 }

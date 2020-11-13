@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import MainButton from './atoms/mainButton';
-import MenuItem from './atoms/menuItem';
+import MainButton from './main-button/MainButton';
+import MenuItem from './menu-item/MenuItem';
 
 const menuState = {toggleOpen: false};
 
@@ -25,9 +25,9 @@ class MobileNavigation extends Component{
 	       <ul>
 		    <MenuItem num = "5" icon = "fa-home"          text="home"    toggleOpen={ toggleOpen } />
 		    <MenuItem num = "4" icon = "fa-vector-square" text="skills"  toggleOpen={ toggleOpen } />  
-		    <MenuItem num = "3" icon = "fa-laptop-code"   text="work"    toggleOpen={ toggleOpen } /> 
+		    <MenuItem num = "3" icon = "fa-laptop-code"   text="my work"    toggleOpen={ toggleOpen } /> 
 		    <MenuItem num = "2" icon = "fa-user-secret"   text="about"   toggleOpen={ toggleOpen } /> 
-		    <MenuItem num = "1" icon = "fa-mail-bulk"     text="contact" toggleOpen={ toggleOpen } />
+		    <MenuItem num = "1" icon = "fa-mail-bulk"     text="Get In Touch" toggleOpen={ toggleOpen } />
 	       </ul>
 	      </div>
 	    </nav>   

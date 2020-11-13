@@ -1,0 +1,133 @@
+@import "../../../../abstract/mixins";
+@import "../../../../abstract/variables";
+.mobMenu{
+  @include button;
+  position: fixed;
+  transition: all .5s;
+  background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);
+
+  &__main {
+	height: 14rem;
+	width: 14rem;
+	bottom: 5%;
+	left: calc(50% - 7rem);
+
+	@include respond(standard-land) {
+		height: 12rem;
+		width: 12rem;
+		left: calc(10% - 6rem);
+	}
+
+	@include respond(phone) {
+		height: 13rem;
+		width: 13rem;
+		left: calc(50% - 6.5rem);
+	}
+
+	@include respond(tab) {
+		height: 15rem;
+		width: 15rem;
+		left: calc(50% - 7.5rem);
+	}
+
+	@include respond(tab-land) {
+		height: 13rem;
+		width: 13rem;
+		left: calc(10% - 6.5rem);
+
+		@include bp("tab--ar3/1") {
+		  height: 12rem;
+		  width: 12rem;
+		  left: calc(10% - 6rem);
+		}
+	}
+  }
+
+  &__icon{
+	position: relative;
+	margin-top: 7rem;
+
+	@include respond(standard-land) {
+	  margin-top: 6rem;
+	}
+
+	@include respond(phone) {
+		margin-top: 6.5rem;
+	}
+
+	@include respond(tab) {
+		margin-top: 7.5rem;
+	}
+
+	@include respond(tab-land) {
+		margin-top: 6.5rem;
+	}
+
+	@include bp("tab--ar3/1") {
+		margin-top: 6rem;
+	}
+
+	&:active,&:visited,&:active::before,&:visited::before,&:active::after,&:visited::after {
+		text-decoration: none;
+	}
+	
+	&,
+	&::before,
+	&::after {
+		width: 6rem;
+		height: 4px;
+		background-color: $color-white;
+		display: inline-block;
+
+		@include respond(tab) {
+		  width: 7rem;
+		}
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		transition: all .2s;
+	}
+
+	&::before { top: -2rem; }
+	&::after { top: 2rem; }
+  }
+
+  &:hover &__icon::before {
+	top: -2rem;
+  }
+
+  &:hover &__icon::after {
+	top: 2rem;
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__checkbox:checked + &{
+  	background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);
+  	transition: all .5s;
+  }
+
+  &__checkbox:checked + & &__icon {
+	background-color: transparent;
+  }
+
+  &__checkbox:checked + & &__icon::before {
+	top: 0;
+	transform: rotate(135deg);
+	background-color: #1ebba3;
+  }
+
+  &__checkbox:checked + & &__icon::after{
+	top: 0;
+	transform: rotate(-135deg);
+	background-color: #1ebba3;
+
+  }
+}

@@ -1,13 +1,15 @@
-@import "abstract/mixins";
 @import "abstract/variables";
+@import "abstract/mixins";
+
+@import "app";
 
 @import "base/base";
 
-@import "components/navigation/mobile/mainButton";
-@import "components/navigation/mobile/menuItem";
-@import "components/navigation/mobile/mobileNav";
 @import "components/navigation/desktop/desktopNav";
-@import "components/navigation/desktop/navbarItem";
+@import "components/navigation/mobile/mobileNav";
+@import "components/navigation/mobile/atoms/menuItem";
+@import "components/navigation/mobile/atoms/mainButton";
+@import "components/typewriter";
 
 @import "layout/grid";
 

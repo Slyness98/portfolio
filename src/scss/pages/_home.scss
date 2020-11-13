@@ -1,12 +1,388 @@
-.headContainer {
-	height: 8rem;
+@import '../abstract/animations';
+@import '../abstract/variables';
+
+
+// where n is number of stars required
+@function multiple-box-shadow ($n) {
+    $value: '#{random(2000)}px #{random(2000)}px #FFF';
+    @for $i from 2 through $n {
+        $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF';
+    }
+  
+    @return unquote($value);
+}
+  
+
+$shadows-small:  multiple-box-shadow(1000);
+$shadows-medium: multiple-box-shadow(600);
+$shadows-big:    multiple-box-shadow(100);
+
+ [id^="stars"] {
+    border-radius: 1px;
+ }   
+#stars{
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: $shadows-small;
+  animation: animStar 50s linear infinite;
+
+    
+  &:after{
+    position: absolute;
+    top: 2000px;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: $shadows-small;
+  }
+}  
+
+#stars2{
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: $shadows-medium;
+  animation: animStar 100s linear infinite;
+    
+  &:after{
+    position: absolute;
+    top: 2000px;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: $shadows-medium;
+  }
 }
 
-.fullWindow {
-	min-height: 100vh;
+
+#stars3{
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: $shadows-big;
+  animation: animStar 150s linear infinite;
+    
+  &:after{
+    position: absolute;
+    top: 2000px;
+    width: 3px;
+    height: 3px;
+    
+    box-shadow: $shadows-big;
+  }
+}
+   
+@keyframes animStar {
+  from {
+    transform: translateY(-950px);
+  }	
+  to {
+    transform: translateY(-2000px);
+  }		
+}   
+
+//============= Banner Text Styles ==========================
+@font-face {
+  font-family: space-age;
+  src: url("../../assets/fonts/space_age/spaceAge.woff");
 }
 
-.logo {
-	height: 100%;
-	width: 27.9rem;
+@font-face {
+  font-family: cut-caps;
+  src: url("../../assets/fonts/cut_caps/cutCaps.woff");
+}
+
+.banner {
+  &__container {
+    position: absolute;
+    top: 10%;
+    height: 58%;
+    width: 100%;
+    display: flex;
+    
+    @include respond(standard-land) {
+      width: 95%;
+      height: 75%;
+      top: 0;
+      margin: 0;
+    }
+
+    @include respond(tab-md-land) {
+      height: 82%;
+      width: 88%;
+      left: 5.75%;
+    }
+
+    // @include respond(desktop) {
+    //   width: 80%;
+    //   height: 77%;
+    //   top: 10%;
+    // }
+
+  }
+
+  &__block {
+    width: 100%;
+    position: absolute;
+    margin-top: 5rem;
+    
+    &--1 {
+      @include respond(standard-land) {
+        margin-top: 0;
+      }
+
+      @include bp('tab-md--ol') {
+        margin-top: 0;
+      }
+    }
+
+
+    &--2 {
+      text-align: center;
+      bottom: 45%;
+
+      @include respond(standard-land) {
+        display: flex;
+        justify-content: flex-start;
+        bottom: 2%;
+        padding-left: 8%;
+      }
+
+      @include bp('standard-land--ar3/1') {
+        bottom: 16%;
+      }
+
+      @include respond(desktop, tab-md-land) {
+         width: 55%;
+         bottom: 2%;
+         text-align: initial;
+      }
+    }
+  }
+
+  &__text {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    overflow: hidden; 
+
+    color: #fff;
+    font-family: 'space-age';
+    font-weight: bold;
+    font-size: 3rem;
+
+    @include respond(standard-land) {
+      font-size: 2rem;
+    }
+
+    @include respond(phone) {
+      font-size: 4rem;
+    }
+
+    @include respond(phone-land) {
+      font-size: initial;
+    }
+
+    @include respond(desktop) {
+      font-size: 6rem;
+    }
+
+    &__p {
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+    
+      &--1 {
+        animation: fadeIn 2s ease-in;
+        justify-content: center;
+
+        & :last-child {
+          color: $magenta;
+          &:hover{
+            color: #fff;
+          }
+        }
+
+        @include respond(standard-land) {
+          margin-top: 5rem;
+          justify-content: flex-end;
+        }
+        
+        @include respond(phone, phone-land) {
+          font-size: 3.33rem;
+        }
+
+        @include respond(phone-lg, phone-lg-land) {
+          font-size: 3.885rem;
+        }
+
+        @include bp('tab--op', 'tab--ol') {
+          font-size: 5rem;
+        }
+
+        @include bp('tab-md') {
+          margin-top: 0;
+        }
+
+        @include bp('tab-md--ol') {
+          justify-content: flex-end;
+        }
+
+        @include bp('desktop') {
+          font-size: 6rem;
+        }
+      }
+
+      &--2 {
+        font-size: 2rem;
+        justify-content: center;
+        margin-top: 1rem;
+        animation: fadeIn 1.75s ease-in;
+
+        @include respond(standard-land, tab-md-land) {
+          justify-content: flex-end;
+        }
+
+
+        @include respond(phone) {
+          font-size: 2.23rem;
+        }
+
+        @include respond(phone-lg, phone-lg-land) {
+          font-size: 2.37rem;
+        }
+
+        @include bp('tab--op', 'tab--ol') {
+          font-size: 3rem;
+        }
+
+        @include respond(desktop) {
+          font-size: 3.5rem;
+          justify-content: flex-end;
+        }
+      }
+
+      &--3 {
+        color: #888;
+        animation: fadeIn 2s ease-in;
+        font-size: 4.2rem;
+
+        @include respond(standard-land, tab-md-land) {
+          justify-content: flex-end;
+          letter-spacing: 0;
+          margin: -.5rem;
+          font-size: 4.2rem;
+        }
+
+        @include respond(phone, phone-land) {
+          font-size: 4.75rem;
+        }
+
+        @include respond(phone-lg, phone-lg-land) {
+          font-size: 4.89rem;
+        }
+
+        @include bp('tab--op', 'tab--ol') {
+          font-size: 6rem;
+        }
+
+        @include respond(desktop) {
+          font-size: 6.5rem;
+        }
+
+        & :last-child {
+          color: $magenta;
+        }
+      }
+
+      &--4 {
+        animation: slideRight 1s ease-in;
+        & :nth-child(2) {
+          color: $magenta;
+          &:hover{
+            color: #fff;
+          }
+        }
+
+        @include respond(standard-land) {
+          align-items: flex-end;
+          padding-right: 1rem;
+          font-size: inherit;
+        }
+
+        @include respond(phone, phone-land) {
+          font-size: 3.9025rem;
+        }
+
+        @include respond(phone-lg, phone-lg-land) {
+          font-size: 4.05rem;
+        }
+
+        @include bp('tab-md--ol') {
+          justify-content: flex-start;
+          font-size: 4rem;
+        }
+        
+        // @include bp('tab-md--ar45/31') {
+        //   font-size: 3rem;
+        // }
+
+        // @include respond("tab-md--ar16/9") {
+        //   font-size: initial;
+        // }
+
+
+        @include respond(desktop) {
+          font-size: 6rem;
+        }
+      }
+
+      &__letter {
+        text-transform: uppercase;
+        padding: 3px;
+        transition: all .5s;
+
+        @include respond(desktop) {
+          padding: 4px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          animation: fadeChangeFont 1.25s ease-out;
+          line-height: -1px;
+          font-family: 'cut-caps';
+          color: $magenta;
+        }
+
+      }
+    }
+  }
+}
+
+@keyframes fadeChangeFont{
+  0% {
+    opacity: 0;
+    font-family: 'cut-caps'; 
+    line-height: -1px;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-75%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }

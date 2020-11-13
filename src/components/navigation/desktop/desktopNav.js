@@ -1,14 +1,18 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 import Draggable from '../../dnd/Draggable';
 import Droppable from '../../dnd/Droppable';
-import Navbar from './Navbar';
+import Navbar from './atoms/Navbar';
 
 const DesktopNavigation = () => {
   return(
     <React.Fragment>
   	<Droppable id="drop1" className="navbar__container">
-      <Draggable id="dragItem"> <Navbar /> </Draggable>
+      <Draggable id="dragItem"> 
+        
+        <Navbar /> 
+     
+      </Draggable>
     </Droppable>
 
     <Droppable id="drop2" className="navbar__container invertGrid">

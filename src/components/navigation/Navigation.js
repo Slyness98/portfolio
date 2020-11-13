@@ -1,21 +1,14 @@
-import React, {Component} from 'react';
-import MobileNavigation from './mobile/mobileNav.js';
-import DesktopNavigation from './desktop/desktopNav.js';
+import React from 'react';
+import MobileNavigation from './mobile/MobileNav.js';
+import DesktopNavigation from './desktop/DesktopNav.js';
 
-class Navigation extends Component {
-constructor(props){
-	super(props);
-	
-}
+const Navigation = ({ platform }) => {
 
-
-render() {
   return (
-   this.props.platform === 'mobile'
+   platform === 'mobile'
 	 ? <MobileNavigation />
 	 : <DesktopNavigation />
   );
- }
 }
 
 export default Navigation;

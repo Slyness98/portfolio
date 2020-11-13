@@ -1,7 +1,7 @@
 import React from 'react';
-import ExternalLink from './atoms/ExternalLink';
-import InternalLink from './atoms/InternalLink';
-import Logo from './atoms/Logo';
+import ExternalLink from './ExternalLink';
+import InternalLink from './InternalLink';
+import Logo from './Logo';
 
 const Navbar = () => {
   return (
@@ -20,10 +20,10 @@ const Navbar = () => {
        </div>
 
        <div className="col-fiveTwelfths navbar__container--socialMedia">
-           <ExternalLink icon="fa-linkedin-in"     />
-           <ExternalLink icon="fa-twitter-square"  />
-           <ExternalLink icon="fa-facebook-square" />
-           <ExternalLink icon="fa-github-square"   />
+           <ExternalLink icon="fa-linkedin-in"     href="https://www.linkedin.com/in/seth-lyness-0630a2155/" />
+           <ExternalLink icon="fa-twitter-square"  href="https://twitter.com/SethLyness" />
+           <ExternalLink icon="fa-facebook-square" href="" />
+           <ExternalLink icon="fa-github-square"   href="https://github.com/Slyness98" />
        </div>
   	 </ul>
   	</nav>
