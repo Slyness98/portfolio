@@ -1,13 +1,10 @@
 import React from 'react';
 
-const InternalLink = ({icon, text}) => {
+const InternalLink = ({buttonClass, iClass, iContent}) => {
 	return (
-	   <li className="navbar__item"> 
-	     <a className="navbar__link">  
-	       <i className={`navbar__icon fas ${icon}`} content={text}></i> 
-	     </a>
-	   </li>
-
+	  <button className={buttonClass}>  
+	    <i className={iClass} content={iContent}></i> 
+	  </button>
 	);
 }
 

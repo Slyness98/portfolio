@@ -43,6 +43,7 @@
     -webkit-text-fill-color: transparent;
     display: flex;
     cursor: pointer;
+    padding: 5px 2px;
 
     @include bp("tab-md--ar4/1") {
       font-size: 4rem;
@@ -70,6 +71,7 @@
         background: #360033;  /* fallback for old browsers */
         background: $gradient-secondary; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         background-clip: text;
+        padding: 5px 2px;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         display: flex;
@@ -93,6 +95,7 @@
   }
 
   &__link {
+    all: unset; //remove native css button styles
     text-decoration: none;
     width: 100%;
     height: 100%;
@@ -143,8 +146,8 @@
  width: 100%;
  height: 7vh;
 
- @include bp("tab-md--ar6/1") {
-   height: 20vh;
+ @include bp("tab-md--ar21/9") {
+   height: 17vh;
  }
 }
 

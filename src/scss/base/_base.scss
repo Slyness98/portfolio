@@ -12,11 +12,15 @@ html {
 			 			this changes the definition of what a rem unit is */
 
 	
-	@include respond(phone) {// width >= 480?
+	@include bp("phone") {// width >= 480?
 		font-size: 37.5%; //1 rem = 6px, 6/16 = 37.5%
 	}	
 
-	@include respond(tab-md-land) { //width >= 900?
+	@include bp("standard-land") {
+		font-size: 31.25%;
+	}
+
+	@include bp("tab-md--ol") { //width >= 900?
 		font-size: 46.875%; //1 rem = 7.5px
 	}
 
@@ -25,7 +29,7 @@ html {
 	}
 
 	@include bp('tab-md--ar3/1') {
-		font-size: 25%; 
+		font-size: 30%; 
 	}
 
 	@include bp('desktop') {
@@ -52,7 +56,7 @@ body {
 	box-sizing: border-box; /* Padding and border no longer included when we express size for elements.*/
 	background-color: black;
 	// overflow: hidden;  uncomment to disable android chrome's pull-to-refresh feature, if desired
-	@include respond(tab-port) {// width < 600?
+	@include bp("tab") {// width < 600?
 		padding: 0; //1 rem = 8px, 8/16 = 50%
 	}
 }

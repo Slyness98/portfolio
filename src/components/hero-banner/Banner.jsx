@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 
 import Letter from './letter';
 import Typewriter from '../typewriter/Typewriter';
-
+import CtaButton from '../cta-button/ctaButton';
 const Banner = () => {
 
   const instantiateLetter = (className, content) => {
@@ -48,9 +48,9 @@ const Banner = () => {
                 textArray = {[
                   " React.JS Specialist", 
                   " UI/UX Designer", 
-                  " Enthusiastic API Consumer", 
-                  " SASS / CSS Nerd", 
-                  " PHP Dabbler", 
+                  " API Nerd", 
+                  " SASS / CSS Enthusiast", 
+                  " Proficient PHP Practitioner", 
                   " Node & Express.JS Engineer", 
                   " Full Stack Web Developer"
                 ]}
@@ -58,6 +58,11 @@ const Banner = () => {
                 erasingDelay = {10}
                 newTextDelay = {1250}
               />
+          </div>
+
+          <div className="banner__block banner__block--3">
+            <CtaButton className={"cta cta--1"} content={"View Gallery"} />
+            <CtaButton className={"cta cta--2"} content={"Make Contact"} />
           </div>
         </div>
     </div>

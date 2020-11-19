@@ -1,7 +1,7 @@
 .headContainer {
 	height: 7vh;
 
-	@include respond(standard-land) {
+	@include bp("standard-land") {
 		height: 0;
 	}
 }

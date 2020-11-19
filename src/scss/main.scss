@@ -5,12 +5,14 @@
 
 @import "base/base";
 
+@import "components/ctaButton";
 @import "components/navigation/desktop/desktopNav";
 @import "components/navigation/mobile/mobileNav";
 @import "components/navigation/mobile/atoms/menuItem";
 @import "components/navigation/mobile/atoms/mainButton";
+@import "components/stars";
 @import "components/typewriter";
 
 @import "layout/grid";
 
-@import "pages/home";
+@import "pages/home/banner";

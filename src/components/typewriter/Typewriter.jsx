@@ -16,9 +16,8 @@ class Typewriter extends React.Component {
    const node = this.nodeRef.current;
    let {charIndex, textArrayIndex} = this.state;
    let {textArray, typingDelay, newTextDelay} = this.props;
-  //  console.log(textArray.length);
+
    if(charIndex < textArray[textArrayIndex].length) {
-     console.log(textArrayIndex);
       node.textContent +=  textArray[textArrayIndex].charAt(charIndex);
       this.setState({charIndex: charIndex+1});
       setTimeout(this.type, typingDelay);
@@ -40,11 +39,9 @@ class Typewriter extends React.Component {
        node.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);     
        this.setState({charIndex: charIndex-1});
        setTimeout(this.erase, erasingDelay);
-       console.log("charIdx block", textArrayIndex);
     } else {
         this.setState({textArrayIndex: textArrayIndex + 1});
         setTimeout(this.type, typingDelay + 1100);
-        console.log("textArrIdx block", textArrayIndex);
       }
   };
 

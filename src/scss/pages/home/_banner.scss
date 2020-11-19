@@ -1,88 +1,4 @@
-@import '../abstract/animations';
-@import '../abstract/variables';
 
-
-// where n is number of stars required
-@function multiple-box-shadow ($n) {
-    $value: '#{random(2000)}px #{random(2000)}px #FFF';
-    @for $i from 2 through $n {
-        $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF';
-    }
-  
-    @return unquote($value);
-}
-  
-
-$shadows-small:  multiple-box-shadow(1000);
-$shadows-medium: multiple-box-shadow(600);
-$shadows-big:    multiple-box-shadow(100);
-
- [id^="stars"] {
-    border-radius: 1px;
- }   
-#stars{
-  width: 1px;
-  height: 1px;
-  background: transparent;
-  box-shadow: $shadows-small;
-  animation: animStar 50s linear infinite;
-
-    
-  &:after{
-    position: absolute;
-    top: 2000px;
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    box-shadow: $shadows-small;
-  }
-}  
-
-#stars2{
-  width: 2px;
-  height: 2px;
-  background: transparent;
-  box-shadow: $shadows-medium;
-  animation: animStar 100s linear infinite;
-    
-  &:after{
-    position: absolute;
-    top: 2000px;
-    width: 2px;
-    height: 2px;
-    background: transparent;
-    box-shadow: $shadows-medium;
-  }
-}
-
-
-#stars3{
-  width: 3px;
-  height: 3px;
-  background: transparent;
-  box-shadow: $shadows-big;
-  animation: animStar 150s linear infinite;
-    
-  &:after{
-    position: absolute;
-    top: 2000px;
-    width: 3px;
-    height: 3px;
-    
-    box-shadow: $shadows-big;
-  }
-}
-   
-@keyframes animStar {
-  from {
-    transform: translateY(-950px);
-  }	
-  to {
-    transform: translateY(-2000px);
-  }		
-}   
-
-//============= Banner Text Styles ==========================
 @font-face {
   font-family: space-age;
   src: url("../../assets/fonts/space_age/spaceAge.woff");
@@ -101,25 +17,18 @@ $shadows-big:    multiple-box-shadow(100);
     width: 100%;
     display: flex;
     
-    @include respond(standard-land) {
+    @include bp("standard-land") {
       width: 95%;
       height: 75%;
       top: 0;
       margin: 0;
     }
 
-    @include respond(tab-md-land) {
+    @include bp("tab-md--ol") {
       height: 82%;
       width: 88%;
       left: 5.75%;
     }
-
-    // @include respond(desktop) {
-    //   width: 80%;
-    //   height: 77%;
-    //   top: 10%;
-    // }
-
   }
 
   &__block {
@@ -128,11 +37,11 @@ $shadows-big:    multiple-box-shadow(100);
     margin-top: 5rem;
     
     &--1 {
-      @include respond(standard-land) {
+      @include bp("standard-land") {
         margin-top: 0;
       }
 
-      @include bp('tab-md--ol') {
+      @include bp("tab-md--ol") {
         margin-top: 0;
       }
     }
@@ -142,7 +51,7 @@ $shadows-big:    multiple-box-shadow(100);
       text-align: center;
       bottom: 45%;
 
-      @include respond(standard-land) {
+      @include bp("standard-land") {
         display: flex;
         justify-content: flex-start;
         bottom: 2%;
@@ -153,10 +62,44 @@ $shadows-big:    multiple-box-shadow(100);
         bottom: 16%;
       }
 
-      @include respond(desktop, tab-md-land) {
+      @include bp("tab-md--ol", "desktop") {
          width: 55%;
          bottom: 2%;
          text-align: initial;
+      }
+    }
+
+    &--3 {
+      margin-top: 0;
+      height: 20%;
+      bottom: 15%;
+      display: flex;
+      justify-content: space-evenly;
+
+      @include bp("standard-land--ar3/1") {
+        top: 0;
+        height: 71%;
+        width: 56%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @include bp("tab-md") {
+        bottom: 30%;
+      }
+
+      @include bp("tab-md--ar4/1") {
+        height: 90%;
+        width: 30%;
+        bottom: 2%;
+        left: 35%;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      @include bp("tab-lg--ar4/1") {
+        height: 80%;
       }
     }
   }
@@ -172,19 +115,19 @@ $shadows-big:    multiple-box-shadow(100);
     font-weight: bold;
     font-size: 3rem;
 
-    @include respond(standard-land) {
+    @include bp("standard-land") {
       font-size: 2rem;
     }
 
-    @include respond(phone) {
+    @include bp("phone") {
       font-size: 4rem;
     }
 
-    @include respond(phone-land) {
+    @include bp("phone--ol") {
       font-size: initial;
     }
 
-    @include respond(desktop) {
+    @include bp("desktop") {
       font-size: 6rem;
     }
 
@@ -194,7 +137,7 @@ $shadows-big:    multiple-box-shadow(100);
       justify-content: center;
     
       &--1 {
-        animation: fadeIn 2s ease-in;
+        animation: fadeIn 3.5s ease-in;
         justify-content: center;
 
         & :last-child {
@@ -204,16 +147,16 @@ $shadows-big:    multiple-box-shadow(100);
           }
         }
 
-        @include respond(standard-land) {
+        @include bp("standard-land") {
           margin-top: 5rem;
           justify-content: flex-end;
         }
         
-        @include respond(phone, phone-land) {
+        @include bp("phone", "phone--ol") {
           font-size: 3.33rem;
         }
 
-        @include respond(phone-lg, phone-lg-land) {
+        @include bp("phone-lg", "phone-lg--ol") {
           font-size: 3.885rem;
         }
 
@@ -238,26 +181,26 @@ $shadows-big:    multiple-box-shadow(100);
         font-size: 2rem;
         justify-content: center;
         margin-top: 1rem;
-        animation: fadeIn 1.75s ease-in;
+        animation: fadeIn 3.5s ease-in;
 
-        @include respond(standard-land, tab-md-land) {
+        @include bp("standard-land", "tab-md--ol") {
           justify-content: flex-end;
         }
 
 
-        @include respond(phone) {
+        @include bp("phone") {
           font-size: 2.23rem;
         }
 
-        @include respond(phone-lg, phone-lg-land) {
+        @include bp("phone-lg", "phone-lg--ol") {
           font-size: 2.37rem;
         }
 
-        @include bp('tab--op', 'tab--ol') {
+        @include bp("tab--op", "tab--ol") {
           font-size: 3rem;
         }
 
-        @include respond(desktop) {
+        @include bp("desktop") {
           font-size: 3.5rem;
           justify-content: flex-end;
         }
@@ -265,29 +208,29 @@ $shadows-big:    multiple-box-shadow(100);
 
       &--3 {
         color: #888;
-        animation: fadeIn 2s ease-in;
+        animation: fadeIn 3.5s ease-in;
         font-size: 4.2rem;
 
-        @include respond(standard-land, tab-md-land) {
+        @include bp("standard-land", "tab-md--ol") {
           justify-content: flex-end;
           letter-spacing: 0;
           margin: -.5rem;
           font-size: 4.2rem;
         }
 
-        @include respond(phone, phone-land) {
+        @include bp("phone", "phone--ol") {
           font-size: 4.75rem;
         }
 
-        @include respond(phone-lg, phone-lg-land) {
+        @include bp("phone-lg", "phone-lg--ol") {
           font-size: 4.89rem;
         }
 
-        @include bp('tab--op', 'tab--ol') {
+        @include bp("tab--op", "tab--ol") {
           font-size: 6rem;
         }
 
-        @include respond(desktop) {
+        @include bp("desktop") {
           font-size: 6.5rem;
         }
 
@@ -297,7 +240,7 @@ $shadows-big:    multiple-box-shadow(100);
       }
 
       &--4 {
-        animation: slideRight 1s ease-in;
+        animation: fadeIn 3s ease-in;
         & :nth-child(2) {
           color: $magenta;
           &:hover{
@@ -305,35 +248,26 @@ $shadows-big:    multiple-box-shadow(100);
           }
         }
 
-        @include respond(standard-land) {
+        @include bp("standard-land") {
           align-items: flex-end;
           padding-right: 1rem;
           font-size: inherit;
         }
 
-        @include respond(phone, phone-land) {
+        @include bp("phone", "phone--ol") {
           font-size: 3.9025rem;
         }
 
-        @include respond(phone-lg, phone-lg-land) {
+        @include bp("phone-lg", "phone-lg--ol") {
           font-size: 4.05rem;
         }
 
-        @include bp('tab-md--ol') {
+        @include bp("tab-md--ol") {
           justify-content: flex-start;
           font-size: 4rem;
         }
-        
-        // @include bp('tab-md--ar45/31') {
-        //   font-size: 3rem;
-        // }
 
-        // @include respond("tab-md--ar16/9") {
-        //   font-size: initial;
-        // }
-
-
-        @include respond(desktop) {
+        @include bp("desktop") {
           font-size: 6rem;
         }
       }
@@ -343,7 +277,7 @@ $shadows-big:    multiple-box-shadow(100);
         padding: 3px;
         transition: all .5s;
 
-        @include respond(desktop) {
+        @include bp("desktop") {
           padding: 4px;
         }
 
@@ -375,14 +309,4 @@ $shadows-big:    multiple-box-shadow(100);
 @keyframes fadeIn {
   0% { opacity: 0;}
   100% { opacity: 1;}
-}
-
-@keyframes slideRight {
-  0% {
-    transform: translateX(-75%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
 }

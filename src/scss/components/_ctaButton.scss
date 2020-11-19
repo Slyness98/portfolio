@@ -1,0 +1,167 @@
+@import '../abstract/animations';
+@import '../abstract/variables';
+
+.cta {
+    position: relative;
+    display: flex;
+    width: 25%;
+    height: 60%;
+    transition: .5s;
+    // background: transparent;
+    background: #04dce7;
+    box-shadow: 0 0 5px #04dce7,
+                0 0 15px #04dce7;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 7px;
+    border-style: unset;
+
+    @include bp("standard-land--ar3/1") {
+      height: 25%;
+      margin-bottom: 2rem;
+    }
+
+    @include bp("tab-md--op") {
+      transform: translateY(15rem);
+    }
+
+    @include bp("tab-md--ar4/1") {
+      height: 25%;
+      width: 50%;
+    }
+
+    @include bp("tab-lg") {
+     width: 20%;
+     height: 50%;
+    }
+
+    @include bp("tab-lg--ar4/1") {
+      height: 25%;
+      width: 50%;
+    }
+
+    @include bp("desktop") {
+      width: 20%;
+    }
+
+    @include bp("desktop--ar4/1") {
+      width: 50%;
+    }
+
+
+
+    &::before {
+      content: attr(content);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family:'Arial Narrow Bold', sans-serif;
+      font-size: 1.8rem;
+      color: #050801;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+
+      @include bp("tab") {
+        font-size: 2.5rem;
+      }
+      
+      @include bp("tab-md") {
+        font-size: 2rem;
+        letter-spacing: 3px;
+      }
+    }
+
+    &:hover {
+      background: transparent;
+      box-shadow: unset;
+    }
+
+
+    &:hover::before {
+      transition: .5s;
+      color: #04dce7;
+    }
+
+    & span {
+      position: absolute;
+      display: block;
+    }
+
+    &:hover span:first-child {
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, $magenta);
+      animation: animBorderA 2s linear infinite;
+    }
+
+    @keyframes animBorderA {
+      0% {
+        left: -100%;
+      }
+      50%, 100% {
+        left: 100%;
+      }
+    }
+
+    &:hover span:nth-child(2) {
+      top: -100%;
+      right: 0%;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, $magenta);
+      animation: animBorderB 2s linear infinite;
+      animation-delay: .5s;
+    }
+
+    @keyframes animBorderB {
+      0% {
+        top: -100%;
+      }
+      50%, 100% {
+        top: 100%;
+      }
+    }
+
+    &:hover span:nth-child(3) {
+      bottom: 0;
+      right: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(270deg, transparent, $magenta);
+      animation: animBorderC 2s linear infinite;
+      animation-delay: 1s;
+    }
+
+    @keyframes animBorderC {
+      0% {
+        right: -100%;
+      }
+      50%,100% {
+        right: 100%;
+      }
+    }
+
+    &:hover span:nth-child(4) {
+      bottom: -100%;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(0deg, transparent, $magenta);
+      animation: animBorderD 2s linear infinite;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes animBorderD {
+      0% {
+        bottom: -100%;
+      }
+      50%, 100% {
+        bottom: 100%;
+      }
+    }
+  }

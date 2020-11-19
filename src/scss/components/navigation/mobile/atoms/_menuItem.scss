@@ -16,11 +16,11 @@
 	text-align: center;
 	cursor: pointer;
 
-    @include respond(standard-land) {
+    @include bp("standard-land") {
 	  bottom: 7% !important;
 	}
 
-	@include respond(tab,tab-land) {
+	@include bp("tab", "tab--ol") {
 		height: 10rem;
 		width: 10rem;
 	}
@@ -30,15 +30,15 @@
 		bottom: 6.5%;
 		right: calc(24% - 4.5rem);
         
-		@include respond(standard-land){
+		@include bp("standard-land"){
 		  left: calc(85% - 4.5rem);
 		}
 
-		@include respond(tab) {
+		@include bp("tab") {
 		  right: calc(27% - 5rem);
 		}
 
-		@include respond(tab-land) {
+		@include bp("tab--ol") {
 		  left: calc(85% - 5rem);
 		}
 	}
@@ -47,31 +47,31 @@
 		bottom: 16%;
 		right: calc(35% - 4.5rem);
 
-		@include respond(standard-land){
+		@include bp("standard-land"){
 		  left: calc(70% - 4.5rem);
 		}
 
-		@include respond(tab) {
+		@include bp("tab") {
 		  right: calc(37% - 5rem);
 		}
   
-		@include respond(tab-land) {
+		@include bp("tab--ol") {
 		  left: calc(70% - 5rem);
 		}
 	}
 	&--3 {
 		bottom: 25%;
 		left: calc(50% - 4.5rem);
-		@include respond(standard-land) {
+		@include bp("standard-land") {
 		  left: calc(55% - 4.5rem);
 		}
 
-		@include respond(tab) {
+		@include bp("tab") {
 		  //bottom: 30%;
 		  left: calc(50% - 5rem);
 		}
   
-		@include respond(tab-land) {
+		@include bp("tab--ol") {
 		  left: calc(55% - 5rem);
 		}
 	}
@@ -79,15 +79,15 @@
 		bottom: 16%;
 		left: calc(35% - 4.5rem);	
 
-		@include respond(standard-land){
+		@include bp("standard-land"){
 		  left: calc(40% - 4.5rem);
 		}
 
-		@include respond(tab) {
+		@include bp("tab") {
 		  left: calc(37% - 5rem);
 		}
 	
-		@include respond(tab-land) {
+		@include bp("tab--ol") {
 		  left: calc(40% - 5rem);
 		}		
 	}
@@ -95,11 +95,11 @@
 		bottom: 6.5%;
 		left: calc(24% - 4.5rem);
 
-		@include respond(tab) {
+		@include bp("tab") {
 			left: calc(27% - 5rem);
 		}
 
-		@include respond(tab-land) {
+		@include bp("tab--ol") {
 			left: calc(24% - 5rem);
 		}
 	}		
@@ -116,8 +116,9 @@
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 
-		// @include respond(tab, tab-land) {
-		// }
+		@include bp("tab", "tab--ol") {
+			margin-top: 4.5rem;
+		}
 	}
 }
 
@@ -151,11 +152,11 @@
    text-transform: uppercase;
    letter-spacing: .75px;
 
-   @include respond(phone) {
+   @include bp("phone") {
 	font-size: 1.6rem;
    }
 
-   @include respond(tab, tab-land) {
+   @include bp("tab", "tab--ol") {
 	font-size: 2rem;
    }
 }

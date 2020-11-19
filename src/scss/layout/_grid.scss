@@ -4,7 +4,7 @@
 	display: flex;
 	&:not(:last-child) { /* The not pseudo-class will select everything except for what we specify. In this case, every child but the last child of row. */
 		margin-bottom: $gutter-vertical;
-		@include respond(phone){
+		@include bp("phone"){
 		  margin-bottom: $gutter-vertical-sm;
 		}
 	}

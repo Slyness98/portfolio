@@ -12,25 +12,25 @@
 	bottom: 5%;
 	left: calc(50% - 7rem);
 
-	@include respond(standard-land) {
-		height: 12rem;
-		width: 12rem;
-		left: calc(10% - 6rem);
-	}
-
-	@include respond(phone) {
+	@include bp("phone") {
 		height: 13rem;
 		width: 13rem;
 		left: calc(50% - 6.5rem);
 	}
 
-	@include respond(tab) {
+	@include bp("tab") {
 		height: 15rem;
 		width: 15rem;
 		left: calc(50% - 7.5rem);
 	}
 
-	@include respond(tab-land) {
+	@include bp("standard-land") {
+		height: 12rem;
+		width: 12rem;
+		left: calc(10% - 6rem);
+	}
+
+	@include bp("tab--ol") {
 		height: 13rem;
 		width: 13rem;
 		left: calc(10% - 6.5rem);
@@ -47,19 +47,23 @@
 	position: relative;
 	margin-top: 7rem;
 
-	@include respond(standard-land) {
+	@include bp("standard-land") {
 	  margin-top: 6rem;
 	}
 
-	@include respond(phone) {
-		margin-top: 6.5rem;
+	@include bp("phone") {
+	  margin-top: 6.5rem;
 	}
 
-	@include respond(tab) {
+	@include bp("phone--ol") {
+      margin-top: 6rem;
+	}
+
+	@include bp("tab") {
 		margin-top: 7.5rem;
 	}
 
-	@include respond(tab-land) {
+	@include bp("tab--ol") {
 		margin-top: 6.5rem;
 	}
 
@@ -79,7 +83,7 @@
 		background-color: $color-white;
 		display: inline-block;
 
-		@include respond(tab) {
+		@include bp("tab") {
 		  width: 7rem;
 		}
 	}

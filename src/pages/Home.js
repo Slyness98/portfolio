@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from 'react';
+import React from 'react';
 
 import Banner from '../components/hero-banner/Banner';
 import Stars from '../components/space-background/Stars';

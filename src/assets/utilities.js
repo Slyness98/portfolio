@@ -21,3 +21,14 @@ fire less frequently so as to not overload the browser */
       variable === condition ? trueCode : (falseCode)
     )
   };
+
+//   export const detectMobile = function () {
+// 	let mql = window.matchMedia("(max-width: 899px)");
+// 	if(mql.matches) {
+// 		setPlatform(true);
+// 		console.log('mobile', platform);
+// 	} else {
+// 		setPlatform(false);
+// 		console.log('desktop', platform);
+// 	}
+//   };
