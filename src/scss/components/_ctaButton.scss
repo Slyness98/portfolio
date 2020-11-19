@@ -15,7 +15,8 @@
     cursor: pointer;
     padding: 7px;
     border-style: unset;
-
+    outline: none;
+    
     @include bp("standard-land--ar3/1") {
       height: 25%;
       margin-bottom: 2rem;
@@ -48,7 +49,9 @@
       width: 50%;
     }
 
-
+    &:focus, &:active {
+      border: none;
+    }
 
     &::before {
       content: attr(content);
