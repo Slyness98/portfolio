@@ -11,6 +11,7 @@
 
     &--socialMedia{
       justify-content: flex-end;
+      z-index: 5000 !important;
     }
   }
 
@@ -75,7 +76,6 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         display: flex;
-        z-index: 5000!important;
         cursor: pointer;
         &:hover {
           transform: scale(1.5);
