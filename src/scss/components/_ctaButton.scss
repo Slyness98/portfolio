@@ -4,6 +4,7 @@
 .cta {
     position: relative;
     display: flex;
+    justify-content: center;
     width: 25%;
     height: 60%;
     transition: .5s;
@@ -13,7 +14,6 @@
                 0 0 15px #04dce7;
     overflow: hidden;
     cursor: pointer;
-    padding: 7px;
     border-style: unset;
     outline: none;
     
@@ -55,7 +55,7 @@
 
     &::before {
       content: attr(content);
-      width: 100%;
+      width: 60%;
       height: 100%;
       display: flex;
       justify-content: center;
@@ -67,8 +67,9 @@
       letter-spacing: 2px;
       text-decoration: none;
 
-      @include bp("tab") {
-        font-size: 2.5rem;
+      @include bp("phone-lg") {
+        width: 100%;
+        font-size: 2.25rem;
       }
       
       @include bp("tab-md") {

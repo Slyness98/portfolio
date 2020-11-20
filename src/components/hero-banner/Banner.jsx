@@ -61,8 +61,8 @@ const Banner = () => {
           </div>
 
           <div className="banner__block banner__block--3">
-            <CtaButton className={"cta cta--1"} content={"View Gallery"} />
-            <CtaButton className={"cta cta--2"} content={"Make Contact"} />
+              <CtaButton className={"cta cta--1"} content="View Gallery" />
+              <CtaButton className={"cta cta--2"} content="Make Contact" />
           </div>
         </div>
     </div>
