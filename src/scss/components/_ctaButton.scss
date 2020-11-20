@@ -73,8 +73,12 @@
       }
       
       @include bp("tab-md") {
-        font-size: 2rem;
+        font-size: 2.5rem;
         letter-spacing: 3px;
+      }
+
+      @include bp("tab-md--ol") {
+        font-size: 2rem;
       }
     }
 

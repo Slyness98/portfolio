@@ -36,12 +36,12 @@ html {
 		font-size: 50%; //1rem = 8px
 	}
 
-	@include bp('desktop--ar21/9') {
-		font-size: 37.5%;
-	}
+	// @include bp('desktop--ar21/9') {
+	// 	font-size: 37.5%;
+	// }
 
 	@include bp('desktop--ar32/9') {
-		font-size: 30%; 
+		font-size: 37.5%;
 	}
 
 	// @include bp('desktop--ar2/1') {

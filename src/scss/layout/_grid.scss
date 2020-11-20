@@ -228,7 +228,7 @@
 
 .invertGrid [class^="col-"] {
 	width: 100%;
-	overflow: hidden;
+	overflow: initial;
 	display: flex;
 	flex-direction: column;
 	&:not(:last-child){

@@ -50,6 +50,10 @@
       font-size: 4rem;
     }
 
+    @include bp("tab-md--ar4/1") {
+      font-size: 2rem;
+    }
+
       &:hover::before {
         transition: all .5s ease;
         width: 100%;
@@ -63,6 +67,10 @@
         @include bp("tab-md--ar6/1") {
           font-size: 2.5rem;
         }
+
+        #drop2 &, #drop4 & {
+          font-size: 1.25rem;
+        }  
       }
 
 
@@ -77,12 +85,17 @@
         -webkit-text-fill-color: transparent;
         display: flex;
         cursor: pointer;
-        &:hover {
-          transform: scale(1.5);
-        }
 
         @include bp("tab-md--ar4/1") {
           font-size: 4rem;
+        }
+
+        @include bp("tab-md--ar4/1") {
+          font-size: 2rem;
+        }
+
+        &:hover {
+          transform: scale(1.5);
         }
       }
   }
@@ -146,9 +159,14 @@
  width: 100%;
  height: 7vh;
 
- @include bp("tab-md--ar21/9") {
-   height: 17vh;
+ @include bp("tab-md--ar4/1") {
+   height: 12vh;
  }
+ 
+
+//  @include bp("tab-md--ar21/9") {
+//    height: 17vh;
+//  }
 }
 
 #drop2, #drop4 {
@@ -158,6 +176,33 @@
  position: absolute;
  top:0;
 
+ @include bp("tab-md--ar3/1") {
+  .navbar__container--socialMedia {
+    justify-content: space-evenly;
+  }
+
+  .navbar__container--links {
+    justify-content: space-evenly;
+  }
+
+  .navbar__icon, .navbar__icon--social {
+    font-size: 2.5rem;
+  }
+ }
+
+ @include bp("desktop--ar4/1") {
+    .navbar__container--socialMedia {
+      justify-content: space-evenly;
+    }
+  
+    .navbar__container--links {
+      justify-content: space-evenly;
+    }
+  
+    .navbar__icon, .navbar__icon--social {
+      font-size: 2rem;
+    }
+  }
 }
 
 #drop2 {
