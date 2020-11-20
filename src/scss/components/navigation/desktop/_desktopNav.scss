@@ -176,6 +176,10 @@
  position: absolute;
  top:0;
 
+ .navbar__icon--social:hover {
+   transform: scale(1.25);;
+ }
+
  @include bp("tab-md--ar3/1") {
   .navbar__container--socialMedia {
     justify-content: space-evenly;
