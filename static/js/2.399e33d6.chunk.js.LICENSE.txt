@@ -42,6 +42,8 @@ object-assign
 
 /*! color-name */
 
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
 /*! no static exports found */
 
 /*! react-is */
