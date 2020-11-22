@@ -16,28 +16,32 @@ const Navbar = () => {
           <InternalLink
             buttonClass="navbar__link" 
             iClass="navbar__icon fas fa-home"          
-            iContent="HOME"    
+            iContent="HOME"
+            route="/"    
           />
         </li>
         <li className="navbar__item"> 
           <InternalLink 
             buttonClass="navbar__link"             
             iClass="navbar__icon fas fa-vector-square" 
-            iContent="SKILLS"  
+            iContent="SKILLS" 
+            route="/skills"     
           />
         </li>
         <li className="navbar__item"> 
           <InternalLink 
             buttonClass="navbar__link" 
             iClass="navbar__icon fas fa-laptop-code"   
-            iContent="WORK"    
+            iContent="WORK" 
+            route="/gallery"       
           />
         </li>
         <li className="navbar__item"> 
           <InternalLink
             buttonClass="navbar__link" 
             iClass="navbar__icon fas fa-user-secret"   
-            iContent="ABOUT"   
+            iContent="ABOUT"
+            route="/about"   
           />
         </li>
         <li className="navbar__item"> 
@@ -45,6 +49,7 @@ const Navbar = () => {
             buttonClass="navbar__link" 
             iClass="navbar__icon fas fa-mail-bulk"     
             iContent="CONTACT" 
+            route="/contact"
           />
         </li>
        </div>

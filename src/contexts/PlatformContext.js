@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { debounce } from '../assets/utilities';
-
+import React, { useContext, useState } from 'react';
+import { useDebounce } from '../assets/custom-hooks/hooks';
 const PlatformContext = React.createContext();
 const PlatformUpdateContext = React.createContext();
 
@@ -22,7 +21,7 @@ export function PlatformProvider({ children }) {
 	if(mql.matches) {
     setPlatform(true);
 	} else {
-		setPlatform(false);
+    setPlatform(false);
 	}
   };
 
@@ -36,14 +35,3 @@ export function PlatformProvider({ children }) {
       </PlatformContext.Provider>
   );
 };
-
-function useDebounce(callback, delay) {
-    const memoizedCallback = useCallback(callback, []);
-    const debouncedFn = useRef(debounce(memoizedCallback, delay));
-
-    useEffect(() => {
-      debouncedFn.current = debounce(memoizedCallback, delay);
-    }, [memoizedCallback, debouncedFn, delay]);
-
-    return debouncedFn.current;
-}

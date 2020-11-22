@@ -1,11 +1,11 @@
 import React from 'react';
 
-const InternalLink = ({buttonClass, iClass, iContent}) => {
+const InternalLink = ({buttonClass, iClass, iContent, route}) => {
 	return (
-	  <button className={buttonClass}>  
+	  <a className={buttonClass} href={route}>  
 	    <i className={iClass} content={iContent}></i> 
-	  </button>
+	  </a>
 	);
-}
+};
 
 export default InternalLink;

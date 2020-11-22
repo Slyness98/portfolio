@@ -1,3 +1,4 @@
+import { element } from 'prop-types';
 import React from 'react';
 
 class Typewriter extends React.Component {
@@ -7,13 +8,18 @@ class Typewriter extends React.Component {
       charIndex: 0,
       textArrayIndex: 0
     } 
-    this.nodeRef = React.createRef();
+
+    this.setNodeRef = element => {
+      this.nodeRef = element
+    }
+    // this.nodeRef = React.createRef();
     this.type = this.type.bind(this);
     this.erase = this.erase.bind(this);
   }
 
   type = () =>  {
-   const node = this.nodeRef.current;
+    // console.log('node? ', this.nodeRef.current);
+   const node = this.nodeRef;
    let {charIndex, textArrayIndex} = this.state;
    let {textArray, typingDelay, newTextDelay} = this.props;
 
@@ -28,7 +34,7 @@ class Typewriter extends React.Component {
 
   erase = () => {
 
-    const node = this.nodeRef.current;
+    const node = this.nodeRef;
     let {charIndex, textArrayIndex} = this.state;
     let {textArray, typingDelay, erasingDelay} = this.props;
 
@@ -60,7 +66,8 @@ class Typewriter extends React.Component {
   render() {
   return (
      <>
-        <p ref={this.nodeRef} className={this.props.className}></p>
+        {/* <p ref={this.nodeRef} className={this.props.className}></p> */}
+        <p ref={this.setNodeRef} className={this.props.className}></p>
         <span className="cursor">&nbsp;</span>
         
      </>
