@@ -1,5 +1,4 @@
 import React from 'react';
-
 const InternalLink = ({buttonClass, iClass, iContent, route}) => {
 	return (
 	  <a className={buttonClass} href={route}>  

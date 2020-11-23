@@ -1,19 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Navigation from './components/navigation/Navigation';
 
 import Home from './pages/Home';
+import Gallery from './pages/Gallery';
+import Skills from './pages/Skills';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 import { PlatformProvider } from './contexts/PlatformContext'; 
-import { useRoutes } from "hookrouter";
-import routes from './router';
 
 const App = () => {
+//  const [route, setRoute] = useState();
 	return (
 	 <div className="App">
      <PlatformProvider>
        <Navigation />	
      </PlatformProvider>
-     { useRoutes(routes) || <Home /> }
+     {
+       {
+        '/': <Home />,
+        '/gallery': <Gallery />,
+        '/skills': <Skills />,
+        '/about': <About />,
+        '/contact': <Contact />
+       }[window.location.pathname] || <Home />
+     } 
+
 	 </div>
   );
 };
