@@ -5,6 +5,7 @@ import MobileNavigation from './mobile/MobileNav.js';
 import DesktopNavigation from './desktop/DesktopNav.js';
 import { usePlatformContext, usePlatformUpdateContext } from '../../contexts/PlatformContext';
 
+
 const Navigation = () => {
   const platform = usePlatformContext();
   const detectPlatform = usePlatformUpdateContext();

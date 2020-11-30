@@ -10,7 +10,6 @@ import Contact from './pages/Contact';
 import { PlatformProvider } from './contexts/PlatformContext'; 
 
 const App = () => {
-//  const [route, setRoute] = useState();
 	return (
 	 <div className="App">
      <PlatformProvider>

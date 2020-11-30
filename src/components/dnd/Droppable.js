@@ -1,33 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Droppable extends Component {
-  drop = (e) => {
+const Droppable = ({className, id, children}) =>{
+  const drop = (e) => {
 	e.preventDefault();
+	let newId = e.target.id;
+	sessionStorage.setItem('navbarPosition', newId);
 	e.target.appendChild(document.getElementById('dragItem'));
-  }
+  };
   
-  allowDrop = (e) => {
+  const allowDrop = (e) => {
 	e.dataTransfer.dropEffect= "copy";
 	e.preventDefault();
-  }
-  
-  render() {
-	return(
-	  <div 
-		id={this.props.id} 
-		className={this.props.className} 
-		onDrop={this.drop} 
-		onDragOver={this.allowDrop}
-	  >
-		{this.props.children}
-	  </div>
-	);
-  }
-}
+  };
+
+  return(
+	<div 
+	  id={id} 
+	  className={className} 
+	  onDrop={drop} 
+	  onDragOver={allowDrop}
+	>
+		{children}
+	</div>
+  );
+};
 
 Droppable.propTypes = {
 	id: PropTypes.string,
 	style: PropTypes.object,
 	children: PropTypes.node
 }
+
+export default Droppable;

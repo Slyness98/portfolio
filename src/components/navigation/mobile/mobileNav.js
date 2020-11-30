@@ -23,11 +23,11 @@ class MobileNavigation extends Component{
 	      <MainButton toggleMenu = { this.toggleMenu } />
 	      <div id="nav">	
 	       <ul>
-		    <MenuItem num = "5" icon = "fa-home"          text="home"    toggleOpen={ toggleOpen } />
-		    <MenuItem num = "4" icon = "fa-vector-square" text="skills"  toggleOpen={ toggleOpen } />  
-		    <MenuItem num = "3" icon = "fa-laptop-code"   text="my work"    toggleOpen={ toggleOpen } /> 
-		    <MenuItem num = "2" icon = "fa-user-secret"   text="about"   toggleOpen={ toggleOpen } /> 
-		    <MenuItem num = "1" icon = "fa-mail-bulk"     text="Get In Touch" toggleOpen={ toggleOpen } />
+		    <MenuItem num = "5" icon = "fa-home"          text="home"         toggleOpen={ toggleOpen } route="/"/>
+		    <MenuItem num = "4" icon = "fa-vector-square" text="skills"       toggleOpen={ toggleOpen } route="/skills"/>  
+		    <MenuItem num = "3" icon = "fa-laptop-code"   text="my work"      toggleOpen={ toggleOpen } route="/gallery"/> 
+		    <MenuItem num = "2" icon = "fa-user-secret"   text="about"        toggleOpen={ toggleOpen } route="/about"/> 
+		    <MenuItem num = "1" icon = "fa-mail-bulk"     text="Get In Touch" toggleOpen={ toggleOpen } route="/contact"/>
 	       </ul>
 	      </div>
 	    </nav>   

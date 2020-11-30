@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Draggable extends Component {
-  drag = (e) => {
+const Draggable = ({id, className, style, children}) => {
+  const drag = (e) => {
     e.dataTransfer.setData('transfer', e.target.id);
   }
   
-  prohibitDrag = (e) => {
+  const prohibitDrag = (e) => {
     e.stopPropagation();
   }
-
-  render() {
-	return(
+  
+  return(
 	<div 
-	  id={this.props.id} 
-	  className={this.props.className} 
-	  draggable="true" onDragStart={this.drag} 
-	  onDragOver={this.prohibitDrag} 
-	  style={this.props.style}
+	  id={id} 
+	  className={className} 
+	  draggable="true" 
+	  onDragStart={drag} 
+	  onDragOver={prohibitDrag} 
+	  style={style}
 	>
-	  {this.props.children}
+		{children}
 	</div>
-	);
-  }
+  );	
 }
 
 Draggable.propTypes = {
@@ -30,3 +29,5 @@ Draggable.propTypes = {
 	style: PropTypes.object,
 	children: PropTypes.node
 }
+
+export default Draggable;

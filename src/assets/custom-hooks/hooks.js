@@ -11,4 +11,4 @@ export function useDebounce(callback, delay) {
     }, [memoizedCallback, debouncedFn, delay]);
 
     return debouncedFn.current;
-}
+};

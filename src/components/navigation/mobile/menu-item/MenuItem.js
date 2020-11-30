@@ -26,10 +26,12 @@ const Icon = styled.i.attrs(props => ({
 	transform: scale(3);
 `;
 
-const MenuItem = ({icon, num, toggleOpen, text}) => {
+const MenuItem = ({icon, num, toggleOpen, text, route}) => {
 	return(
 	  <MobItem num={num} toggleOpen={toggleOpen ? true : false}> 
+	    <a href={route} >
 		<Icon icon={icon}></Icon> <span alt="menu icons">{text}</span>
+		</a>
 	  </MobItem>
 	);
 }
