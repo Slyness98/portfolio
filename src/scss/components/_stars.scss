@@ -81,3 +81,20 @@ $shadows-big:    multiple-box-shadow(300);
     transform: translateY(-2000px);
   }		
 }   
+
+@-moz-document url-prefix() {
+  //firefox can't handle the heat. Disable stars in firefox only and preserve usability
+  [id^="stars"] {
+    box-shadow: unset;
+    animation: none;
+    display: none;
+  }
+}
+
+@include bp("noAnim") {
+  [id^="stars"] {
+    box-shadow: unset;
+    animation: none;
+    display: none;
+  }
+}

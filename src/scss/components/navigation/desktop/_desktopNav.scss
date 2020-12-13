@@ -18,22 +18,23 @@
   &__bg {
   	height: 100%;
     width: 100%;
-	  background-color: #000;
-    background-image: linear-gradient(to bottom, #0b8793 5%,#323b41 0%,#000 80%);
+    // background-color: #000;
+    background-color: rgba(0,0,0,.1);
+    // background-image: linear-gradient(to bottom, #0b8793 5%,#323b41 0%,#000 80%);
 	  display: flex;
   }
 
-  #drop2 &__bg {
-    background-image: linear-gradient(to right, transparent, #000 40%);
-  }
+  // #drop2 &__bg {
+  //   background-image: linear-gradient(to right, transparent, #000 40%);
+  // }
 
-  #drop3 &__bg {
-    background-image: linear-gradient(to top, #0b8793 2%,#323b41 0%,#000 50%);
-  }
+  // #drop3 &__bg {
+  //   background-image: linear-gradient(to top, #0b8793 2%,#323b41 0%,#000 50%);
+  // }
 
-  #drop4 &__bg {
-    background-image: linear-gradient(to left, transparent,#000 50%);
-  }
+  // #drop4 &__bg {
+  //   background-image: linear-gradient(to left, transparent,#000 50%);
+  // }
 
   &__icon {
     color: #1ebba3;
@@ -127,16 +128,16 @@
     width: 90%;
   }
 
-  &__brand {
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;   
-    background-image: url(../../assets/images/lyness.svg);
-    background-repeat: no-repeat; 
-  }
+  // &__brand {
+  //   text-decoration: none;
+  //   width: 100%;
+  //   height: 100%;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;   
+  //   background-image: url(./images/lyness.svg);
+  //   background-repeat: no-repeat; 
+  // }
 
   &__social {
     display: flex;
@@ -152,6 +153,8 @@
 
 [id^="drop"] {
   display: flex;
+  position: fixed;
+  z-index: 20000;
 }
 
 #drop1, #drop3 {
@@ -168,7 +171,7 @@
  height: 100vh;
  width: 9vh;
  flex-direction: column;
- position: absolute;
+//  position: absolute;
  top:0;
 
  .navbar__icon--social:hover {
@@ -216,15 +219,13 @@
 
 #drop4 {
   right: 0;
-  }
 
-
-#drop1 li, #drop3 li{
-  justify-content: center;
-  align-items: center;
+  // & .navbar__link {
+  //   margin-left: 6rem;
+  // }
 }
 
-#drop2 li, #drop4 li {
+[id^="drop"] li {
   justify-content: center;
   align-items: center;
 }

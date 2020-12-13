@@ -10,6 +10,19 @@ import Contact from './pages/Contact';
 import { PlatformProvider } from './contexts/PlatformContext'; 
 
 const App = () => {
+  React.useEffect(() => {
+    var docWidth = window.outerWidth;
+
+    [].forEach.call(
+      document.querySelectorAll('*'),
+      function(el) {
+        if (el.offsetWidth > docWidth) {
+          console.log(el);
+        }
+      }
+    );
+  },[]);
+
 	return (
 	 <div className="App">
      <PlatformProvider>

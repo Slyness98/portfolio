@@ -54,7 +54,7 @@ body {
 	height: 100vh; 
 	margin: 0;
 	box-sizing: border-box; /* Padding and border no longer included when we express size for elements.*/
-	background-color: black;
+	// background-color: black;
 	// overflow: hidden;  uncomment to disable android chrome's pull-to-refresh feature, if desired
 	@include bp("tab") {// width < 600?
 		padding: 0; //1 rem = 8px, 8/16 = 50%

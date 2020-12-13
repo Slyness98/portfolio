@@ -32,40 +32,40 @@ const Banner = () => {
   }, [wrapSpanAndInject]);
     
   return (
-    <div className="banner__container">
-        <div className="banner__text">	
-          <p className="banner__text__p banner__text__p--1"/> 
-        
-          <div className="banner__block banner__block--1">
-              <p className="banner__text__p banner__text__p--2"/>   
-              <p className="banner__text__p banner__text__p--3"/> 
-          </div> 
-        
-          <div className="banner__block banner__block--2">
-              <p className="banner__text__p banner__text__p--4"/> 
-              <Typewriter 
-                className = {"typewriter-text"}  
-                textArray = {[
-                  " React.JS Specialist", 
-                  " UI/UX Designer", 
-                  " API Nerd", 
-                  " SASS / CSS Enthusiast", 
-                  " Proficient PHP Practitioner", 
-                  " Node & Express.JS Engineer", 
-                  " Full Stack Web Developer"
-                ]}
-                typingDelay = {80}
-                erasingDelay = {10}
-                newTextDelay = {1250}
-              />
-          </div>
-
-          <div className="banner__block banner__block--3">
-              <CtaButton className={"cta cta--1"} content="View Gallery" />
-              <CtaButton className={"cta cta--2"} content="Make Contact" />
-          </div>
+    <section className="banner__container">
+      <section className="banner__text">	
+        <p className="banner__text__p banner__text__p--1"/> 
+      
+        <div className="banner__block banner__block--1">
+            <p className="banner__text__p banner__text__p--2"/>   
+            <p className="banner__text__p banner__text__p--3"/> 
+        </div> 
+      
+        <div className="banner__block banner__block--2">
+            <p className="banner__text__p banner__text__p--4"/> 
+            <Typewriter 
+              className = {"typewriter-text"}  
+              textArray = {[
+                " React.JS Specialist", 
+                " UI/UX Designer", 
+                " API Nerd", 
+                " SASS / CSS Enthusiast", 
+                " Proficient PHP Practitioner", 
+                " Node & Express.JS Engineer", 
+                " Full Stack Web Developer"
+              ]}
+              typingDelay = {80}
+              erasingDelay = {10}
+              newTextDelay = {1250}
+            />
         </div>
-    </div>
+
+        <div className="banner__block banner__block--3">
+            <CtaButton className={"cta cta--1"} content="View Gallery" href="/gallery"/>
+            <CtaButton className={"cta cta--2"} content="Make Contact" href="/contact"/>
+        </div>
+      </section>
+    </section>
   );
 };
 

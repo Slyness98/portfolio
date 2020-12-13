@@ -178,7 +178,7 @@ canvas {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    background-image: url(../../assets/images/lyness.svg);
+    background-image: url(./images/lyness.svg);
     background-repeat: no-repeat; }
   .navbar__social {
     display: -webkit-box;

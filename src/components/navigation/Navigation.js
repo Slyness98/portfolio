@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import {ReactComponent as Logo} from '../../assets/images/lyness.svg';
 import { ternary } from '../../assets/utilities';
 import MobileNavigation from './mobile/MobileNav.js';
 import DesktopNavigation from './desktop/DesktopNav.js';
@@ -9,6 +8,7 @@ import { usePlatformContext, usePlatformUpdateContext } from '../../contexts/Pla
 const Navigation = () => {
   const platform = usePlatformContext();
   const detectPlatform = usePlatformUpdateContext();
+  let screenWidth = window.innerWidth;
 
   useEffect(() => {
     window.addEventListener("load", detectPlatform);
@@ -18,11 +18,10 @@ const Navigation = () => {
       window.removeEventListener("load", detectPlatform);
       window.removeEventListener("resize", detectPlatform);
     }
-  }, [detectPlatform, platform]);
+  }, [detectPlatform, platform, screenWidth]);
   
   return (
-    <header className={ ternary(platform, true, 'headContainer', 'fullWindow') }>
-      { ternary( platform, true, <Logo className="logo"/>, null ) }
+    <header>
       { ternary( platform, true, <MobileNavigation />, <DesktopNavigation />) }
     </header>
   );

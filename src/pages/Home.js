@@ -5,10 +5,12 @@ import Stars from '../components/space-background/Stars';
 
 const Home = () => {
   return (
-	<>
-	  <Stars />
+  <>
+	<main className="section-home">
 	  <Banner />
-	</>
+	</main>
+	<Stars />
+  </>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ternary } from '../../assets/utilities';
 
 class Typewriter extends React.Component {
   constructor(props) {
@@ -62,10 +63,11 @@ class Typewriter extends React.Component {
   }
 
   render() {
+    const {...props} = this.props;
   return (
     <>
-      <p ref={this.setNodeRef} className={this.props.className}></p>
-      <span className="cursor">&nbsp;</span>
+      <p ref={this.setNodeRef} className={props.className}></p>
+      {ternary(props.noBlink, true, null, <span className="cursor">&nbsp;</span>)}
     </>
    );
 }

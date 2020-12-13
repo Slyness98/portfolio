@@ -1,13 +1,13 @@
 .headContainer {
 	height: 7vh;
-
+    background-color: black;
 	@include bp("standard-land") {
-		height: 0;
+	  height: 0;
 	}
-}
 
-.fullWindow {
-	min-height: 100vh;
+	&--unset {
+	  height: 0;
+	}
 }
 
 .logo {
@@ -15,13 +15,13 @@
 	width: 27.9rem;
 }
 
-h1 {
-	position: absolute;
-	top: 10%;
-	left: 44%;
-	font-size: 4rem;
-	text-decoration: underline;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	color: white;
-}
+// h1 {
+// 	position: absolute;
+// 	top: 10%;
+// 	left: 44%;
+// 	font-size: 4rem;
+// 	text-decoration: underline;
+// 	text-transform: uppercase;
+// 	letter-spacing: 3px;
+// 	color: black;
+// }

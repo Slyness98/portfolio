@@ -1,13 +1,13 @@
 import React from 'react';
 
-const CtaButton = ({className, content}) => {
+const CtaButton = ({className, content, href}) => {
   return(
-    <button className={className} content={content}>
+    <a className={className} content={content} href={href}>
       <span></span>
       <span></span>
       <span></span>
       <span></span>
-    </button>
+    </a>
   );
 }
 
