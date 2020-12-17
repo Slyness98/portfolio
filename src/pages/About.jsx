@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ScrollPageContainer from '../components/containers/scroll/scrollPageContainer';
 import ScrollPageBlock from '../components/containers/scroll/scrollPageBlock';
-import WithScrollAnim from '../components/containers/withScrollAnim/WithScrollAnim';
+// import WithScrollAnim from '../components/containers/withScrollAnim/WithScrollAnim';
 import {FilterBox} from '../components/containers/filterbox/filterbox.styled';
-import Typewriter  from '../components/typewriter/Typewriter';
+// import Typewriter  from '../components/typewriter/Typewriter';
+import { ProfileImage } from '../components/profile-image/profile.styled';
+import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 const About = () => {
+
+  useEffect(() => {
+    document.getElementById("about").style.scrollBehavior = "smooth";
+  }, []);
  return (
    <>
-  <main className="section-about"> 
+  <main className="section-about" id="about"> 
     <h1 className="title">&#060;About Me /&#062;</h1>
 
     <ScrollPageContainer>
+      <LazyScroller watchNode=".section__block" icon="fa fa-angle-down" pageRootId="about"/>
       <ScrollPageBlock className="section__block section__block--1">
         <FilterBox 
           className="section__filterbox-sc" 
@@ -27,33 +34,17 @@ const About = () => {
       </ScrollPageBlock>
       
       <ScrollPageBlock className="section__block section__block--2">
-        {/* <div className="panel panel--1"></div>
-        <WithScrollAnim threshold="0.3">
-        <div className="panel panel--2"></div>
-        </WithScrollAnim>
-        <WithScrollAnim threshold="0.4">
-        <div className="panel panel--3"></div>
-        </WithScrollAnim>
-        <WithScrollAnim threshold="0.5">
-        <div className="panel panel--4"></div>
-        </WithScrollAnim> */}
-      <FilterBox 
-        shadow="90px"
-        filter="brightness(1.5)"
-      >   
-        <p className="text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Purus gravida quis blandit turpis cursus in. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. </p>
-      </FilterBox>
+        <div className="section__block--2__contentWrapper">
+          <ProfileImage src="/images/profile.jpg" />
+        </div>
       </ScrollPageBlock>
   
       <ScrollPageBlock className="section__block section__block--3"></ScrollPageBlock>
       <ScrollPageBlock className="section__block section__block--4">
-        <div className="panel panel--1"></div>
+        {/* <div className="panel panel--1"></div>
         <div className="panel panel--2"></div>
         <div className="panel panel--3"></div>
-        <div className="panel panel--4"></div>
-        {/* <div className="panel panel--4"></div> */}
+        <div className="panel panel--4"></div> */}
       </ScrollPageBlock>
     
     </ScrollPageContainer>

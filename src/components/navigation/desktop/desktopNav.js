@@ -42,7 +42,7 @@ const DesktopNavigation = () => {
 
       default: return;
     }
-  }, [])
+  }, [position])
 
   return(
     <React.Fragment>

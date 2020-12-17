@@ -9,6 +9,7 @@ const Container = styled.section`
   ${bp.tabmd`
     padding: 2vh 10vh;
   `}
+
 `;
 
 const ScrollPageContainer = ({children, ...props}) => {
