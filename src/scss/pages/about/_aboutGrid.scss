@@ -1,0 +1,39 @@
+.aboutGrid {
+  display: grid;
+  grid-auto-rows: minmax(150px, auto);
+  grid-template-rows: auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+  padding: 9%;
+
+  @include bp("tab") {
+    grid-column-gap: 20px;
+  }
+
+  &__item {
+    &--1 {
+      padding: 0 3%;
+      text-align: center;
+    }
+  
+    @include gridItem(1, 1, 3);
+    @include gridItem(2, 1, 2);
+    @include gridItem(3, 2, 3);
+    @include gridItem(4, 1, 2);
+    @include gridItem(5, 2, 3);     
+
+    &__leadText {
+      color: white;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      font-size: 3rem;
+      font-family: gruppo, Arial, Helvetica, sans-serif;
+      line-height: 1.1;
+
+      @include bp("tab") {
+        font-size: 3.5rem;
+      }
+    }
+  }
+}

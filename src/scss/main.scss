@@ -6,6 +6,7 @@
 @import "base/base";
 
 @import "components/ctaButton";
+@import "components/lazyScroller";
 @import "components/navigation/desktop/desktopNav";
 @import "components/navigation/mobile/mobileNav";
 @import "components/navigation/mobile/atoms/menuItem";
@@ -18,5 +19,6 @@
 @import "pages/home/banner";
 @import "pages/gallery";
 @import "pages/skills";
-@import "pages/about";
+@import "pages/about/about";
+@import "pages/about/aboutGrid";
 @import "pages/contact";

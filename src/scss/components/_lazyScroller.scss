@@ -1,0 +1,96 @@
+#lazyScroller {
+  @include bp("standard--ol") {
+    transform: translate(92vw, 53vh);
+  }
+
+  @include bp("phone-lg") {
+    transform: translate(90vw, 70vh);
+  } 
+
+  
+  @include bp("tab-md") {
+    transform: translate(73vw, 73vh);
+  } 
+
+  @include bp("tab-md--ol") {
+    transform: translate(72vw, 73vh)  
+  } 
+
+  @include bp("tab-md--ar10/9") {
+    transform: translate(75vw, 73vh)  
+  } 
+
+  @include bp("tab-md--ar5/4") {
+    transform: translate(78vw, 70vh)  
+  } 
+
+  @include bp("tab-md--ar2/1") {
+    transform: translate(85vw, 65vh)  
+  } 
+
+  @include bp("tab-md--ar13/4") {
+    transform: translate(90vw, 20vh)  
+  } 
+
+
+
+
+  @include bp("tab-lg") {
+    transform: translate(74vw, 73vh);
+  } 
+
+  @include bp("tab-lg--ar11/9") {
+    transform: translate(77vw, 73vh)  
+  } 
+
+  @include bp("tab-lg--ar13/9") {
+    transform: translate(80vw, 73vh)  
+  } 
+
+  @include bp("tab-lg--ar2/1") {
+    transform: translate(85vw, 65vh)  
+  } 
+  
+
+  @include bp("tab-lg--ar13/4") {
+    transform: translate(90vw, 20vh)  
+  } 
+
+
+
+
+  @include bp("desktop-sm") {
+    transform: translate(76vw, 73vh);
+  } 
+
+  @include bp("desktop-sm--ar10/9") {
+    transform: translate(77vw, 73vh)  
+  } 
+
+  @include bp("desktop-sm--ar2/1") {
+    transform: translate(85vw, 65vh)  
+  } 
+
+  @include bp("desktop-sm--ar14/4") {
+    transform: translate(90vw, 30vh)  
+  } 
+
+
+
+
+  @include bp("desktop-lg") {
+    transform: translate(82vw, 73vh);
+  } 
+  
+//   @include bp("desktop-lg--ar10/9") {
+//     transform: translate(vw, 73vh)  
+//   } 
+
+  @include bp("desktop-lg--ar4/1") {
+    transform: translate(85vw, 45vh)  
+  } 
+
+  @include bp("desktop-lg--ar6/1") {
+    transform: translate(90vw, 30vh)  
+  } 
+}

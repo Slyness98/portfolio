@@ -49,7 +49,8 @@ tab: "(min-width: 48em)", //768px
 tabmd: "(min-width: 56.25em)", //900px  -- switch to desktop content
 tablg: "(min-width: 62em)", //992px
 desktopsm: "(min-width: 68.75em)", //1100px
-desktop: "(min-width: 75em)" //1200px
+desktop: "(min-width: 75em)", //1200px
+desktoplg: "(min-width: 93.75em)" //1500px
 };
 
 export const bp = Object.keys(breakpoints).reduce( 

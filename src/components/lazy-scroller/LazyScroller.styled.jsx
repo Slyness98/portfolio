@@ -2,25 +2,25 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const Box = styled.div`
-  width: 8rem;
-  height: 8rem;
+  width: 7.5rem;
+  height: 7.5rem;
   position: fixed;
   display: flex;
   justify-content: center;
-  align-itmes: center;
-  transform: translate(85vw, 58vh);
-  border: 1px solid whitesmoke;
+  align-items: flex-start;
+  transform: translate(88vw, 70vh);
+  border: 4px double whitesmoke;
   z-index: 5000;
 `;
 
 const Icon = styled.i.attrs(() => ({
 	id: `lazyScrollerIcon`
 }))`
-  color: blue;
-  font-size: 8rem;
+  color: purple;
+  font-size: 7rem;
 `;
 
-export const LazyScroller = ({watchNode, icon, pageRootId}) => {
+export const LazyScroller = ({watchNode, iconUp, iconDown, pageRootId, ...props}) => {
   let count = useRef(0);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const LazyScroller = ({watchNode, icon, pageRootId}) => {
       let currentNode;
       switch(count.current) {
         case nodes.length - 1: 
-          scrollerIcon.className = `${styledClassname} fa fa-angle-down`;
+        setTimeout(() => {return scrollerIcon.className = `${styledClassname} ${iconDown}`}, 400);
           count.current = 0;
           
           pageRootId
@@ -46,14 +46,14 @@ export const LazyScroller = ({watchNode, icon, pageRootId}) => {
         break;
 
         case nodes.length - 2:
-          setTimeout(() => {return scrollerIcon.className = `${styledClassname} fa fa-angle-up`}, 400);
+          setTimeout(() => {return scrollerIcon.className = `${styledClassname} ${iconUp}`}, 400);
           count.current = count.current + 1;
           currentNode = nodes[count.current];
           currentNode.scrollIntoView(); 
         break;
         
         default: 
-          scrollerIcon.className = `${styledClassname} fa fa-angle-down`;
+          scrollerIcon.className = `${styledClassname} ${iconDown}`;
           count.current = count.current + 1;
           currentNode = nodes[count.current];
           currentNode.scrollIntoView();
@@ -64,7 +64,7 @@ export const LazyScroller = ({watchNode, icon, pageRootId}) => {
       const options = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.25
+        threshold: 0.5
       }
       
       var callback = function(entries) { 
@@ -80,8 +80,8 @@ export const LazyScroller = ({watchNode, icon, pageRootId}) => {
           count.current = manualCountUpdate;
           
           manualCountUpdate === [...nodes].length - 1
-            ? setTimeout(() => {return scrollerIcon.className = `${styledClassname} fa fa-angle-up`}, 400)
-            : scrollerIcon.className = `${styledClassname} fa fa-angle-down`;
+            ? setTimeout(() => {return scrollerIcon.className = `${styledClassname} ${iconUp}`}, 400)
+            : scrollerIcon.className = `${styledClassname} ${iconDown}`;
         }
       };
       
@@ -90,11 +90,11 @@ export const LazyScroller = ({watchNode, icon, pageRootId}) => {
         observer.observe(target)
       );
     };
-  }, [count, watchNode, pageRootId]);
+  }, [count, watchNode, pageRootId, iconDown, iconUp]);
  
   return (
-    <Box id="lazyScroller">
-      <Icon className={icon}/>
+    <Box id="lazyScroller" {...props}>
+      <Icon className={iconDown}/>
     </Box>
   );
 };

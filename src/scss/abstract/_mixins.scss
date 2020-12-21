@@ -179,3 +179,10 @@
     @media #{$baseMQ + $ar + $o} { @content };
 }
 }
+
+@mixin gridItem($selectorNum, $itemStart, $itemEnd) {
+  &--#{$selectorNum} {
+	grid-column-start: #{$itemStart};
+	grid-column-end: #{$itemEnd};
+  }
+}
