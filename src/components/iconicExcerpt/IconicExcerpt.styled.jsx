@@ -51,6 +51,8 @@ const Excerpt = styled.p`
   align-items: flex-end;
   padding: 5% 10%;
   margin-top: 5%;
+  letter-spacing: .25px;
+  line-height: 1.05;
 
   ${bp.phonelg`
     font-size: 3rem;

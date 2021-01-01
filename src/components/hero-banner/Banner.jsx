@@ -47,7 +47,6 @@ const Banner = () => {
               className = {"typewriter-text"}  
               textArray = {[
                 " React.JS Specialist", 
-                " UI/UX Designer", 
                 " API Nerd", 
                 " SASS / CSS Enthusiast", 
                 " Proficient PHP Practitioner", 

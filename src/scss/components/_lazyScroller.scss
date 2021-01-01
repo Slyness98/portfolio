@@ -1,12 +1,11 @@
 #lazyScroller {
-  @include bp("standard--ol") {
-    transform: translate(92vw, 53vh);
-  }
-
   @include bp("phone-lg") {
     transform: translate(90vw, 70vh);
   } 
 
+  @include bp("standard--ol") {
+    transform: translate(92vw, 53vh);
+  }
   
   @include bp("tab-md") {
     transform: translate(73vw, 73vh);

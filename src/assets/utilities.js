@@ -43,6 +43,7 @@ noAnim: "(prefers-reduced-motion)",
 standard: "(max-width: 56.24em)",
 standardland: "(max-width: 56.24em) and (orientation: landscape)", 
 phonesm:"(min-width: 15em)", //240px
+default:"(min-width: 22.5em)", //360px
 phone: "(min-width: 27.5em)", //440px
 phonelg: "(min-width: 37.5em)", //600px
 tab: "(min-width: 48em)", //768px

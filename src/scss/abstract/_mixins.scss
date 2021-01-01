@@ -75,25 +75,14 @@
 
 	@if $breakpoint == phone-land {
 		@media (min-width: 27.5em) and (orientation: landscape) { @content };
-	}
-
-
-	//WARNING-- 
-	 // ALWAYS DECLARE THIS MQ LAST IF BEING USED. IT WILL OVERWRITE ALL BP SPECIFIC LANDSCAPE MQs IF DECLARED, SO USE SPARINGLY
-	 // DO NOT USE THE FOLLOWING FOR TARGETING A SPECIFIC BREAKPOINT THAT FALLS WITHIN OUR MOBILE SCHEME (<768px)
-	 // IN LANDSCAPE ORIENTATION. ALWAYS FAVOR A BREAKPOINT SPECIFIC LANDSCAPE MQ (I.E 'phone-land'); 
-	 // the below MQ targets entire mobile layout range whenever viewed in a landscape orientation,
-	 // including outlier XS device widths that fall outside standard design range.
-
-	 //tab-land is the first MQ we can safely use standard-land w/o overwriting styles.
-	 //the only possibility of conflict if used as directed is with phone-land and phone-lg-land breakpoints.
-	  
-
+	}	  
+    //Pay attention to this last one. It is an overreaching MQ that will overwrite all mobile layout breakpoints in a landscape view
 	@if $breakpoint == standard-land {
 		@media (max-width: 56.24em ) and (orientation: landscape) { @content };
 	}
   }
 };
+
 //Clearfix hack for grid system, helping to define the containment behavior of columns
 @mixin clearfix {
 	&::after {
@@ -175,6 +164,25 @@
 		$o: "" !global;
 	}
 
+	//Max MQ Modifier
+	@if(str-index($breakpoint,  "--max")) {
+	  $strAfterMin: str-slice($baseMQ, 5, -1); //grab the $baseMQ already done above and replace its definition. No need to add a new --max modifier variable to the final MQ concatenation array
+	  @debug $strAfterMin;
+	  $baseMQ: '(max#{$strAfterMin} ' !global;
+	  @debug $baseMQ;
+	}
+	
+	//Exclusive Max MQ modifier -- This one is a bit fragile. MQs must be declared in em, but for this project's use-case, that's no biggy. Improve upon the to-number function for hadnling other units
+	// example: if $breakpoint value is (min-width: 27.5em) this will return (max-width: 27.49em)
+	@if(str-index($breakpoint,  "--exclusiveMax")) {
+		$strAfterMin: str-slice($baseMQ, 5, 12); 
+		$bpValue: unquote(str-slice($baseMQ, 13, -2)); 
+		$offset: 0.01em;
+		$valueToNum: to-number($bpValue);
+		$mv: $valueToNum - $offset;
+		$baseMQ: '(max#{$strAfterMin}#{$mv})' !global;
+	}
+
 	// Compiled MQ, concatenating all MQ chunks from the baseMQ and all subsequent modifiers
     @media #{$baseMQ + $ar + $o} { @content };
 }
@@ -186,3 +194,33 @@
 	grid-column-end: #{$itemEnd};
   }
 }
+
+@function to-number($value) {
+	@if type-of($value) == 'number' {
+	  @return $value;
+	} @else if type-of($value) != 'string' {
+	  @error 'Value for `to-number` should be a number or a string.';
+	}
+  
+	$result: 0;
+	$digits: 0;
+	$minus: str-slice($value, 1, 1) == '-';
+	$numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+  
+	@for $i from if($minus, 2, 1) through str-length($value) {
+	  $character: str-slice($value, $i, $i);
+  
+	  @if (index(map-keys($numbers), $character) or $character == '.') {
+		@if $character == '.' {
+		  $digits: 1; 
+		} @else if $digits == 0 {
+		  $result: $result * 10 + map-get($numbers, $character);  
+		} @else {
+		  $digits: $digits * 10;
+		  $result: $result + map-get($numbers, $character) / $digits;
+		}
+	  }
+	}
+  
+	@return if($minus, -$result, $result);;
+  }

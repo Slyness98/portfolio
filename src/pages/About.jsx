@@ -7,6 +7,7 @@ import {FilterBox} from '../components/containers/filterbox/filterbox.styled';
 import { ProfileImage } from '../components/profile-image/profile.styled';
 import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 import { IconicExcerpt } from '../components/iconicExcerpt/IconicExcerpt.styled';
+import { Accordion } from '../components/accordion/Accordion.styled';
 const About = () => {
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const About = () => {
       </ScrollPageBlock>
       
       <ScrollPageBlock className="section__block section__block--2">
-        <div className="section__block--2__profileWrapper">
+        <div className="section__block__header section__block__header--lines">
           <ProfileImage src="/images/profile.jpg" />
         </div>
         <div className="aboutGrid">
@@ -83,11 +84,20 @@ const About = () => {
               heading="SASS"
               excerpt="Just one of my favorite accomplishments with this library was writing a mixin that generates dynamic media queries based on a string comprised of a predefined base media query. Optionally add available attachments to that string for further conditions. You're really only limited by your creativity with this tool."
             />
-          </div> 
-        </div> 
+          </div>           
+        </div>  
       </ScrollPageBlock>
   
-      <ScrollPageBlock className="section__block section__block--3"></ScrollPageBlock>
+      <ScrollPageBlock className="section__block section__block--3">
+        <div className="section__block__header">
+          <p>
+            <mark>But aside from my life as a developer</mark>...
+          </p>
+        </div>
+        <Accordion />
+      </ScrollPageBlock>
+      
+      
       <ScrollPageBlock className="section__block section__block--4">
       </ScrollPageBlock>
     
