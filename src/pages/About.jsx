@@ -8,7 +8,9 @@ import { ProfileImage } from '../components/profile-image/profile.styled';
 import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 import { IconicExcerpt } from '../components/iconicExcerpt/IconicExcerpt.styled';
 import { Accordion } from '../components/accordion/Accordion.styled';
+import { useAccordionGradientContext } from "../contexts/AccordionGradientContext";
 const About = () => {
+  const gradient = useAccordionGradientContext();
 
   useEffect(() => {
     document.getElementById("about").style.scrollBehavior = "smooth";
@@ -87,15 +89,17 @@ const About = () => {
           </div>           
         </div>  
       </ScrollPageBlock>
-  
-      <ScrollPageBlock className="section__block section__block--3">
-        <div className="section__block__header">
-          <p>
-            <mark>But aside from my life as a developer</mark>...
-          </p>
-        </div>
-        <Accordion />
-      </ScrollPageBlock>
+      
+      {/* <AccordionGradientProvider> */}
+        <ScrollPageBlock className="section__block section__block--3" style={gradient}>
+          <div className="section__block__header">
+            <p>
+              But aside from my life as a developer...
+            </p>
+          </div>
+          <Accordion />
+        </ScrollPageBlock>
+      {/* </AccordionGradientProvider> */}
       
       
       <ScrollPageBlock className="section__block section__block--4">

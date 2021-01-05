@@ -5,11 +5,12 @@ import { bp } from '../../../assets/utilities';
 const Block = styled.div`
   min-height: 80vh;
   height: auto;
-  background: rgba(10, 13, 14, 0.84);
+  background-color: rgba(10, 13, 14, 0.84);
   position: relative;
   overflow: hidden;
   z-index: 0;  
   scroll-behavior: smooth;
+  transition: all 1.3s ease-in;
 
   ${bp.tabmd`
     min-height: 100vh;

@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Data from './accordion.data';
 import FAIcon from '../icon/FAIcon';
 import styled from 'styled-components';
 import { bp } from '../../assets/utilities';
+import { useAccordionGradientUpdateContext } from '../../contexts/AccordionGradientContext';
 
 const AccordionSection = styled.section`
   width: 100%;
@@ -36,7 +37,7 @@ const ItemHeader = styled.button`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: rgba(10,13,14,0.84);
+  background-color: transparent;
   color: white;
   border: none;
   outline: none;
@@ -63,7 +64,14 @@ const Title = styled.span`
     display: inline-block;
     width: ${props => props.$isUnderlined ? "100%" : "0"};
     transition: width 1s ease;
-    border-top: 2px solid cyan;
+    border-top: 2px solid whitesmoke;
+    border-top: 2px solid ${props => {switch(props.$currentIdx) {
+           case 0: return "#ee5725"; 
+           case 1: return "cyan"; 
+           case 2: return "limegreen"; 
+           case 3: return "red"; 
+           default: return "white";
+        }}} 
   }
 `
 
@@ -71,9 +79,20 @@ const CustomIcon = styled(FAIcon).attrs(() => ({
   className: "fa fa-plus"
 }))`
   height: auto;
-  ${props => props.$isRotated ? 'color: red;' : 'color:  rgb(0, 234, 255);'}
-  transition: transform .5s ease-out;
+  transition: all .5s ease-out;
   ${props => props.$isRotated ? 'transform: rotate(45deg);' : 'transform: rotate(0deg);'}
+  color: ${ props => props.$isRotated 
+      ? 'red' 
+      : () => {
+         switch(props.$currentIdx) {
+           case 0: return "#ee5725"; 
+           case 1: return "cyan"; 
+           case 2: return "limegreen"; 
+           case 3: return "darkgrey"; 
+           case -1:
+           default: return "cyan"
+        } 
+  }};
 `
 
 const ContentWrapper = styled.ul`
@@ -131,6 +150,8 @@ const Content = styled.li`
 
 export const Accordion = () => {
   const [activeItem, setActiveItem] = useState(Data.map((item) => {return item.active})); //get an array of all boolean 'active' properties. All default to false
+  const [currentIdx, setCurrentIdx] = useState(-1);
+  const updateGradient =  useAccordionGradientUpdateContext();
   
   const toggle = (idx) => {
     let arr = activeItem.slice(); //copy our state
@@ -140,8 +161,20 @@ export const Accordion = () => {
     arr[idx] = newVal; //set the one we clicked to opposite value
     function handleOpenMenu(val) {return val === false ? arr.push(false) : null};//if what we click is true, it will properly set the !bang value. If it's false, the value pops off, so we need to supplement it with a false value added to the array copy
     handleOpenMenu(newVal); //figure out if newVal is false and if it is, supplement its value to the copy array
+    
+    function getIdxForGradient(bool, idx) { //gain reference to idx clicked
+      return bool === false 
+        ? setCurrentIdx(-1) //or if already open set to -1 to represent nothing being expanded
+        : setCurrentIdx(idx)
+    };
+    getIdxForGradient(newVal, idx);
+    
     setActiveItem(arr); //set our new state with our strung together copy
   }
+
+  useEffect(() => {
+    updateGradient(currentIdx);
+  }, [currentIdx, updateGradient])
 
   return(
     <AccordionSection>
@@ -150,8 +183,16 @@ export const Accordion = () => {
           <AccordionItem key={item.id}>
            
             <ItemHeader onClick={() => toggle(index)}>
-                <Title $isUnderlined={activeItem[index]}>{item.header}</Title> 
-                <CustomIcon $isRotated={activeItem[index]}/>
+                <Title 
+                  $isUnderlined={activeItem[index]} 
+                  $currentIdx={currentIdx}
+                > 
+                  {item.header}
+                </Title> 
+                <CustomIcon 
+                  $isRotated={activeItem[index]} 
+                  $currentIdx={currentIdx}
+                />
             </ItemHeader>
             
             <ContentWrapper $isOpen={activeItem[index]}>

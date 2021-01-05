@@ -13,7 +13,6 @@ const Navigation = () => {
   useEffect(() => {
     window.addEventListener("load", detectPlatform);
     window.addEventListener("resize", detectPlatform);
-
     return () => {	
       window.removeEventListener("load", detectPlatform);
       window.removeEventListener("resize", detectPlatform);

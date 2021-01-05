@@ -8,6 +8,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 
 import { PlatformProvider } from './contexts/PlatformContext'; 
+import { AccordionGradientProvider } from './contexts/AccordionGradientContext'; 
+
 
 const App = () => {
   React.useEffect(() => {
@@ -33,7 +35,9 @@ const App = () => {
         '/': <Home />,
         '/gallery': <Gallery />,
         '/skills': <Skills />,
-        '/about': <About />,
+        '/about': <AccordionGradientProvider>
+                    <About />
+                  </AccordionGradientProvider>,
         '/contact': <Contact />
        }[window.location.pathname] || <Home />
      } 

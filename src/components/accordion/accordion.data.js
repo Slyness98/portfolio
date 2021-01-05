@@ -40,13 +40,13 @@ const Data = [
       id: 'acc3',
       active: false,
       header: "Casual Gamer",
-      content: ["From the games of my childhood ", "Jak & Daxter, Star Wars: Battlefront, Mafia, & MW2", "To those I play today", "God of War, Watch Dogs, AC, Shadow of War, & GTA"]
+      content: ["Old enough to grow up with a N64, young enough for the PS1 to be my first console anyway", "Grew up with the best platform games of PS2 and Star Wars: Battlefront", "Went through school with Mafia, Gears of War, and MW2. Definite OS Runescape nerd.", "What little time I have now, it's all about God of War, AC, and the like"]
     },
     {
       id: 'acc4',
       active: false,
-      header: "Rock & Metal Junkie",
-      content: ["While a big fan of Lamb of God, Pantera, & Metallica", "As well as Godsmack & Shinedown", "My favorite subgenre & era of all is grunge", "Soundgarden is my favorite"]
+      header: "Rock & Metalhead",
+      content: ["I range all over this genre, from Black Sabbath & Lamb of God to Rush and Led Zeppelin", "Still lovin the classics; CCR, The Who, & Steve Miller Band to name a few", "My favorite subgenre & era of all is grunge", "Above all, Soundgarden is my favorite"]
     }
   ];
   
