@@ -9,6 +9,7 @@ import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 import { IconicExcerpt } from '../components/iconicExcerpt/IconicExcerpt.styled';
 import { Accordion } from '../components/accordion/Accordion.styled';
 import { useAccordionGradientContext } from "../contexts/AccordionGradientContext";
+
 const About = () => {
   const gradient = useAccordionGradientContext();
 
@@ -100,11 +101,6 @@ const About = () => {
           <Accordion />
         </ScrollPageBlock>
       {/* </AccordionGradientProvider> */}
-      
-      
-      <ScrollPageBlock className="section__block section__block--4">
-      </ScrollPageBlock>
-    
     </ScrollPageContainer>
   </main>
   </>

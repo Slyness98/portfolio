@@ -29,7 +29,7 @@ const App = () => {
 	 <div className="App">
      <PlatformProvider>
        <Navigation />	
-     </PlatformProvider>
+     
      {
        {
         '/': <Home />,
@@ -41,7 +41,7 @@ const App = () => {
         '/contact': <Contact />
        }[window.location.pathname] || <Home />
      } 
-
+     </PlatformProvider>
 	 </div>
   );
 };

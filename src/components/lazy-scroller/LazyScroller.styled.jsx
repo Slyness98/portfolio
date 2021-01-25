@@ -28,6 +28,7 @@ export const LazyScroller = ({watchNode, iconUp, iconDown, pageRootId, ...props}
       console.error("provide a valid class name for the LazyScroller element to watch");
       return null;
     };
+
     let nodes = document.querySelectorAll(watchNode); 
     const scroller = document.getElementById("lazyScroller");
     const scrollerIcon = document.getElementById("lazyScrollerIcon");
@@ -38,8 +39,7 @@ export const LazyScroller = ({watchNode, iconUp, iconDown, pageRootId, ...props}
       switch(count.current) {
         case nodes.length - 1: 
         setTimeout(() => {return scrollerIcon.className = `${styledClassname} ${iconDown}`}, 400);
-          count.current = 0;
-          
+          //Intersection Observer will automatically set count.current to zero. This will return a .current value re-assignment order of 2,1,0, instead of 0,1,0 as it is with manual re-assignment here.
           pageRootId
           ? document.getElementById(`${pageRootId}`).scrollTo(0, 0)
           : window.scrollTo(0,0);
@@ -49,22 +49,22 @@ export const LazyScroller = ({watchNode, iconUp, iconDown, pageRootId, ...props}
           setTimeout(() => {return scrollerIcon.className = `${styledClassname} ${iconUp}`}, 400);
           count.current = count.current + 1;
           currentNode = nodes[count.current];
-          currentNode.scrollIntoView(); 
+          currentNode.scrollIntoView({behavior:'smooth', inline: 'center', block: 'center'});  // these added properties help chrome's mobile implementation stay consistent with desktop experiences. After a full cycle of scrolling, Chrome won't listen to scrollIntoView() in the next to last watchNode item
         break;
         
         default: 
           scrollerIcon.className = `${styledClassname} ${iconDown}`;
           count.current = count.current + 1;
           currentNode = nodes[count.current];
-          currentNode.scrollIntoView();
+          currentNode.scrollIntoView({behavior:'smooth', inline: 'center', block: 'center'});
       }
     });
-
+    
     if ('IntersectionObserver' in window) {
       const options = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5
+        threshold: .2
       }
       
       var callback = function(entries) { 
@@ -72,17 +72,13 @@ export const LazyScroller = ({watchNode, iconUp, iconDown, pageRootId, ...props}
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             intersectingElement = document.getElementsByClassName(entry.target.className)[0];
+            let manualCountUpdate = [...nodes].indexOf(intersectingElement, 0);
+            count.current = manualCountUpdate;
+            manualCountUpdate === [...nodes].length - 1
+              ? setTimeout(() => {return scrollerIcon.className = `${styledClassname} ${iconUp}`}, 400)
+              : scrollerIcon.className = `${styledClassname} ${iconDown}`;
           };
         });
-          
-        if((intersectingElement !== undefined) && (typeof intersectingElement === "object")){
-          let manualCountUpdate = [...nodes].indexOf(intersectingElement, 0);
-          count.current = manualCountUpdate;
-          
-          manualCountUpdate === [...nodes].length - 1
-            ? setTimeout(() => {return scrollerIcon.className = `${styledClassname} ${iconUp}`}, 400)
-            : scrollerIcon.className = `${styledClassname} ${iconDown}`;
-        }
       };
       
       const observer = new IntersectionObserver(callback, options);

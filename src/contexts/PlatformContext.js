@@ -17,7 +17,7 @@ export function PlatformProvider({ children }) {
   const [platform, setPlatform] = useState();
   
   function detectMobile() {
-	  let mql = window.matchMedia("(max-width: 899px)");
+    let mql = window.matchMedia("(max-width: 899px)");
     if(mql.matches) {
       setPlatform(true);
     } else {

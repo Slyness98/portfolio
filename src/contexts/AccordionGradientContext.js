@@ -35,6 +35,8 @@ export function AccordionGradientProvider({children}) {
 
       case -1: 
         setGradient({boxShadow: "inset 0 0 2rem 0 rgb(0, 137, 161)"});
+        break;
+        
       default:
         break;
     }
