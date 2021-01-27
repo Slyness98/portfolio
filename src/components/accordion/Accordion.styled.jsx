@@ -3,7 +3,7 @@ import Data from './accordion.data';
 import FAIcon from '../icon/FAIcon';
 import styled from 'styled-components';
 import { bp } from '../../assets/utilities';
-import { useAccordionGradientUpdateContext } from '../../contexts/AccordionGradientContext';
+import { useAccordionGradientUpdateContext } from '../../contexts/AccordionGradient.context';
 
 const AccordionSection = styled.section`
   width: 100%;

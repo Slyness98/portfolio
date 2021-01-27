@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react';
-import ScrollPageContainer from '../components/containers/scroll/scrollPageContainer';
-import ScrollPageBlock from '../components/containers/scroll/scrollPageBlock';
-// import WithScrollAnim from '../components/containers/withScrollAnim/WithScrollAnim';
+import ScrollPageContainer from '../components/containers/scroll/scrollPageContainer.styled';
+import ScrollPageBlock from '../components/containers/scroll/scrollPageBlock.styled';
 import {FilterBox} from '../components/containers/filterbox/filterbox.styled';
-// import Typewriter  from '../components/typewriter/Typewriter';
 import { ProfileImage } from '../components/profile-image/profile.styled';
 import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 import { IconicExcerpt } from '../components/iconicExcerpt/IconicExcerpt.styled';
 import { Accordion } from '../components/accordion/Accordion.styled';
-import { useAccordionGradientContext } from "../contexts/AccordionGradientContext";
+import { useAccordionGradientContext } from "../contexts/AccordionGradient.context";
 
 const About = () => {
   const gradient = useAccordionGradientContext();
@@ -91,16 +89,14 @@ const About = () => {
         </div>  
       </ScrollPageBlock>
       
-      {/* <AccordionGradientProvider> */}
-        <ScrollPageBlock className="section__block section__block--3" style={gradient}>
-          <div className="section__block__header">
-            <p>
-              But aside from my life as a developer...
-            </p>
-          </div>
-          <Accordion />
-        </ScrollPageBlock>
-      {/* </AccordionGradientProvider> */}
+      <ScrollPageBlock className="section__block section__block--3" style={gradient}>
+        <div className="section__block__header">
+          <p>
+            But aside from my life as a developer...
+          </p>
+        </div>
+        <Accordion />
+      </ScrollPageBlock>
     </ScrollPageContainer>
   </main>
   </>
