@@ -27,10 +27,11 @@ const Icon = styled.i.attrs(props => ({
 
 const MenuItem = ({icon, num, text, route}) => {
 	return(
-	  <MobItem num={num}>  
+	  <MobItem num={num} aria-label={`page link, ${route}`}>  
 	    <a href={route} >
-		<Icon icon={icon}></Icon> <span alt="menu icons">{text}</span>
-		</a>
+		    <Icon icon={icon} aria-hidden="true"></Icon> 
+        <span aria-label={`link to ${text}`}>{text}</span>
+		  </a>
 	  </MobItem>
 	);
 };

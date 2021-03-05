@@ -7,7 +7,6 @@ const MobileNavigation = () => {
   const [toggle, setToggle] = useState(false);
   
   function toggleMenu() {
-	console.log("toggled!");
 	setToggle(prevState => !prevState);
   };
   
@@ -15,7 +14,7 @@ const MobileNavigation = () => {
 	<nav className="mobileNav">	  	  	  
 	  <MainButton expanded={toggle} toggleMenu={toggleMenu}/>
 	 	
-	  <div id="nav">	
+	  <div id="nav" >	
 	 	<ul>
 		  {
 			Data.map((item, i) => {

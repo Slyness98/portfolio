@@ -1,0 +1,81 @@
+.toggleArrow {
+  @include button;
+  // position: absolute;
+  position: relative;
+//   box-shadow: 0 0 1rem black;
+  box-shadow: unset;
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-color: transparent;
+  background-color: unset;
+  // transform: translateX(82vw);
+  transition: all 1.5s ease;
+
+  // @include bp("standard-land") {
+  //   transform: translate(3vw, -22vh);
+  // }
+
+//   &:focus-within {
+//     border-color: rgba(255,255,255, .5);
+//   }
+
+//   .activeFlip & {
+//     transform: translate(82vw, 8vh) translateZ(-200px);
+//   }
+
+  &--iconChevron { 
+    position: absolute;
+    width: 4rem;
+    height: 1px;
+    display: flex;
+    justify-content: flex-end;
+    transition: background-color .75s ease, all 1.5s ease;
+    // transition-property: background-color, all;
+    transition-delay: 2.75s, 1.5s;
+    background-color: whitesmoke;
+
+    .activeFlip & {    
+      background-color: transparent;
+      transform: rotate(-90deg);
+      transition: background-color .75s ease, transform 1s ease;
+      transition-delay: 1s, 0;
+    //   transition-property: background-color, all;
+    }
+
+    &::before, &::after {
+      content: "";
+      width: 1px;
+      height: 3rem;
+      position: absolute;
+      top: 0 !important;
+      background-color: whitesmoke;
+      transition: all 1s ease;
+
+      .activeFlip & {
+        background-color: red;
+        transition-delay: 1s;
+
+      }
+    }
+    
+    &::before {
+      transform: translate(-5px, -6%) rotate(45deg);
+
+      .activeFlip & {
+        transform: scale(1.5) translate(-7px, -29%) rotate(45deg);
+      }
+    }
+    
+    &::after {
+      transform: translate(-5px, -85%) rotate(-45deg);
+
+      .activeFlip & {
+        transform: scale(1.5) translate(-7px, -32%) rotate(-45deg);
+      }
+    }
+  }   
+}

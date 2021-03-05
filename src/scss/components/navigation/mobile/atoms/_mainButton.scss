@@ -4,8 +4,10 @@
   @include button;
   position: fixed;
   transition: all .5s;
-  background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);
-
+  background-color: transparent;
+  background-image: linear-gradient(315deg, #000000 0%, #3e3f3f 74%);
+  border: unset;
+  
   &__main {
 	height: 14rem;
 	width: 14rem;
@@ -45,31 +47,7 @@
 
   &__icon{
 	position: relative;
-	margin-top: 7rem;
-
-	@include bp("standard-land") {
-	  margin-top: 6rem;
-	}
-
-	@include bp("phone") {
-	  margin-top: 6.5rem;
-	}
-
-	@include bp("phone--ol") {
-      margin-top: 6rem;
-	}
-
-	@include bp("tab") {
-		margin-top: 7.5rem;
-	}
-
-	@include bp("tab--ol") {
-		margin-top: 6.5rem;
-	}
-
-	@include bp("tab--ar3/1") {
-		margin-top: 6rem;
-	}
+	margin-top: 3rem;
 
 	&:active,&:visited,&:active::before,&:visited::before,&:active::after,&:visited::after {
 		text-decoration: none;
@@ -82,7 +60,6 @@
 		height: 4px;
 		background-color: $color-white;
 		display: inline-block;
-
 		@include bp("tab") {
 		  width: 7rem;
 		}

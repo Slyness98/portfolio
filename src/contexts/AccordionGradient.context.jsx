@@ -30,7 +30,7 @@ export function AccordionGradientProvider({children}) {
         break;
     
       case 3: 
-        setGradient({boxShadow: "0 -10px 6rem -5px #7b272c inset"})
+        setGradient({boxShadow: "0 -10px 6rem -5px #7b272c inset"});
         break;
 
       case -1: 

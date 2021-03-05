@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 
 import Letter from './letter';
 import Typewriter from '../typewriter/Typewriter';
-import CtaButton from '../cta-button/ctaButton';
+import CtaButton from '../buttons/cta/CtaButton';
 const Banner = () => {
 
   const instantiateLetter = (className, content) => {

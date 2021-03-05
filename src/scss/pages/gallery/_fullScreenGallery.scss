@@ -1,0 +1,188 @@
+.fsvid, .overlay {
+  width: calc(100% - 18vh);
+  position: absolute;
+}
+
+
+.fsvid {
+  height: 100vh;
+  transform: translateX(9vh);
+  object-fit: fill;
+  opacity: .25;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  z-index: 50; //when toggling state, swap z-index values with .overlay
+  transition: all 2.5s ease;
+  &--toFront {
+    z-index: 100;
+    opacity: 1;
+    filter: brightness(.65);
+    transition: all 2.5s ease;
+  }
+}
+
+
+.overlay {
+  display: grid;
+  height: 77vh;
+  transform: translate(9vh, 15vh);
+  grid-template-rows: 80% 20%;
+  z-index: 100;
+  opacity: 0;
+  animation: fadeIn 4s ease;
+  animation-fill-mode: forwards;
+
+  &__titleContainer {
+    display: grid;
+    grid-template-rows: 33.333333333% 33.333333333% 33.333333333%;
+    grid-template-columns: 50% 50%;
+    background-color: transparent;
+
+
+    &__item { 
+      @include gridItem(0, 1, 2);
+      @include gridItem(1, 2, 3);
+      @include gridItem(2, 1, 2);
+      @include gridItem(3, 2, 3);
+      @include gridItem(4, 1, 3);
+      animation: fadeIn 2.25s ease-out;
+      animation-fill-mode: both;
+      display: flex;
+      flex-direction: column;
+      background-image: linear-gradient(120deg, transparent 50%, rgba(30,30,30,.6) 50%);
+      background-position: 0%;
+      background-size: 300%;
+      transition: all .75s;
+      &:hover {
+        background-position: 100%;
+      }
+
+      &::after {
+        content: " ";
+        width: 0;
+        transition: width .75s ease-out;
+        border-top: 2px solid whitesmoke;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+
+    &__cPanel {
+      justify-self: center;
+      align-self: center;
+      animation: fadeIn 1.5s ease-out;
+      animation-fill-mode: both;
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      &__links {
+        font-size: 3rem;
+        color: white;
+        opacity: 1;
+        transition: opacity 1s ease, color .5s ease;
+        background-color: transparent;
+        cursor: pointer;
+        @include unsetBtn;
+
+        &:not(:last-child) {
+          margin-right: 3rem;
+        }
+
+        &:hover {
+          color: cyan;
+        }
+      }
+    }
+  }
+
+  &__textContainer {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    padding: 0 10%;
+    font-family: 'gruppo';
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ddd;
+    line-height: 1.4;
+  }
+}
+
+.overlay__titleContainer:last-child {
+  grid-column: 1/3;
+}
+
+.eye {
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: 1%; 
+  cursor: pointer;
+  background-color: unset;
+  @include unsetBtn;
+
+  &:focus {
+    border: unset !important;
+    color: slategray;
+    transition: color 2s ease;
+  }
+
+  &__icon {
+    font-size: 5rem;
+    color: whitesmoke;
+    transition: all 2.5s ease;
+    animation: fadeIn 2s ease;
+    
+    &--slash {
+      position: relative;
+      transition: all 2.5s ease;
+      color:  rgb(0, 234, 255);
+      animation: fadeIn 2s ease;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+.eyeContainer {
+  position: absolute;
+  height: 14vh;
+  width: calc(100% - 18vh);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  z-index: 550;
+}
+
+.title--gallery {
+  background-color: unset !important;
+  height: 14vh;
+  margin: 0 auto;
+  font-family: gruppo, 'ui-serif', 'Courier New', Courier, monospace;
+  color: white;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 5px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  font-size: 4rem;
+  padding-bottom: 1.5%;
+  z-index: 100;
+
+  opacity: 0;
+  animation: fadeIn 4s ease;
+  animation-fill-mode: both;
+}
+
+.hide {
+  z-index: 50;
+}

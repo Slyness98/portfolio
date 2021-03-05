@@ -12,19 +12,6 @@ import { AccordionGradientProvider } from './contexts/AccordionGradient.context'
 
 
 const App = () => {
-  React.useEffect(() => {
-    var docWidth = window.outerWidth;
-
-    [].forEach.call(
-      document.querySelectorAll('*'),
-      function(el) {
-        if (el.offsetWidth > docWidth) {
-          console.log(el);
-        }
-      }
-    );
-  },[]);
-
 	return (
 	 <div className="App">
      <PlatformProvider>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { bp } from '../../../assets/utilities';
 
-const Block = styled.div`
+const Block = styled.section`
   min-height: 80vh;
   height: auto;
   position: relative;

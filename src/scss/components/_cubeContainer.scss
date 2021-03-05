@@ -1,0 +1,221 @@
+.cubeContainer {
+  width: 98vw;
+  // height: 70%;
+  max-height: 50vh;
+  text-align: center;
+  // margin: 0 auto;
+  margin: 6% auto;
+  transition: all 2.5s ease;
+  transform-style: preserve-3d;
+  display: flex;
+  // z-index: -10;
+
+  @include bp("standard-land") {
+    width: 89vw;
+    max-height: 80vh;
+    margin: 0% 0% 0% auto;
+  }
+
+  &:hover .fullScreenIcon{
+    opacity: 1;
+  }
+
+  .activeFlip & {
+    // height: 60%;
+    margin: 6% auto;
+
+    @include bp("standard-land") {
+      // margin: 1% auto;
+      margin: 0;
+    }
+  }
+
+  &.vidFS {
+    max-height: 90vh;
+    margin: 0;
+    transition: max-height 1.25s;
+
+    @include bp("standard-land") {
+      max-height: 100vh;
+      width: 88vw;
+    }
+  }
+
+  & .front, & .back {
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    backface-visibility: hidden;
+    transition: background-color 350ms ease;
+    perspective: 40rem;
+  }
+  
+  & .front {
+    padding: 2%;
+    transform: translateZ(100px);
+    transition: transform 2.5s;
+    filter: blur(1px) opacity(.4);
+  }
+
+  & .back {
+    transition: transform 3s;
+    transform: rotateX(-180deg) translate(-100%, 0) translateZ(-200px);
+    &:last-child {
+      justify-content: flex-end;
+    }
+
+    @include bp("standard-land") {
+      transform: rotateX(-180deg) translate(100%, 0) translateZ(-200px);
+    }
+  }
+
+  &--text {
+    font-family: 'gruppo';
+    font-size: 3rem;
+    color: white;
+    line-height: 1.4;;
+    width: 100%;
+    text-align: center;
+    transform: translateZ(200px);
+    transform: translate(0%, -25%) translateZ(200px);
+    position: absolute;
+    top: 50%;
+    padding: 4%;
+
+    .activeFlip & {
+      display: none;
+    }
+  }
+
+  &__video { 
+
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    &::-webkit-media-controls-fullscreen-button {
+      display: none;
+    } 
+   
+    // transform: translateZ(200px);
+  }
+
+  .activeFlip & {
+    transform: rotateX(-180deg);
+    transition: all 2.5s;
+  }
+}
+
+.projectTitle {
+  width: 100%;
+  position: absolute;
+  transform: translateZ(200px);
+  text-align: center;
+  margin-top: 2%;
+  color: whitesmoke;
+  font-size: 5rem;
+  font-family: 'gruppo';
+  font-weight: 400;
+  letter-spacing: 1px;
+  // color: #444444;
+    text-shadow: -2px -2px 2px #000, 2px 2px 2px #ccc;
+  
+ .activeFlip & {
+   display: none;
+ }
+}
+
+.fullScreenIcon {
+  // position: absolute;
+  transition: opacity 1s;
+  // transform: translate(-35vw, 45vh);
+  width: 7rem;
+  height: 7rem;
+  font-size: 5rem;
+  // color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.2;
+  transition: opacity 1.2s;
+  .activeFlip & {
+    opacity: 1;
+  }
+}
+
+// @mixin glitchCopy { 
+//   content: attr(data-text);
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .glitch {
+//   position: relative;
+//   color: white;
+//   // animation: glitch-skew 15s infinite linear alternate-reverse;
+
+//   &::before{
+//     @include glitchCopy;
+//     left: 2px;
+//     text-shadow: -2px 0 #ff00c1;
+//     clip: rect(44px, 450px, 56px, 0);
+//     animation: glitch-anim 8s infinite linear alternate-reverse;
+  
+//     @include bp("noAnim") {
+//       animation: none;
+//     }
+// }
+
+// &::after {
+//   @include glitchCopy;
+//   left: -2px;
+//   text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+//   animation: glitch-anim2 8s infinite linear alternate-reverse;
+
+//   @include bp("noAnim") {
+//     animation: none;
+//   }
+// }
+
+
+// }
+
+// @keyframes glitch-anim {
+// $steps: 10;
+// @for $i from 0 through $steps {
+//   #{percentage($i*(1/$steps))} {
+//     clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+//     transform: skew((random(100) / 100) + deg);
+//   }
+// }
+// }
+
+// @keyframes glitch-anim2 {
+// $steps: 10;
+// @for $i from 0 through $steps {
+//   #{percentage($i*(1/$steps))} {
+//     clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+//     transform: skew((random(100) / 100) + deg);
+//   }
+// }
+// }
+
+// // Does the same deal as before, but now only skews. Used for main text.
+// @keyframes glitch-skew {
+// $steps: 20;
+// @for $i from 0 through $steps {
+//   #{percentage($i*(1/$steps))} {
+//     transform: skew((random(5) - 5) + deg);
+//   }
+// }
+// }

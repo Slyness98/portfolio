@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { bp } from '../../../assets/utilities';
 
-const Container = styled.section`
+const Container = styled.main`
   width: 100%;
   height: 85%;
 
@@ -13,7 +13,7 @@ const Container = styled.section`
 
 const ScrollPageContainer = ({children, ...props}) => {
   return(
-    <Container className={props.className || ''}>
+    <Container {...props}>
       {children}
     </Container> 
   );

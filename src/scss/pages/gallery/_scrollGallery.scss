@@ -1,0 +1,45 @@
+.projectBlock {
+  // height: 100% !important;
+  min-height: 88vh !important;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+
+  @include bp("standard-land") {
+    min-height: unset !important;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    direction: rtl;
+  }
+
+  &.vidFS {
+    max-height: 100vh;
+    transition: max-height 1.25s;
+  }
+
+  .activeFlip & {
+    min-height: 100vh;
+  }
+
+  // &:nth-child(odd) {
+  //   background-color: black;
+  // }
+  // &:nth-child(even) {
+  //   background-color: rgba(0,0,0,.97);
+  // }
+  &--1 {
+    background-color: rgba(0,0,0,1);
+  }
+  &--2 {
+    background-color: rgba(0,0,0,.96);
+  }
+  &--3 {
+    background-color: rgba(0,0,0,.92);
+  }
+  &--4 {
+    background-color: rgba(0,0,0,.88);
+  }
+  &--5 {
+    background-color: rgba(0,0,0,.82);
+  }
+}

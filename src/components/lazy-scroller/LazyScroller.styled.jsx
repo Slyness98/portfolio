@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const Box = styled.div`
+const Box = styled.button`
   width: 7.5rem;
   height: 7.5rem;
   position: fixed;
@@ -10,7 +10,13 @@ const Box = styled.div`
   align-items: flex-start;
   transform: translate(88vw, 70vh);
   border: 4px double whitesmoke;
+  background-color: transparent;
   z-index: 5000;
+
+  &:focus {
+    border: 4px double rgb(0, 234, 255) !important;
+    outline: none !important;
+  }
 `;
 
 const Icon = styled.i.attrs(() => ({

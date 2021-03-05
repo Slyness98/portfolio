@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import ScrollPageContainer from '../components/containers/scroll/scrollPageContainer.styled';
-import ScrollPageBlock from '../components/containers/scroll/scrollPageBlock.styled';
-import {FilterBox} from '../components/containers/filterbox/filterbox.styled';
-import { ProfileImage } from '../components/profile-image/profile.styled';
+import ScrollPageContainer from '../components/containers/scroll/ScrollPageContainer.styled';
+import ScrollPageBlock from '../components/containers/scroll/ScrollPageBlock.styled';
+import {FilterBox} from '../components/containers/filterbox/Filterbox.styled';
+import { ProfileImage } from '../components/profile-image/Profile.styled';
 import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 import { IconicExcerpt } from '../components/iconicExcerpt/IconicExcerpt.styled';
 import { Accordion } from '../components/accordion/Accordion.styled';
@@ -16,7 +16,7 @@ const About = () => {
   }, []);
  return (
    <>
-  <main className="section-about" id="about"> 
+  <div className="section-about" id="about"> 
     <h1 className="title">&#060;About Me /&#062;</h1>
 
     <ScrollPageContainer>
@@ -92,13 +92,13 @@ const About = () => {
       <ScrollPageBlock className="section__block section__block--3" style={gradient}>
         <div className="section__block__header">
           <p>
-            But aside from my life as a developer...
+            But aside from my life as a developer, <br /> <mark>I'm also a...</mark>
           </p>
         </div>
         <Accordion />
       </ScrollPageBlock>
     </ScrollPageContainer>
-  </main>
+  </div>
   </>
   );
 };

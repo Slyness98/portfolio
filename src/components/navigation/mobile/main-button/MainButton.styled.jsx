@@ -16,12 +16,20 @@ const MenuIcon = styled.span.attrs(() => ({
   .mobMenu:hover & {
 	top: -2.5rem;
   }
+
+  .mobMenu:focus &{
+	top: -2rem;
+  }
  }
  &::after {
   top: 2rem;
 
   .mobMenu:hover &{
 	top: 2.5rem;
+  }
+
+  .mobMenu:focus &{
+	top: 2rem;
   }
  }
   ${props => props.$isOpen
@@ -34,13 +42,13 @@ const MenuIcon = styled.span.attrs(() => ({
 	   &::before {
 		 top: 0 !important;
 	     transform: rotate(135deg);
-		 background-color: #1ebba3;
+		 background-color: rgb(0, 234, 255);
 	   }
 
 	   &::after {
 		 top: 0 !important;
 	     transform: rotate(-135deg);
-		 background-color: #1ebba3;
+		 background-color: rgb(0, 234, 255);
 	   }
 	  `
 	: null
@@ -50,9 +58,15 @@ const MenuIcon = styled.span.attrs(() => ({
 const MainButton = ({expanded, toggleMenu}) => {
 	return(
 	  <React.Fragment>
-	  	<div className="mobMenu mobMenu__main" onClick={toggleMenu}>
-		  <MenuIcon $isOpen={expanded}>&nbsp;</MenuIcon>
-	    </div>	
+		  <button 
+			className="mobMenu mobMenu__main" 
+			onClick={toggleMenu} 
+			tabIndex="1"
+			aria-expanded = {expanded ? "true" : "false"}
+			aria-label="Expand/collapse website navigation menu"
+		  >
+		  <MenuIcon $isOpen={expanded} aria-hidden="true">&nbsp;</MenuIcon>
+	    </button>	
 	  </React.Fragment>
 	);
 }

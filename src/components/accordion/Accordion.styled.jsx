@@ -45,7 +45,7 @@ const ItemHeader = styled.button`
   font-size: 3.5rem;
   font-family: 'gruppo';
   transition: all .5s ease;
-
+  
   ${bp.phonesm`
     font-size: 4rem;
   `}
@@ -53,6 +53,18 @@ const ItemHeader = styled.button`
   ${bp.default`
     font-size: 6rem;
   `}
+
+  &:focus {
+    border: 2px solid ${props => {
+    switch(props.$currentIdx) {
+      case 0: return "#ee5725"; 
+      case 1: return "cyan"; 
+      case 2: return "limegreen"; 
+      case 3: return "red"; 
+      default: return "rgb(0, 234, 255)";
+    }
+  }} !important;
+  }
 `;
 
 const Title = styled.span`
@@ -65,13 +77,15 @@ const Title = styled.span`
     width: ${props => props.$isUnderlined ? "100%" : "0"};
     transition: width 1s ease;
     border-top: 2px solid whitesmoke;
-    border-top: 2px solid ${props => {switch(props.$currentIdx) {
-           case 0: return "#ee5725"; 
-           case 1: return "cyan"; 
-           case 2: return "limegreen"; 
-           case 3: return "red"; 
-           default: return "white";
-        }}} 
+    border-top: 2px solid ${props => {
+      switch(props.$currentIdx) {
+        case 0: return "#ee5725"; 
+        case 1: return "cyan"; 
+        case 2: return "limegreen"; 
+        case 3: return "red"; 
+        default: return "white";
+      }
+    }}; 
   }
 `
 
@@ -182,7 +196,7 @@ export const Accordion = () => {
         return(
           <AccordionItem key={item.id}>
            
-            <ItemHeader onClick={() => toggle(index)}>
+            <ItemHeader onClick={() => toggle(index)} $currentIdx={currentIdx}>
                 <Title 
                   $isUnderlined={activeItem[index]} 
                   $currentIdx={currentIdx}

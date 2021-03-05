@@ -12,7 +12,6 @@ export function usePlatformUpdateContext() {
     return useContext(PlatformUpdateContext);
 };
 
-//the actual context provider, running our detectMobile function with a custom useDebounce hook. This frees up any consumer(Navigation.js) to just worry about when to execute it and not worry about thousands of additional event listeners over the course of a window resize
 export function PlatformProvider({ children }) {
   const [platform, setPlatform] = useState();
   

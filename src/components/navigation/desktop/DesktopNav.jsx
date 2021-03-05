@@ -11,7 +11,7 @@ const DesktopNavigation = () => {
    let dropzone = document.getElementById(position);
 
    if(dropzone === null) {
-     dropzone = document.getElementById('drop1');
+     dropzone = document.getElementById('drop2');
    }
    dropzone.appendChild(drag);
   }, [position]);

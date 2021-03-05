@@ -1,7 +1,7 @@
 @font-face {
     font-family: gruppo;
     src: url("../../assets/fonts/gruppo/gruppo.woff");
-  };
+};
   
 .section-about {
   width: 100%;
@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  overflow-y: scroll;
 }
     
     
@@ -248,19 +247,18 @@
   width: 100%;
   font-family: gruppo, 'ui-serif', 'Courier New', Courier, monospace;
   color: white;
+  background-color: black;
   text-decoration: none;
   font-weight: 300;
   letter-spacing: 5px;
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
   text-transform: uppercase;
   font-size: 4rem;
-  
-  @include bp("tab-md") {
-    margin-top: 3.5%;
-  }
+  padding-bottom: 1.5%;
 }
 
 .text {

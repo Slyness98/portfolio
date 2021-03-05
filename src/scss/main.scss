@@ -5,20 +5,23 @@
 
 @import "base/base";
 
+@import "components/cubeContainer";
 @import "components/ctaButton";
+@import "components/arrowButton";
 @import "components/lazyScroller";
 @import "components/navigation/desktop/desktopNav";
 @import "components/navigation/mobile/mobileNav";
 @import "components/navigation/mobile/atoms/menuItem";
 @import "components/navigation/mobile/atoms/mainButton";
-@import "components/scrollGallery";
 @import "components/stars";
 @import "components/typewriter";
 
 @import "layout/grid";
 
 @import "pages/home/banner";
-@import "pages/gallery";
+@import "pages/gallery/gallery";
+@import "pages/gallery/scrollGallery";
+@import "pages/gallery/fullScreenGallery";
 @import "pages/skills";
 @import "pages/about/about";
 @import "pages/about/aboutGrid";

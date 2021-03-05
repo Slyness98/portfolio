@@ -27,7 +27,7 @@ const Data = [
     {
       id: 'acc1',
       active: false,
-      header: "I'm a Chef",
+      header: "Chef",
       content: ["I cooked for a living while studying Web Development", "Now I'm the chef of the house", "Arguably the only passion of mine that rivals that of programming", "If I ever get rich, I'd probably waste most of it on cabeza tacos"]
     },
     {
