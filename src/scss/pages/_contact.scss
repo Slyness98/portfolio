@@ -1,0 +1,111 @@
+.section-contact {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.title--contact {
+  @include title;
+  height: 7vh;
+
+  @include bp("tab-md") {
+    height: 16vh;
+  }
+}
+
+.form {
+  width: 95%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  // border: 1px solid whitesmoke;
+  transform: translateY(25%);
+  @include bp("tab-md") {
+    width: 50%;
+    height: 50vh;
+  }
+
+  &__item {
+    width: 65%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap-reverse;
+    color: white;
+    
+    &:last-child {
+      justify-content: flex-end;
+    }
+
+    & input:placeholder-shown {
+      font-style: italic;
+
+      & + label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(4rem);
+      }
+    }
+
+    & label {
+      width: 100%;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-top: .7rem;
+      display: block;
+      transition: all .3s;
+    }
+
+    & input {
+      font-size: 3rem;
+      font-family: inherit;
+      color: inherit;
+      padding: 1.5rem 2rem;
+      border-radius: 2px;
+      background-color: rgba(255, 255, 255, 0.25);
+      border: none;
+      border-bottom: 3px solid transparent;
+      width: 100%;
+      height: 8rem;
+      display: block;
+      transition: all .3s;
+
+      &::-webkit-input-placeholder {
+        color: white;
+      }
+
+      
+
+      &:focus:valid{
+        border: 1px solid limegreen !important;
+        outline: limegreen !important;
+      }
+
+      &:focus:invalid {
+        border: 1px solid red !important;
+        outline:red !important;
+      }
+    }
+
+    &--messageBox {
+       
+       & textarea {
+          width: 75vw;
+          height: 25vh;
+          border-color: unset;
+          background-color: whitesmoke;
+          border-image: unset;
+          border: unset;
+          color: unset;
+          padding: 2rem;
+       } 
+    }
+  }
+}
+
+.continueBtn {
+  cursor: pointer;
+}

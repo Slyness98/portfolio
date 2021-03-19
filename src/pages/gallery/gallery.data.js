@@ -21,7 +21,7 @@ const Data = [
   },
   {
     title: "Smart Brain",
-    videoSrc: "",
+    videoSrc: "../../videos/smartBrain1920x1080.mp4",
     isOpen: false,
     description: "My first project, integrating with the Clarafai API's FACE_DETECT model for facial recognition in pictures. Features an Express.js server with REST API endpoints utilizing the Knex library to connect to the PostgreSQL database storing user information for a simple authentication workflow.",
     thumbnail: "../../images/thumbnails/faceRecCode.png",

@@ -13,7 +13,8 @@
   }
 
   &.vidFS {
-    max-height: 100vh;
+    // max-height: 100vh;
+    grid-template-rows: .95fr;
     transition: max-height 1.25s;
   }
 

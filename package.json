@@ -7,15 +7,18 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@tinymce/tinymce-react": "^3.10.4",
     "animate.css": "^4.1.0",
     "font-awesome": "^4.7.0",
     "gsap": "^3.5.1",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^6.15.4",
     "react-scripts": "3.4.1",
     "react-use": "^15.3.4",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "tinymce": "^5.7.0"
   },
   "homepage": "https://portfolio.contrivingcoder.com/",
   "scripts": {
@@ -31,6 +34,7 @@
     "compress:css": "node-sass src/assets/css/style.prefix.css src/assets/css/style.css --output-style compressed",
     "build:css": "npm run compile:sass && npm run prefix:css && npm run compress:css"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
