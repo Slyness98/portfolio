@@ -20,22 +20,22 @@ const ContactInfo = ({nextTier, updateFieldValue, values}) => {
   return (
   <>
     <div className="form__item">
-      <input onChange={(e) => updateFieldValue(e)} type="text" name="firstName" placeholder="Your First Name" id="firstName" aria-labelledby="firstName" required autoFocus/>
+      <input onInput={(e) => updateFieldValue(e)} type="text" name="firstName" placeholder="Your First Name" id="firstName" aria-labelledby="firstName" required autoFocus/>
       <label htmlFor="firstName">Your First Name </label>
     </div>
 
     <div className="form__item">
-      <input onChange={(e) => updateFieldValue(e)} type="text" name="lastName" placeholder="Your Last Name" id="lastName" aria-labelledby="lastName" required />
+      <input onInput={(e) => updateFieldValue(e)} type="text" name="lastName" placeholder="Your Last Name" id="lastName" aria-labelledby="lastName" required />
       <label htmlFor="lastName">Your Last Name </label>
     </div>
 
     <div className="form__item">
-      <input onChange={(e) => updateFieldValue(e)} type="email" name="email" placeholder="E-mail" id="email" aria-labelledby="email" required/>
+      <input onInput={(e) => updateFieldValue(e)} type="email" name="email" placeholder="E-mail" id="email" aria-labelledby="email" required/>
       <label htmlFor="email">E-mail </label>
     </div>
           
     <div className="form__item">      
-      <input onChange={(e) => updateFieldValue(e)} type="text" name="companyName" placeholder="Company name (optional)" id="companyName" aria-labelledby="companyName" />
+      <input onInput={(e) => updateFieldValue(e)} type="text" name="companyName" placeholder="Company name (optional)" id="companyName" aria-labelledby="companyName" />
       <label htmlFor="companyName">Company Name (optional) </label>
     </div>
     

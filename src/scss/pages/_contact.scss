@@ -1,7 +1,12 @@
 .section-contact {
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
+    background-color: black;
     overflow: hidden;
+
+    @include bp("tab-md") {
+      height: 100vh;
+    }
 }
 
 .title--contact {
@@ -9,7 +14,7 @@
   height: 7vh;
 
   @include bp("tab-md") {
-    height: 16vh;
+    height: 13vh;
   }
 }
 
@@ -21,10 +26,22 @@
   justify-content: space-evenly;
   margin: 0 auto;
   // border: 1px solid whitesmoke;
-  transform: translateY(25%);
+  transform: translateY(20%);
   @include bp("tab-md") {
-    width: 50%;
+    width: 65%;
     height: 50vh;
+  }
+
+  @include bp("tab-lg") {
+    width: 60%;
+  }
+
+  @include bp("desktop-sm") {
+    width: 55%;
+  }
+
+  @include bp("desktop") {
+    width: 50%;
   }
 
   &__item {
@@ -78,7 +95,6 @@
       }
 
       
-
       &:focus:valid{
         border: 1px solid limegreen !important;
         outline: limegreen !important;
@@ -89,23 +105,17 @@
         outline:red !important;
       }
     }
-
-    &--messageBox {
-       
-       & textarea {
-          width: 75vw;
-          height: 25vh;
-          border-color: unset;
-          background-color: whitesmoke;
-          border-image: unset;
-          border: unset;
-          color: unset;
-          padding: 2rem;
-       } 
-    }
   }
 }
 
 .continueBtn {
   cursor: pointer;
 }
+
+// .tox.tox-tinymce.tox-platform-touch {
+//   height: 100% !important;
+// }
+
+//  form:focus-within{
+//   height: 60vh!important;
+// }
