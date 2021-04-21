@@ -22,14 +22,15 @@ const StatusIcon = styled(FAIcon)`
   height: 4rem;
   font-size: 4rem;
   /* color: white; */
+  transform: translateY(-50%);
 `;
 
 const MessageContainer = styled.div`
   width: 75%;
   display: flex;
   /* display: ${(props) => {return typeof props.$resolutionState === 'boolean' ? 'flex' : 'none'}}; */
-  justify-content: center;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   transform: translateY(9%);
   transition: all 1.25s;
@@ -70,7 +71,7 @@ const ResolvedMessage = () => {
     switch(form.success) {
       case true: 
       case false: 
-        messageContainer.style.height = "25%";
+        messageContainer.style.height = "20%";
         messageContainer.style.animation = "fadeIn 1.5s forwards";
         timeout = setTimeout(() => {
           messageContainer.style.height = "0%";

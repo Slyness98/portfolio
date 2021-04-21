@@ -7,10 +7,12 @@ import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
 import 'tinymce/plugins/image';
 import 'tinymce/plugins/table';
-import 'tinymce/skins/ui/oxide/skin.min.css';
-import 'tinymce/skins/ui/oxide/content.min.css';
+import 'tinymce/skins/ui/oxide-dark/skin.min.css';
+import 'tinymce/skins/ui/oxide-dark/content.css';
+import 'tinymce/skins/ui/oxide-dark/content.min.css';
 import { Editor } from '@tinymce/tinymce-react';
 import tinymce from 'tinymce/tinymce';
+
 const MessageBox = ({nextTier, previousTier, values}) => {
 
   const updateMessageField = () => {
@@ -19,7 +21,7 @@ const MessageBox = ({nextTier, previousTier, values}) => {
     */
     let content =  tinymce.activeEditor.getContent({format: "text"});
     let contentHtml =  tinymce.activeEditor.getContent();
-
+  
     values.current["message"] = content;
     values.current["messageHtml"] = contentHtml;
   }
@@ -30,6 +32,20 @@ const MessageBox = ({nextTier, previousTier, values}) => {
     const {messageHtml} = values.current;
     tinymce.activeEditor.setContent(messageHtml);
   }, [values]);
+
+  
+  useEffect(() => {
+    //iframe inner document implementation varies by browser. Check which one it is 
+    function iframeRef( frameRef ) {
+      return frameRef.contentWindow
+        ? frameRef.contentWindow.document
+        : frameRef.contentDocument
+    }
+  
+    const inside = iframeRef( document.getElementById('message_ifr') );//get document root mounted in tinymce's iframe
+    console.log(inside.body);
+    inside.body.setAttribute("style", "color: white!important"); //enjoy yet another hack around tinymce's horrible customization/integration capabilitites
+  }, [])
   
   return (
     <>
@@ -66,8 +82,12 @@ const MessageBox = ({nextTier, previousTier, values}) => {
       />
 
       <div className="form__item">
-        <button className="backBtn" onClick={(e) => previousTier(e)}>Back</button>
-        <button type="submit" className="submitBtn" onClick={(e) => nextTier(e)}>Send E-mail</button>
+        <button className="formBtn" onClick={(e) => previousTier(e)}>
+          <span>Back</span>
+        </button>
+        <button type="submit" className="formBtn" onClick={(e) => nextTier(e)}>
+          <span>Send E-mail</span>
+        </button>
       </div>
     </>   
     );

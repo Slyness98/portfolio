@@ -1,46 +1,60 @@
 import React, {useEffect} from 'react';
+import Data from './contactInfoStructure.data';
  
 const ContactInfo = ({nextTier, updateFieldValue, values}) => {
 
+  const checkFieldValidity = (field, regex) => {
+    ((field.value.length > 0) && regex.test(field.value) )
+      ? field.setAttribute("data-isvalid", "valid")
+      : field.setAttribute("data-isvalid", "invalid") 
+  };
+
   useEffect(() => {
-    const {firstName, lastName, companyName, email} = values.current;
     const first = document.getElementById("firstName");
     const last = document.getElementById("lastName");
     const emailField = document.getElementById("email");
     const company = document.getElementById("companyName");
-
+    
+    const {firstName, lastName, companyName, email} = values.current;
     first.setAttribute("value", firstName);
     last.setAttribute("value", lastName);
     emailField.setAttribute("value", email);
     company.setAttribute("value", companyName);
 
     console.log("values are: ", values)
-  }, [values])
+  }, [values]);
 
   return (
   <>
-    <div className="form__item">
-      <input onInput={(e) => updateFieldValue(e)} type="text" name="firstName" placeholder="Your First Name" id="firstName" aria-labelledby="firstName" required autoFocus/>
-      <label htmlFor="firstName">Your First Name </label>
-    </div>
-
-    <div className="form__item">
-      <input onInput={(e) => updateFieldValue(e)} type="text" name="lastName" placeholder="Your Last Name" id="lastName" aria-labelledby="lastName" required />
-      <label htmlFor="lastName">Your Last Name </label>
-    </div>
-
-    <div className="form__item">
-      <input onInput={(e) => updateFieldValue(e)} type="email" name="email" placeholder="E-mail" id="email" aria-labelledby="email" required/>
-      <label htmlFor="email">E-mail </label>
-    </div>
-          
-    <div className="form__item">      
-      <input onInput={(e) => updateFieldValue(e)} type="text" name="companyName" placeholder="Company name (optional)" id="companyName" aria-labelledby="companyName" />
-      <label htmlFor="companyName">Company Name (optional) </label>
-    </div>
+    {
+      Data.map((inputField, idx) => {
+        const {fieldName, type, placeholder, uiValidationRegex, spreadProps} = inputField;
+        return (
+          <div className="form__item" key={`contactInfoField--${idx}`}>
+            <input 
+              onInput={(e) => {
+                updateFieldValue(e); 
+                checkFieldValidity(e.target, uiValidationRegex);
+               }
+              } 
+              type={type} 
+              name={fieldName} 
+              placeholder={placeholder} 
+              id={fieldName} 
+              aria-labelledby={fieldName} 
+              // data-isvalid="invalid"
+              {...spreadProps}
+            />
+            <label htmlFor={fieldName}>{placeholder} </label>
+          </div>
+        )
+      })
+    }
     
     <div className="form__item">
-        <button className="continueBtn" onClick={(e) => nextTier(e)}>Continue</button>
+      <button className="formBtn" onClick={(e) => nextTier(e)}>
+        <span>Continue</span>
+      </button>
     </div>
   </>
   );

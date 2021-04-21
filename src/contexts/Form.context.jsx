@@ -17,7 +17,7 @@ export function FormContextProvider({children}) {
           } else {
             let errs = [];
             res.errors.map((err) => {
-              errs.push(err.message);
+             return errs.push(err.message);
             });
             console.log(errs);
             setResolutionMessages({success: false, resolutionMessages: errs, setResolution: setResolution});
