@@ -3,7 +3,7 @@ import { debounce } from '../utilities';
 
 
 export function useDebounce(callback, delay) {
-    const memoizedCallback = useCallback(callback, []);
+    const memoizedCallback = useCallback(callback, [callback]);
     const debouncedFn = useRef(debounce(memoizedCallback, delay));
 
     useEffect(() => {

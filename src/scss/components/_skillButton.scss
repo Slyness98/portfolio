@@ -1,0 +1,25 @@
+.skillBtn {
+  &__container, &__btn {
+    width: fit-content;
+  }
+
+  &__btn {
+    @include button;
+    color: unset;
+    background-color: unset;
+    border: unset;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+  }
+
+  &__subtitle {
+    width: 100%;
+    color: white;
+    font-size: 2.5rem;
+  }
+}

@@ -72,10 +72,7 @@ const MessageBox = ({nextTier, previousTier, values}) => {
           //   'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking',
           //   'table template paste textcolor importcss textpattern spellchecker help'
           // ],
-          toolbar:
-            'undo redo | formatselect | bold italic underline | \
-            alignleft aligncenter alignright alignjustify | \
-            bullist numlist outdent indent | spellchecker | removeformat | help'
+          toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify |bullist numlist outdent indent | spellchecker | removeformat | help'
         }}
         onEditorChange={updateMessageField}
         type="text/html"

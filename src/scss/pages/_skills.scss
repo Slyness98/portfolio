@@ -1,0 +1,12 @@
+.section-skills {
+  height: 100vh;
+}
+
+.gridCarousel {
+  height: 50vh;
+  transform: translateY(10vh);
+//   width: 100%;
+  @include bp("tab-md") {
+    width: 85% !important;
+  }
+}

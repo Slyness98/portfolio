@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import ScrollPageContainer from '../components/containers/scroll/ScrollPageContainer.styled';
 import ScrollPageBlock from '../components/containers/scroll/ScrollPageBlock.styled';
 import {FilterBox} from '../components/containers/filterbox/Filterbox.styled';
-import { ProfileImage } from '../components/profile-image/Profile.styled';
+import { CircleImg } from '../components/circle-image/CircleImg.styled';
 import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 import { IconicExcerpt } from '../components/iconicExcerpt/IconicExcerpt.styled';
 import { Accordion } from '../components/accordion/Accordion.styled';
@@ -44,7 +44,7 @@ const About = () => {
       
       <ScrollPageBlock className="section__block section__block--2">
         <div className="section__block__header section__block__header--lines">
-          <ProfileImage src="/images/profile.jpg" />
+          <CircleImg src="/images/profile.jpg" alt="profile"/>
         </div>
         <div className="aboutGrid">
           <div className="aboutGrid__item aboutGrid__item--1">

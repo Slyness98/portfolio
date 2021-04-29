@@ -12,10 +12,10 @@
     "font-awesome": "^4.7.0",
     "gsap": "^3.5.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-hook-form": "^6.15.4",
-    "react-scripts": "3.4.1",
+    "react-scripts": "4.0.3",
     "react-use": "^15.3.4",
     "socket.io-client": "^4.0.1",
     "styled-components": "^5.1.1",
@@ -35,7 +35,7 @@
     "compress:css": "node-sass src/assets/css/style.prefix.css src/assets/css/style.css --output-style compressed",
     "build:css": "npm run compile:sass && npm run prefix:css && npm run compress:css"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5000/",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
     "autoprefixer": "^9.8.5",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",
