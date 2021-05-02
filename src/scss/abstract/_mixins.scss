@@ -134,8 +134,6 @@
   font-size: 4rem;
   padding-bottom: 1.5%;
 }
-// $validList: map-keys($bp-map);
-// $validListValues: map-values($bp-map);
 
 @mixin bp($breakpoints...) {
 

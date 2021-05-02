@@ -2,26 +2,10 @@ import styled, {css} from 'styled-components';
 
 export const Carousel = styled.div.attrs((props) => ({
   findCenter: () => {
-    const {gridColumns, leftoverItemCount, totalChildren, gridLimit} = props;
+    const {gridColumns, leftoverItemCount, totalChildren} = props;
    
     const hasLeftoverItems = (leftoverItemCount > 0) ? true : false;
-    
-    const missingRowEntries = hasLeftoverItems ? gridColumns - leftoverItemCount : 0;
     const timesLeftoversGoIntoColumns = hasLeftoverItems ? Math.floor(gridColumns / leftoverItemCount) : 0;
-    const isLeftoverCountEven = (leftoverItemCount % 2 === 0) ? true : false; 
-    const isColumnCountEven = (gridColumns % 2 === 0) ? true : false; 
-    
-    console.log(`find center variables {
-      missingRowEntries: ${missingRowEntries}, 
-      leftoverItemCount: ${leftoverItemCount},
-      timesLeftoversGoIntoColumns: ${timesLeftoversGoIntoColumns}, 
-      isLeftOverCountEven: ${isLeftoverCountEven},
-      isColumnCountEven: ${isColumnCountEven},
-      hasLeftoverItems: ${hasLeftoverItems},
-      actualGridColums: ${gridColumns},
-      gridLimit: ${gridLimit},
-      totalChildren: ${totalChildren}
-    }`);
 
     function determineParity(num) {
       return num % 2 === 0
@@ -33,7 +17,6 @@ export const Carousel = styled.div.attrs((props) => ({
     const leftoverParity = determineParity(leftoverItemCount);
 
     const pairLeftoverAndColumnParity = (columnPar, leftoverPar) => {
-      console.log(`${columnPar}_${leftoverPar}`);
       return `${columnPar}_${leftoverPar}`;
     };
 
@@ -46,7 +29,7 @@ export const Carousel = styled.div.attrs((props) => ({
          let styles = '';
          for(let i = 1; i < leftoverItemCount + 1; i += 1) {
            styles += `
-             & div:nth-of-type(${totalChildren - leftoverItemCount + i}) {
+             & :nth-child(${totalChildren - leftoverItemCount + i}) {
                justify-self: end;
                transform: translateX(50%);
                ${timesLeftoversGoIntoColumns > 1
@@ -56,7 +39,6 @@ export const Carousel = styled.div.attrs((props) => ({
              }
            `
           };
-        console.log(styles)
         return css`${styles}`;
       }
      
@@ -66,12 +48,11 @@ export const Carousel = styled.div.attrs((props) => ({
         let styles = '';
         for(let i = 1; i < leftoverItemCount + 1; i++) {
           styles += `
-            & div:nth-of-type(${totalChildren - leftoverItemCount + i}) {
+            & :nth-child(${totalChildren - leftoverItemCount + i}) {
               grid-column-start: ${leftoverItemCount > 1 ? Math.ceil(timesLeftoversGoIntoColumns/2) + i : Math.ceil(timesLeftoversGoIntoColumns/2)};
             }
           `
         };
-        console.log(styles)
         return css`${styles}`;
       }
     }
@@ -81,12 +62,23 @@ export const Carousel = styled.div.attrs((props) => ({
   margin: 0 auto;
   overflow: ${props => props.overflowBehavior || "auto"};
   display: grid;
-  grid-template-columns: repeat(${props => props.gridColumns}, 1fr);
-  grid-template-rows: repeat(${props => props.gridRows}, 1fr);
+  /* grid-template-columns: repeat(${props => props.gridColumns}, 1fr); */
+  grid-template-columns: ${props => props.displayLeftoversInline  // if this prop is true and we're on the last page, plop everything into one row
+    ? css`repeat(${props => props.totalChildren}, 1fr)`
+    : css`repeat(${props => props.gridColumns}, 1fr)`
+  };
+  grid-template-rows: ${props => props.displayLeftoversInline
+    ? '1fr'
+    : css`repeat(${props => props.shouldTruncateRow ? props.gridRows - props.rowsToTruncate : props.gridRows}, 1fr)`
+  };
+  /* grid-template-rows: repeat(${props => props.shouldTruncateRow ? props.gridRows - props.rowsToTruncate : props.gridRows}, 1fr); */
   justify-items: center;
   text-align: center;
+  //if there are leftovers to center, the alignLeftovers prop is specified as 'center' (the default setting), 
+  //and we aren't already setting the displayLeftoversInline prop to true in order to make the leftover layout a single row
+  // then align all leftovers center; otherwise do nothing.
   ${props => 
-    (props.leftoverItemCount > 0) && props.alignLeftovers === 'center'
+    (props.leftoverItemCount > 0) && props.alignLeftovers === 'center' && props.displayLeftoversInline === false
       ? props.findCenter()
       : ''
   }
