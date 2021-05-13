@@ -55,6 +55,8 @@ export const Carousel = styled.div.attrs((props) => ({
         };
         return css`${styles}`;
       }
+      
+      default: return '';
     }
   }
 }))`

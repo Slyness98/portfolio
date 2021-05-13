@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {useDebounce} from '../../assets/custom-hooks/hooks';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
+import {useDebounce, usePrevious} from '../../assets/custom-hooks/hooks';
 import * as utils from './gridCarousel.functions';
 import {CarouselWrapper} from './CarouselWrapper.styled';
 import {Carousel} from './Carousel.styled';
 import {FABtn} from './FABtn.styled';
+import {PageDots} from './PageDots.styled';
 
 const GridCarousel = ({
+ autoAdjustPages = true,
  breakpointDisplayLimits = {}, 
  children, 
  defaultDisplayLimit = 5, 
@@ -21,27 +23,13 @@ const GridCarousel = ({
   const [itemsPerPage, setItemsPerPage] = 
    useState(
     Object.entries(breakpointDisplayLimits).length > 0 //if dev specified a breakpointDisplayLimit map
-      ? calculatePerPageLimit() //run the imported utility function above with the preconfigured variables
+      ? calculatePerPageLimit(breakpointDisplayLimits, defaultLimit) //run the imported utility function above with the preconfigured variables
       : defaultLimit //else return the default
    );
   const [currentPage, setCurrentPage] = useState(1);
   const lastToRender = currentPage * itemsPerPage;
   const firstToRender = lastToRender - itemsPerPage;
   const screenWidth = window.innerWidth;
-
-  const handleResize = useDebounce(() => {
-    const limit = calculatePerPageLimit(); 
-    setItemsPerPage(limit);
-  }, 300);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {	
-      window.removeEventListener("resize", handleResize);
-    }   
-  }, [screenWidth, handleResize]);
-
-
   const totalChildren = [...children].slice(firstToRender, lastToRender).length; 
   /*the following variable controls item spillage behavior. If strictRowsEnabled is true, columns are forced to tack on extra entries 
     to the quotient of totalChildren/rows in order to maintain the specified value of rows. If it's false, 
@@ -54,9 +42,46 @@ const GridCarousel = ({
   
   const leftoverItemCount = totalChildren % gridColumns;
   const totalPages = Math.ceil([...children].length / itemsPerPage);
+  const prevTotalPages = usePrevious(totalPages);
   const numRowsEmpty = gridRows - (gridRows - Math.floor((gridColumns * gridRows - totalChildren) / gridColumns))  
   const hasEmptyRows = numRowsEmpty > 0 ? true : false;
-  const shouldDisplayLeftoversInline = displayLeftoversInline && (currentPage === totalPages) ? true : false;
+  const shouldDisplayLeftoversInline = displayLeftoversInline && (currentPage === totalPages) ? true : false; 
+  const oldFirstToRender = useRef(firstToRender < 1 ? 1 : firstToRender);
+
+  
+  const handleResize = useDebounce(() => {
+    const limit = calculatePerPageLimit(); 
+    setItemsPerPage(limit);
+  }, 300);
+
+  const adjustPages = useCallback(() => {
+    console.log("prevTotalPages: ",prevTotalPages,"totalPages: ",totalPages);
+    if(autoAdjustPages && (prevTotalPages !== totalPages)) { 
+      // console.log("oldFirstToRender is: ", oldFirstToRender.current);
+      let autoAdjustPage = Math.ceil(oldFirstToRender.current / itemsPerPage);
+      console.log("currentPage: ", currentPage, " adjustedPage: ", autoAdjustPage)
+      setCurrentPage(autoAdjustPage);
+    } else if (currentPage > totalPages) {
+      console.log("recalculated current page set to: ", totalPages) // ex; page limit went from 6 to 4 and we're still on 6... catch that and set it to the new limit 4
+      setCurrentPage(totalPages);
+    }
+  }, [itemsPerPage, totalPages, prevTotalPages ,currentPage, autoAdjustPages, setCurrentPage]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {	
+      window.removeEventListener("resize", handleResize);
+    }   
+  }, [screenWidth, handleResize]);
+
+  useEffect(() => {
+    adjustPages();
+  }, [itemsPerPage, adjustPages]);
+
+  useEffect(() => {
+    console.log("first to render: ", firstToRender, "last to render: ", lastToRender, "current page: ", currentPage);
+    return () => {oldFirstToRender.current = firstToRender < 1 ? 1 : firstToRender}
+  }, [currentPage, firstToRender, lastToRender]);
 
   return (
     <CarouselWrapper 
@@ -74,6 +99,7 @@ const GridCarousel = ({
             : setCurrentPage(totalPages)
         }}
       />
+      
       <Carousel
         gridColumns = {gridColumns}
         gridRows = {gridRows}
@@ -87,6 +113,13 @@ const GridCarousel = ({
       >
         {[...children].slice(firstToRender, lastToRender)}
       </Carousel>
+         
+      <PageDots 
+        numPages={totalPages} 
+        currentPage={currentPage} 
+        updatePage={value => setCurrentPage(value)}
+      />
+       
       <FABtn 
         className="fabtn fabtn--next"
         icon="fas fa-angle-right"
@@ -94,11 +127,10 @@ const GridCarousel = ({
         onClick={() => {
           currentPage < totalPages
             ? setCurrentPage(prevState => prevState + 1) 
-            : setCurrentPage(1) 
+            : setCurrentPage(1);
         }}
       />
     </CarouselWrapper>
   )
-}
-
-export default GridCarousel
+};
+export default GridCarousel;

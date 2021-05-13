@@ -40,7 +40,8 @@ const Skills = () => {
         // alignLeftovers="start"//don't like the default centering behavior? So far the only other position is CSS grid's default behavior (one might call it "start", but anything other than "center" will work right now), but other behaviors, such as 'end', etc. could be added
         //overflowBehavior="auto" //any valid css overflow property value. Defaults to 'auto'
         // displayLeftoversInline = {true} // throw leftover children on last page into one row. Defaults to false
-      > 
+        // autoAdjustPages = {false} //true by default, this prop will keep track of the first child of the subset of children rendered, and when itemsPerPage changes on a resize it will take you to the new page that that first child is now found on. Else, if false it will only correct itself if there were more pages than there are now, and the currentPage will be set to the new last page
+     > 
       { //Map over your subset of data that you map to whatever component you want to display (cards, imgs, or in this case my skillButtons), dump as many as you want in between the grid and it will limit, morph, and comply to your grid configurations. Dump & Forget!
         Data.map((item, idx) => {  
           return(

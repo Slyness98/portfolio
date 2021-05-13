@@ -12,3 +12,11 @@ export function useDebounce(callback, delay) {
 
     return debouncedFn.current;
 };
+
+export function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
