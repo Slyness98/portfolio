@@ -11,6 +11,7 @@
   }
 
   &__container {
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;

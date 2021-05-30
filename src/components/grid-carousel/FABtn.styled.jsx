@@ -7,20 +7,24 @@ const Btn = styled.button`
   border-style: unset;
   background-color: transparent;
   cursor: pointer;
+  z-index: 2500;
 `;
 
 const Icon = styled.i`
   font-size: 6rem;
-  color: ${props => props.iconcolor};
+  color: ${props => props.iconColor};
 `;
 
-export const FABtn = ({icon, iconcolor, ...props}) => {
+export const FABtn = ({icon, iconColor, show, ...props}) => {
   return (
-    <Btn {...props} >
-      <Icon 
-        className={icon} 
-        iconcolor={iconcolor}
-      />
-    </Btn>
+    show
+    ? 
+      <Btn {...props} >
+        <Icon 
+          className={icon} 
+          iconColor={iconColor}
+        />
+      </Btn>  
+    : null  
   );
 };

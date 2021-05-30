@@ -1,0 +1,217 @@
+/* GRID-CAROUSEL DOCUMENTATION */
+
+--GENERAL CONCEPT
+  A Carousel/slider/whatever-other-common-name-you-call-it component, where you can dump a subset of children 
+  (usually in a .map() function) and it will take care of limiting/layout/pagination logic for you. This component
+  makes no assumptions and does not care HOW you fetch the data that you map to the children that you provide to it. 
+  That, along with all business logic and performance implications, is still on you. Rather, once you give this 
+  component that optimally fetched subset of data, this Carousel will slap it into a nice grid with optional 
+  arrows and/or pagination dots already built in for navigating multiple pages. Of all children passed, you can 
+  limit how many are displayed at one time with just a couple simple configuration options. Further config options 
+  for basic styling exist as well (and if even those aren't enough, you can hook into each individual component's 
+  className attribute if you really feel the need to go the extra mile with your styles or you don't like how 
+  something without a configuration option looks by default).
+  
+
+--BASIC USE
+===============================================
+  const breakpointLimitMap = {
+    "27.5em": 6,
+    "56.25em": 7,
+    "87.5em": 8
+  }
+
+ <GridCarousel breakpointDisplayLimits={breakpointLimitMap}>
+   
+   {  
+     DataToMapToChildren.map((childData, idx) => {
+       <WhateverComponentYouWant key={`myComponent${idx}`} {...childData}/>
+     })
+   }
+ 
+ </GridCarousel>  
+===============================================
+  
+  1) Create a object with any valid CSS breakpoint as the key and any positive integer >0 as the value.
+     The carousel will limit the display of all the children you dumped in so you don't have to.
+     Tell it how many you want at one time given MINIMUM screen width via the map keys and it will calculate the number of pages, rows, and
+     columns needed at that time. If you resize the page, those basic values making up the grid & pagination
+     will be recalculated as necessary to fit your custom breakpointLimitMap.
+
+  2) To reiterate, the keys of the map you provide are tested against MINIMUM width. The greatest value that applies to that min-width is the one that will be applied.
+  
+  3) If no map or 'defaultLimit' prop is provided, the constant default across all screen sizes is 5.
+
+
+
+
+
+-- CUSTOMIZATION PROPS
+   1)  alignLeftovers: //Control how each page displays "leftover items" that don't fill out your grid's 
+			                   column configuration. The default behavior is to center the leftovers. The only other 
+			                   behavior right now is just directly popping leftover items into place as they would 
+                         naturally fall (akin to flexbox's justify-content: flex-start), but other behaviors, 
+                         such as 'end', etc. could be added. At this time any "truthy" JS value passed will disable 
+                         the default centering behavior will bring about the inherent behavior of just sequentially
+                         popping in entries without any further regard to layout.
+   
+   2)  autoAdjustPages: //true by default, this prop will keep track of the first child of the subset of children 
+                          rendered. When the carousel display limit changes on screen resize, it will take you to 
+                          the new page that that first child is now found on, should it change. Else, if false 
+                          the carousel will only correct itself if there were more pages than there are now, 
+                          and the current page will be set to the new last page. Otherwise, it will leave 
+                          the current page number be if it still exists, regardless of what page that old first child 
+                          is now found on.
+
+   3)  breakpointDisplayLimits: // {"any_valid_css_breakpoint"[key]: positiveInteger>0[value] } --invalid values are set to 1. 
+                                   Matched against a min-width media query testing against window.innerWidth
+
+   4)  className: //className, along with any other props to be spread in, apply to the ACTUAL grid carousel, NOT the entire component wrapper.
+
+   5)  defaultDisplayLimit: //any positive integer > 0. Anything invalid will be set to 1. Only applied when no key from breakpointDisplayLimits 
+                            map currently applies or if a map was never specified.
+        
+   6)  displayLeftoversInline: // false by default, this boolean will throw leftover children on last page all into one row.  
+
+   7)  gridRows: // this determines the number of rows your content will feature.
+                 Combined with breakpointDisplayLimits and/or defaultDisplayLimit, 
+                 it also dynamically determines the number of columns per row. Excessive, 
+                 empty rows are truncated and invalid values will default to the defaultDisplayLimit. 
+			           If even the default is greater than the total children you pass to the carousel, 
+                 the default truncation behavior built into the carousel will catch that and do its job
+
+
+    8) gridWidth: //any valid CSS width value. Applied to the wrapper to control width of ENTIRE component, including pagination components
+
+    9) navControls: //A configuration object for basic customization of navigational modalities of the carousel, which includes the:
+                       -- Back/Forward buttons (defaults to back/forward arrows)
+                       -- Pagination Dots (same behavior as arrows, just with ability to navigate to any page of Carousel)
+                       -- The keyboard keys you wish to bind to the incrementing/decrementing functions of the carousel page 
+
+                       The structure of the config object looks like this, with the values below being the actual defaults of each entry :
+		       =========================================
+                    const navControlConfig = {
+ 	      	            arrows: {
+    			              display: true,
+    			              arrowA: {
+      			              icon: 'fas fa-angle-left',
+      		                iconColor: 'white',
+                        },
+    			              arrowB: {
+      			              icon: 'fas fa-angle-right',
+                          iconColor: 'white'
+                        },
+                      },
+  			              dots: {
+     			              display: true,
+                        size: "20px",
+                        borderColor: "white",
+                        color: "#333",
+                        activeColor: "darkturquoise"
+  			              },
+                      keyboard: {
+                        decrementalKeys: [],
+                        incrementalKeys: []
+                      }
+                    };
+
+                    /* NOTE: No keys are assumed to be bound to incrementing/decrementing the page. If you wish to bind a key, take a look 
+                             at the 'code' property values of the KeyboardEvent object on MDN. Feed it any one of those. For example:
+                                                 
+                                decrementalKeys: ['ArrowLeft', 'ArrowDown', 'KeyA', 'KeyS'],
+                                incrementalKeys: ['ArrowRight', 'ArrowUp', 'KeyD', 'KeyW']
+                            for WASD keys and Left/Right/Up/Down arrow keys
+                    */
+           =========================================
+    10) overflowBehavior: //any valid css overflow property value. Defaults to 'auto'. This is applied to the component wrapper.
+
+
+    11) strictRowsEnabled:  //Boolean value that defaults to false; this option controls item limit spillage behavior. It
+                             decides whether to strictly adhere to the gridRows property value (and dynamically set columns) 
+                             or to spill over into a new row as needed, prioritizing the determined number of columns per row
+
+
+
+
+    12) wrapperClassName: //If need be, wrapperClassName is used for specifying the component wrapper's className attribute. 
+                           Before you use this, just look at the other configuration options available;
+                           Chances are you want to configure one of the many grid options, 
+                           add to the actual grid's styles with the regular className attribute, 
+                           or the component you are mapping over as children to display needs its styles improved.
+                 
+        
+        
+-- DEFAULT BEHAVIORS
+
+1) Grid and Page Calculations
+
+	A) If no breakpointDisplayLimit is provided, children will show 5 entries at a time. Other than that 
+     refer to how the breakpointDisplayLimit prop works to understand how this component limits how
+     many children render at once.
+
+  B) The gridRows prop (hand in hand with strctRowsEnabled prop) and the current child limit go to work to 
+      determine the number of columns per row. With strictRowsEnabled you can prioritize which value gets
+      preserved; rows or columns. If you specified two rows but have 20 children at once, you could have a 
+      whopping 10 components line up in each row, or the grid could just 
+
+  C) Given all children passed in and the display limitations, the number of pages needed is calculated and 
+      shared with the navigational components.If either pertinate variable changes, the calculation is ran again.
+
+  D) If any excess rows are specified or automatically calculated somehow, simple math included recognizes that and
+      and the rows are automatically truncated from the grid.
+  
+	E) With dynamic calculation of pages on resize and the possibility of changing limitations comes the
+	   inherent possibility that a page may no longer exist as well as some preferences on how to deal with that.
+	   For this there is the autoAdjustPages prop. 
+	     
+		-- If false, the carousel won't intervene and reset the currentPage when possible. It will only catch
+		   that the page you are on no longer exists, which means you were looking at something belonging
+		   to the new last page of this recalculated carousel. The page will be set to that. Other than that
+       if you were on page three and there is still a page three, that's where you'll stay.
+
+		-- If true, the carousel keeps track of the first child to render out of the subset of children 
+       rendered on the page. When recalculated, the new(or perhaps same) page that that child is now
+		   found on is the new current page.
+
+2) Layout Behavior 
+  
+  A) In the case of multiple rows, if the last row can't fill out each column its contents are centered under
+      the existing row(s). You can change this and just keep them in their chronological entries in the
+      same format as the other row(s) via the alignLeftovers prop. 
+      (i.e. 4 columns in a row, two entries in last row; those two entries will take columns 1 & 2 instead of the default 2 & 3)
+
+	B) Both left/right arrows and pagination dots will display by default. Take either of them out of the DOM
+     with the navControls prop and setting the display property of either 'arrows' or 'dots' to false. There
+     you can also customize either one's basic styles, such as size & color. Also note that you don't technically
+     need either the arrows or dots to still function because naviagation also works with left/right arrow keys, 
+	   but this is, of course, discouraged if you have more than one page (and one page kind of defeats the 
+     purpose of a carousel. At that point you just want to lazily put in a simple grid) as it is confusing to 
+     the user. 
+
+  C) Need to hook in and change the way things are styled (and it's definitely not the fault of crappy styling 
+     of the individual components you're passing as children)? Use the wrapperClassName prop to hook into the
+     overall gridCarousel component (grid, arrows, dots & all) or use the usual JSX className attribute to hook
+     into the actual grid itself. Any extra {...props} with no defined use in the component are passed to the 
+     grid itself, not the wrapper. However, anything you regularly pass in JSX, like className, may be passed to
+     the other individual components in their respective field of the navControls config prop. Each component
+     has its own internal {...spreadProps} operator unique to it. It'll still recognize something native, just no 
+     further custom props without forking the component and doing your own additional work.
+
+
+
+-- ORIGINAL CONFIGURATION IN DEVELOPMENT WITH COMMENTS
+
+  <GridCarousel
+    wrapperClassName = "gridWrapper" //if really need be, wrapperClassName can be used to hook into the wrapper's styles, but it's best avoided. Chances are you want to configure one of the many grid options, add to the actual grid's styles with the regular className attribute, or the component you are mapping over as children to display needs its styles improved
+    className = "gridCarousel" //className, along with any other props to be spread in, apply to the ACTUAL carousel, not its wrapper
+    gridWidth = {gridWidth} //any valid CSS width value. Applied to the wrapper to control width of ENTIRE component
+    defaultDisplayLimit = {4} //any positive integer > 0. Anything invalid will be set to 1
+    gridRows = {2} // this determines the rows your content will feature. Combined with breakpointDisplayLimits and/or defaultDisplayLimit, it also dynamically determines the number of columns per row. Excessive, empty rows are truncated and invalid values will default to the defaultDisplayLimit. Worst case scenario, if even the default is too much, the truncation behavior will catch that and do its job
+    strictRowsEnabled = {true}  //control item limit spillage behavior and decide to strictly adhere to the gridRows property value (and dynamically set columns) or to spill over into a new row as needed, prioritizing the determined number of columns per row
+    breakpointDisplayLimits = {maxItemsPerPageByBp} // {"any_valid_css_breakpoint"[key]: positiveInteger[value] } --invalid values are set to 1. Matched against a min-width media query testing against window.innerWidth
+    navControls = {navControlConfig}
+    // alignLeftovers="start"//don't like the default centering behavior? So far the only other position is CSS grid's default behavior (one might call it "start", but anything other than "center" will work right now), but other behaviors, such as 'end', etc. could be added
+    // overflowBehavior="auto" //any valid css overflow property value. Defaults to 'auto'
+    // displayLeftoversInline = {true} // throw leftover children on last page into one row. Defaults to false
+    // autoAdjustPages = {false} //true by default, this prop will keep track of the first child of the subset of children rendered, and when itemsPerPage changes on a resize it will take you to the new page that that first child is now found on. Else, if false it will only correct itself if there were more pages than there are now, and the currentPage will be set to the new last page 
+  />

@@ -1,11 +1,14 @@
 import styled, {css} from 'styled-components';
+import React from "react";
+import * as utils from './gridCarousel.functions';
+import {animated, useSpring} from 'react-spring';
 
-export const Carousel = styled.div.attrs((props) => ({
-  findCenter: () => {
-    const {gridColumns, leftoverItemCount, totalChildren} = props;
+export const GridDisplay = styled(animated.div).attrs((props) => ({
+  $findCenter: () => {
+    const {$gridColumns, $leftoverItemCount, $totalChildren} = props;
    
-    const hasLeftoverItems = (leftoverItemCount > 0) ? true : false;
-    const timesLeftoversGoIntoColumns = hasLeftoverItems ? Math.floor(gridColumns / leftoverItemCount) : 0;
+    const hasLeftoverItems = ($leftoverItemCount > 0) ? true : false;
+    const timesLeftoversGoIntoColumns = hasLeftoverItems ? Math.floor($gridColumns / $leftoverItemCount) : 0;
 
     function determineParity(num) {
       return num % 2 === 0
@@ -13,8 +16,8 @@ export const Carousel = styled.div.attrs((props) => ({
         : 'odd'
     };
 
-    const columnParity= determineParity(gridColumns);
-    const leftoverParity = determineParity(leftoverItemCount);
+    const columnParity= determineParity($gridColumns);
+    const leftoverParity = determineParity($leftoverItemCount);
 
     const pairLeftoverAndColumnParity = (columnPar, leftoverPar) => {
       return `${columnPar}_${leftoverPar}`;
@@ -27,13 +30,13 @@ export const Carousel = styled.div.attrs((props) => ({
       case 'odd_even': 
        { 
          let styles = '';
-         for(let i = 1; i < leftoverItemCount + 1; i += 1) {
+         for(let i = 1; i < $leftoverItemCount + 1; i += 1) {
            styles += `
-             & :nth-child(${totalChildren - leftoverItemCount + i}) {
+             & :nth-child(${$totalChildren - $leftoverItemCount + i}) {
                justify-self: end;
                transform: translateX(50%);
                ${timesLeftoversGoIntoColumns > 1
-                ? `grid-column-start: ${leftoverItemCount > 1 ? Math.ceil(timesLeftoversGoIntoColumns/2) + i : Math.ceil(timesLeftoversGoIntoColumns/2)};`
+                ? `grid-column-start: ${$leftoverItemCount > 1 ? Math.ceil(timesLeftoversGoIntoColumns/2) + i : Math.ceil(timesLeftoversGoIntoColumns/2)};`
                 : ``
                }
              }
@@ -46,10 +49,10 @@ export const Carousel = styled.div.attrs((props) => ({
       case 'odd_odd':
        {
         let styles = '';
-        for(let i = 1; i < leftoverItemCount + 1; i++) {
+        for(let i = 1; i < $leftoverItemCount + 1; i++) {
           styles += `
-            & :nth-child(${totalChildren - leftoverItemCount + i}) {
-              grid-column-start: ${leftoverItemCount > 1 ? Math.ceil(timesLeftoversGoIntoColumns/2) + i : Math.ceil(timesLeftoversGoIntoColumns/2)};
+            & :nth-child(${$totalChildren - $leftoverItemCount + i}) {
+              grid-column-start: ${$leftoverItemCount > 1 ? Math.ceil(timesLeftoversGoIntoColumns/2) + i : Math.ceil(timesLeftoversGoIntoColumns/2)};
             }
           `
         };
@@ -60,28 +63,56 @@ export const Carousel = styled.div.attrs((props) => ({
     }
   }
 }))`
-  width: ${props => props.gridWidth || "100%"};
+  width: ${props => props.$gridWidth || "100%"};
   margin: 0 auto;
   overflow: ${props => props.overflowBehavior || "auto"};
   display: grid;
-  /* grid-template-columns: repeat(${props => props.gridColumns}, 1fr); */
-  grid-template-columns: ${props => props.displayLeftoversInline  // if this prop is true and we're on the last page, plop everything into one row
-    ? css`repeat(${props => props.totalChildren}, 1fr)`
-    : css`repeat(${props => props.gridColumns}, 1fr)`
+  grid-template-columns: ${props => props.$displayLeftoversInline  // if this prop is true and we're on the last page, plop everything into one row
+    ? css`repeat(${props => props.$totalChildren}, 1fr)`
+    : css`repeat(${props => props.$gridColumns}, 1fr)`
   };
-  grid-template-rows: ${props => props.displayLeftoversInline
+  grid-template-rows: ${props => props.$displayLeftoversInline
     ? '1fr'
-    : css`repeat(${props => props.shouldTruncateRow ? props.gridRows - props.rowsToTruncate : props.gridRows}, 1fr)`
+    : css`repeat(${props => props.$shouldTruncateRow ? props.$gridRows - props.$rowsToTruncate : props.$gridRows}, 1fr)`
   };
-  /* grid-template-rows: repeat(${props => props.shouldTruncateRow ? props.gridRows - props.rowsToTruncate : props.gridRows}, 1fr); */
   justify-items: center;
   text-align: center;
   //if there are leftovers to center, the alignLeftovers prop is specified as 'center' (the default setting), 
   //and we aren't already setting the displayLeftoversInline prop to true in order to make the leftover layout a single row
   // then align all leftovers center; otherwise do nothing.
   ${props => 
-    (props.leftoverItemCount > 0) && props.alignLeftovers === 'center' && props.displayLeftoversInline === false
-      ? props.findCenter()
+    (props.$leftoverItemCount > 0) && props.$alignLeftovers === 'center' && props.$displayLeftoversInline === false
+      ? props.$findCenter()
       : ''
   }
 `;
+
+
+export const Carousel = ({ children, ...props }) => {
+  const {getSlideDirection} = utils;
+  const {$currentPage, $prevPage, $totalPages} = props;
+  const slideDirection = getSlideDirection($currentPage, $prevPage, $totalPages);
+  const slide = useSpring({
+    config: {
+     tension: 300,
+     friction: 60
+    },
+    from: {
+      transform: slideDirection ? 'translateX(100%)' : 'translateX(-100%)',
+      overflow: 'hidden',
+      opacity: 0
+    },
+    to: {transform: 'translateX(0%)', opacity: 1},
+    reset: true
+  });
+
+ 
+  return (
+      <GridDisplay
+        style={slide}        
+        {...props}
+      >
+        {children}
+      </GridDisplay>
+    )
+};

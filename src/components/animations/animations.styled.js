@@ -41,3 +41,13 @@ export const FadeOut = keyframes`
   0% { opacity: 1;}
   100% { opacity: 0;}
 `;
+//=================================================
+export const slideLeft = keyframes`
+  0% { left: 0;}
+  100% { left: -150%;}
+`;
+//=================================================
+export const slideRight = keyframes`
+  0% { right: 0;}
+  100% { right: -150%;}
+`;

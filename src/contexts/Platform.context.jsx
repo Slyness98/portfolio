@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDebounce } from '../assets/custom-hooks/hooks';
 const PlatformContext = React.createContext();
 const PlatformUpdateContext = React.createContext();
@@ -13,7 +13,11 @@ export function usePlatformUpdateContext() {
 };
 
 export function PlatformProvider({ children }) {
-  const [platform, setPlatform] = useState();
+  const [platform, setPlatform] = useState(
+   window.matchMedia("(max-width: 899px)").matches
+    ? true
+    : false
+  );
   
   function detectMobile() {
     let mql = window.matchMedia("(max-width: 899px)");
@@ -23,12 +27,6 @@ export function PlatformProvider({ children }) {
       setPlatform(false);
     }
   };
-
-  useEffect(() => {
-    if(platform === undefined) {
-      detectMobile();
-    }
-  }, [platform])
 
   const debouncedToggle = useDebounce(detectMobile, 250);
 

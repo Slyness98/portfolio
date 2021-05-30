@@ -3,9 +3,46 @@
 }
 
 .gridWrapper {
-  transform: translateY(10vh);
+  height: 60vh;
+  transform: translateY(6vh);
 }
 
 .gridCarousel {
-  height: 50vh;
+  height: fit-content;
+  grid-gap: 4rem 2rem;
+}
+
+.slideRight-enter {
+  transform: translateX(-100%);
+  transition: .7s ease-in-out;
+}
+.slideRight-enter-active {
+  transform: translateX(0%);
+}
+.slideRight-exit {
+  transform: translateX(0%);
+  transition: .7s ease-in-out;
+}
+.slideRight-exit-active {
+  transform: translateX(-100%);
+}
+
+
+@keyframes slideRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150%);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-150%);
+  }
 }
