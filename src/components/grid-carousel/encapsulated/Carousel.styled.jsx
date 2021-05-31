@@ -1,7 +1,6 @@
 import styled, {css} from 'styled-components';
-import React from "react";
-import * as utils from './gridCarousel.functions';
 import {animated, useSpring} from 'react-spring';
+import {getSlideDirection} from './gridCarousel.functions';
 
 export const GridDisplay = styled(animated.div).attrs((props) => ({
   $findCenter: () => {
@@ -89,7 +88,6 @@ export const GridDisplay = styled(animated.div).attrs((props) => ({
 
 
 export const Carousel = ({ children, ...props }) => {
-  const {getSlideDirection} = utils;
   const {$currentPage, $prevPage, $totalPages} = props;
   const slideDirection = getSlideDirection($currentPage, $prevPage, $totalPages);
   const slide = useSpring({

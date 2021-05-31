@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, useRef} from 'react';
-import {useDebounce, usePrevious, useKeyDown} from '../../assets/custom-hooks/hooks';
+import {useDebounce, usePrevious, useKeyDown} from '../../../assets/custom-hooks/hooks';
 import * as utils from './gridCarousel.functions';
 import {CarouselWrapper} from './CarouselWrapper.styled';
 import {Carousel} from './Carousel.styled';
