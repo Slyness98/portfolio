@@ -80,7 +80,7 @@ export const GridDisplay = styled(animated.div).attrs((props) => ({
   //and we aren't already setting the displayLeftoversInline prop to true in order to make the leftover layout a single row
   // then align all leftovers center; otherwise do nothing.
   ${props => 
-    (props.$leftoverItemCount > 0) && props.$alignLeftovers === 'center' && props.$displayLeftoversInline === false
+    ((props.$leftoverItemCount > 0) && props.$alignLeftovers === 'center' && !!props.$displayLeftoversInline === false) // !! used to account for null or undefined, along with false
       ? props.$findCenter()
       : ''
   }
@@ -106,11 +106,11 @@ export const Carousel = ({ children, ...props }) => {
 
  
   return (
-      <GridDisplay
-        style={slide}        
-        {...props}
-      >
-        {children}
-      </GridDisplay>
-    )
+    <GridDisplay
+      style={slide}        
+      {...props}
+    >
+      {children}
+    </GridDisplay>
+  )
 };

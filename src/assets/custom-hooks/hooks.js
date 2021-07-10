@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect } from 'react';
+import { useCallback, useRef, useEffect, useState } from 'react';
 import { debounce } from '../utilities';
 
 
@@ -37,4 +37,14 @@ export function useKeyDown(keydownCodePropArray, callback, continuouslyFireCallb
       window.removeEventListener("keydown", handler);
     };
   }, [handler]);
+};
+
+
+
+export function useToggle(initialValue = false) {
+  const [value, setValue] = useState(initialValue);
+  const toggle = useCallback(() => {
+    setValue(v => !v);
+  }, [setValue]);
+  return [value, toggle];
 };

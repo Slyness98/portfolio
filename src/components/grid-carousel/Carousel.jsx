@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useDebounce} from '../../assets/custom-hooks/hooks';
+import {useActiveSkillContext} from '../../contexts/ActiveSkill.context';
 import Data from './carouselChildren.data';
 import {navControlConfig, maxItemsPerPageByBp} from './gridCarousel.config'
 import GridCarousel from './encapsulated/GridCarousel';
@@ -7,7 +8,9 @@ import SkillButton from '../buttons/skill-button/SkillButton';
 
 const Carousel = () => {
   const [gridWidth, setGridWidth] = useState(window.matchMedia("max-width: 899px").matches ? "100%" : "85%");
-  
+  const skillContext = useActiveSkillContext();
+  const {setActiveSkill, toggleView} = skillContext;
+
   const handleResize = useDebounce(() => {
     setGridWidth(window.matchMedia("max-width: 899px").matches ? "100%" : "85%");
   }, 300);
@@ -20,6 +23,7 @@ const Carousel = () => {
       window.removeEventListener("resize", handleResize);
     }   
   }, [handleResize]);
+
   return (
     <GridCarousel 
       wrapperClassName = "gridWrapper" 
@@ -38,8 +42,10 @@ const Carousel = () => {
         return(
           <SkillButton 
             key={`skillBtn--${idx+1}`}
-            src="./images/profile.jpg"
+            id={`skillBtn--${idx+1}`}
+            src={item.image}
             subtitle={item.skillName}
+            onClick={() => {toggleView(); setActiveSkill(item); sessionStorage.setItem('activeSkill', `skillBtn--${idx+1}`)}}
           />
         );
       })

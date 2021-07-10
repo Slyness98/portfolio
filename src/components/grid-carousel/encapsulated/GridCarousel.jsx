@@ -29,7 +29,7 @@ const GridCarousel = ({
       ? calculatePerPageLimit() //run the imported utility function above with the preconfigured variables
       : defaultLimit //else return the default
    );
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(parseInt(sessionStorage.getItem('currentPage')) || 1);
   const navControlConfig = utils.mergeNavControlConfigObj(navControls);
   //configureGridVars() is passed two state variables and the component config props we expose; these are the dependencies of extracted mathematical expressions aptly represented by their destructured variable name
   const gridConfigVars = utils.configureGridVars(children, currentPage, defaultLimit, displayLeftoversInline, gridRows, itemsPerPage, navControlConfig, strictRowsEnabled);
@@ -67,7 +67,11 @@ const GridCarousel = ({
 
   useKeyDown(keyboard.decrementalKeys, decrementPage);
   useKeyDown(keyboard.incrementalKeys, incrementPage);
+
   
+  useEffect(() => {
+    sessionStorage.setItem('currentPage', currentPage); 
+  }, [currentPage]);
   
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -83,10 +87,32 @@ const GridCarousel = ({
 
   
   useEffect(() => {
+  /* This comment-wrapped block is the only concession to encapsulation. 
+     Necessary only for this project's implementation, as it's the only place 
+     the sessionStorage will be updated in time to know whether the activeSkill 
+     falls outside of the range of skillbuttons rendered on the currentPage, 
+     in which case focus should be set to the new firstToRender child. 
+     We don't want focus set to a item that is now offscreen, so as pages are 
+     navigated, focus should correct itself to the first item to render, 
+     which is what is done here */
+    const ftr1Indexed = firstToRender + 1;
+    const currentItem = sessionStorage.getItem("activeSkill") ? parseInt(sessionStorage.getItem("activeSkill").slice(10)) : 1;
+    const currentNum = parseInt(currentItem); 
+    const arrRange = [...Array(lastToRender-ftr1Indexed+1)].map((el, ind) => ind + ftr1Indexed);
+    if(!arrRange.includes(currentNum)) {
+      try {
+        const node = document.getElementById(`${[...children][firstToRender].props.id}`);
+        node.focus();
+        sessionStorage.setItem("activeSkill", `${[...children][firstToRender].props.id}`);
+      } catch {
+        return null;
+      }
+    }
+  /*remove the above before exporting for re-use.*/
     return () => {
       oldFirstToRender.current = firstToRender < 1 ? 1 : firstToRender;
     }
-  }, [firstToRender]);
+  }, [firstToRender, lastToRender, children]);
 
   return (
     <CarouselWrapper 
@@ -108,6 +134,7 @@ const GridCarousel = ({
       />
     
       <Carousel
+        className={className}
         $currentPage = {currentPage}
         $gridColumns = {gridColumns}
         $gridRows = {gridRows}
@@ -119,6 +146,7 @@ const GridCarousel = ({
         $leftoverItemCount = {leftoverItemCount}
         $alignLeftovers = {props.alignLeftovers || "center"}
         $displayLeftoversInline = {shouldDisplayLeftoversInline}
+        aria-live="polite"
         {...props}
       >
         {[...children].slice(firstToRender, lastToRender)}

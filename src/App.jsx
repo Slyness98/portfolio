@@ -9,7 +9,7 @@ import Contact from './pages/Contact';
 
 import { PlatformProvider } from './contexts/Platform.context'; 
 import { AccordionGradientProvider } from './contexts/AccordionGradient.context'; 
-
+import {ActiveSkillProvider} from './contexts/ActiveSkill.context';
 
 const App = () => {
 	return (
@@ -21,7 +21,9 @@ const App = () => {
        {
         '/': <Home />,
         '/gallery': <Gallery />,
-        '/skills': <Skills />,
+        '/skills':  <ActiveSkillProvider>
+                      <Skills />
+                    </ActiveSkillProvider>,
         '/about': <AccordionGradientProvider>
                     <About />
                   </AccordionGradientProvider>,

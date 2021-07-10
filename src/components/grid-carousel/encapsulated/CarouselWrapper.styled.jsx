@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
   width: ${props => props.gridWidth || "100%"};
   margin: 0 auto;

@@ -1,5 +1,32 @@
 .section-skills {
   height: 100vh;
+  width: 100%;
+  max-width: 100%;  
+  overflow: auto;
+}
+
+.title--skills {
+  mix-blend-mode: difference;
+  height: 12vh !important;
+  font-size: 5rem !important;
+  letter-spacing: 2px !important;
+  @include bp('tab-md') {
+    height: 14vh !important;
+    font-size: 4rem !important;
+    letter-spacing: 5px !important;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 
 .gridWrapper {
@@ -9,40 +36,30 @@
 
 .gridCarousel {
   height: fit-content;
-  grid-gap: 4rem 2rem;
+  grid-gap: 10rem 0rem;
 }
 
-.slideRight-enter {
-  transform: translateX(-100%);
-  transition: .7s ease-in-out;
-}
-.slideRight-enter-active {
-  transform: translateX(0%);
-}
-.slideRight-exit {
-  transform: translateX(0%);
-  transition: .7s ease-in-out;
-}
-.slideRight-exit-active {
-  transform: translateX(-100%);
-}
-
-
-@keyframes slideRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(150%);
+.unsetButton {
+  width: 5rem;
+  height: 5rem;
+  background-color: transparent;
+  @include unsetBtn;
+  @include button;
+  box-shadow: unset;
+  &:focus {
+    border: unset !important;
   }
 }
 
-@keyframes slideLeft {
-  from {
-    transform: translateX(0);
-  }
+.skillSummary {
+  color: white;
+  font-family: 'gruppo', 'Courier New', Courier, monospace;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 5vh;
 
-  to {
-    transform: translateX(-150%);
+  @include bp('tab-md') {
+    padding: 2% 3%;
   }
 }
