@@ -130,6 +130,7 @@ const GridCarousel = ({
             ? decrementPage()
             : setCurrentPage(totalPages);
         }}
+        aria-label = {`Previous slide - slide ${currentPage - 1 === 0 ? totalPages : currentPage - 1} of ${totalPages}`}
         {...arrowA}
       />
     
@@ -146,7 +147,6 @@ const GridCarousel = ({
         $leftoverItemCount = {leftoverItemCount}
         $alignLeftovers = {props.alignLeftovers || "center"}
         $displayLeftoversInline = {shouldDisplayLeftoversInline}
-        aria-live="polite"
         {...props}
       >
         {[...children].slice(firstToRender, lastToRender)}
@@ -155,7 +155,6 @@ const GridCarousel = ({
       <PageDots 
         currentPage={currentPage} 
         numPages={totalPages} 
-        show={dots.display}
         updatePage={value => setCurrentPage(value)}
         {...dots}
       />
@@ -169,6 +168,7 @@ const GridCarousel = ({
             ? incrementPage()
             : setCurrentPage(1);
         }}
+        aria-label = {`Next slide ${totalPages === currentPage ? 'slide 1' :  `slide ${currentPage + 1}`} of ${totalPages}`}
         {...arrowB}
       />
     </CarouselWrapper>

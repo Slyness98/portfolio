@@ -27,7 +27,7 @@ $gutter-horizontal: 6rem;
 $default-font-size: 1em;
 // Breakpoints
 $bp-map: (
-"noAnim": "(prefers-reduced-motion)",
+"noAnim": "(prefers-reduced-motion: reduce)",
 "standard": "(max-width: 56.24em)",
 "standard-land": "(max-width: 56.24em) and (orientation: landscape)", 
 "phone-sm":"(min-width: 15em)", //240px

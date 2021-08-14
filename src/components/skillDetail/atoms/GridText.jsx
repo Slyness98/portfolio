@@ -30,7 +30,7 @@ const GridText = () => {
   }, [platform, updateColumnCount])
 
   return (
-    <TextWrapper>
+    <TextWrapper tabIndex={0}>
       <p className="skillSummary">{skillSummary}</p>
       <GridList as="ul" {...gridConfigProps}>
       {skillDetails.map((item, idx) => {

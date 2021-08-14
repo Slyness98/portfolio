@@ -35,6 +35,7 @@ const Carousel = () => {
       breakpointDisplayLimits = {maxItemsPerPageByBp}
       navControls = {navControlConfig}
       overflowBehavior="hidden"
+      aria-live="polite"
     > 
     { /*Map over whatever you want displayed in the GridCarousel. Dump & Forget! Read the documentation included 
        in this folder for more on how this component works. */
@@ -46,6 +47,7 @@ const Carousel = () => {
             src={item.image}
             subtitle={item.skillName}
             onClick={() => {toggleView(); setActiveSkill(item); sessionStorage.setItem('activeSkill', `skillBtn--${idx+1}`)}}
+            tabIndex={1}
           />
         );
       })

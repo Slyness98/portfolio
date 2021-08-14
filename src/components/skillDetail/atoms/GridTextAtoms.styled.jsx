@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {bp} from '../../../assets/utilities';
 import { GridDisplay } from '../../grid-carousel/encapsulated/Carousel.styled';
 
@@ -36,11 +36,11 @@ export const Excerpt = styled.li`
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 5%;
   border-radius: 10px;
-  box-shadow: inset 1px 1px 20px rgba(0, 0, 0, ${props => props.shadowTint});
+  box-shadow: inset 1px 1px 20px ${window.matchMedia('(prefers-reduced-motion: reduce)').matches ? css`rgba(255, 255, 255, .85)` : css`rgba(0, 0, 0, ${props => props.shadowTint})`}; //if prefers reduced motion is set the gradient background will never scale and there'll only ever be a black background. Set the inset box shadow to an constant shade of white in that case
   color: white;
   font-family: 'gruppo', 'Courier New', Courier, monospace;
   font-size: 4rem;

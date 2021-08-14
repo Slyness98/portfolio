@@ -7,6 +7,7 @@
 
 .title--skills {
   mix-blend-mode: difference;
+  filter: contrast(.6);
   height: 12vh !important;
   font-size: 5rem !important;
   letter-spacing: 2px !important;
@@ -58,6 +59,8 @@
   font-weight: 400;
   letter-spacing: 1px;
   margin-bottom: 5vh;
+  filter: contrast(1.5);
+  mix-blend-mode: difference;
 
   @include bp('tab-md') {
     padding: 2% 3%;

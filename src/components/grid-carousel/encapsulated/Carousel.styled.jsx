@@ -90,6 +90,7 @@ export const GridDisplay = styled(animated.div).attrs((props) => ({
 export const Carousel = ({ children, ...props }) => {
   const {$currentPage, $prevPage, $totalPages} = props;
   const slideDirection = getSlideDirection($currentPage, $prevPage, $totalPages);
+
   const slide = useSpring({
     config: {
      tension: 300,
@@ -107,7 +108,7 @@ export const Carousel = ({ children, ...props }) => {
  
   return (
     <GridDisplay
-      style={slide}        
+      style={window.matchMedia('(prefers-reduced-motion: reduce)').matches ? null : slide}        
       {...props}
     >
       {children}

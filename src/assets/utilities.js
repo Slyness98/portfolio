@@ -2,7 +2,7 @@ import {css} from 'styled-components';
 
 /*A debounce function making event listeners, such as resize, 
 fire less frequently so as to not overload the browser */
-  export const debounce = function(func, wait, immediate) {
+export const debounce = function(func, wait, immediate) {
   	var timeout;
   	return function() {
   	var context = this, args = arguments;
@@ -15,31 +15,18 @@ fire less frequently so as to not overload the browser */
   	timeout = setTimeout(later, wait);
   	if (callNow) func.apply(context, args);
     };
-  };
+};
 
 
-  export const ternary = function (variable, condition, trueCode, falseCode) {
-    return (
-      variable === condition ? trueCode : (falseCode)
-    )
-  };
-
-//   export const detectMobile = function () {
-// 	let mql = window.matchMedia("(max-width: 899px)");
-// 	if(mql.matches) {
-// 		setPlatform(true);
-// 		console.log('mobile', platform);
-// 	} else {
-// 		setPlatform(false);
-// 		console.log('desktop', platform);
-// 	}
-//   };
-
+export const ternary = function (variable, condition, trueCode, falseCode) {
+  return (
+	variable === condition ? trueCode : (falseCode)
+  );
+};
 
 //Just like the bp mixin in _mixins.scss, with the same base map of our breakpoints from _variables.scss now available in styled components!
-
 const breakpoints = {
-noAnim: "(prefers-reduced-motion)",
+noAnim: "(prefers-reduced-motion: reduce)",
 standard: "(max-width: 56.24em)",
 standardland: "(max-width: 56.24em) and (orientation: landscape)", 
 phonesm:"(min-width: 15em)", //240px
@@ -65,3 +52,33 @@ export const bp = Object.keys(breakpoints).reduce(
   },
   {}
 );
+
+//Assign Page to Title Element on Page Change
+
+export function changeDocumentTitle() {
+  switch(window.location.pathname) {
+	case '/': 
+	  document.title = "Home page - Seth Lyness's Web Development Portfolio";
+	  break;
+	
+    case '/about': 
+	  document.title = "About page - Seth Lyness's Web Development Portfolio";
+	  break;
+	
+    case '/gallery': 
+	  document.title = "Gallery page - Seth Lyness's Web Development Portfolio";
+	  break;
+
+	case '/skills':
+	  document.title = "Skills page - Seth Lyness's Web Development Portfolio";
+	  break;
+
+	case '/contact': 
+	  document.title = "Contact page - Seth Lyness's Web Development Portfolio";
+	  break;
+
+	default: 
+	  document.title = "Seth Lyness's Web Development Portfolio";
+	  break;
+  };
+} 

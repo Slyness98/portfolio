@@ -21,14 +21,12 @@ const StatusIcon = styled(FAIcon)`
   width: 4rem;
   height: 4rem;
   font-size: 4rem;
-  /* color: white; */
   transform: translateY(-50%);
 `;
 
 const MessageContainer = styled.div`
   width: 75%;
   display: flex;
-  /* display: ${(props) => {return typeof props.$resolutionState === 'boolean' ? 'flex' : 'none'}}; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -92,16 +90,19 @@ const ResolvedMessage = () => {
   }, [form])
   
   return(
-    <MessageContainer $resolutionState={form.success} id="messageContainer"  className={{
-      true: 'success',
-      false: 'fail'
-    }[form.success] || ''}>  
+    <MessageContainer 
+      $resolutionState={form.success} 
+      id="messageContainer"  
+      className={{
+        true: 'success',
+        false: 'fail'
+       }[form.success] || ''}
+      >  
       <StatusIcon 
         className={{
           true: 'far fa-check-circle success',
           false: 'fa fa-exclamation-circle fail'
-        }[form.success] || ''} //need this syntax to account for default case "pending". form.success does not start out as a boolean on the client side, it's a string before a request has been sent; it becomes a boolean after a request is sent and the client recieves a response. More than two states means it can't just be shoved into a ternary as usual
-        
+        }[form.success] || ''} //need this OR syntax to account for default case "pending". form.success does not start out as a boolean on the client side, it's a string before a request has been sent; it becomes a boolean after a request is sent and the client recieves a response. More than two states means it can't just be shoved into a ternary as usual
       />
       <SubmissionMessage id="submissionDisplayMessage"/>  
     </MessageContainer>

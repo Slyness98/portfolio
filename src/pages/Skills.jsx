@@ -52,7 +52,11 @@ const Skills = () => {
 
   return (
     <SectionWrapper gradient={gradient} open={open}>
-      <h1 className="title title--skills">&#060;Skills /&#062;</h1>
+      <h1 className="title title--skills">  
+        <span aria-hidden="true">&#060;</span>
+        <span>{open ? currentSkill.skillName : 'Skills'}</span> 
+        <span aria-hidden="true">/&#062;</span>
+      </h1>
    
     { open
     ? <SkillDetail />

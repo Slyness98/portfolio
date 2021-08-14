@@ -15,13 +15,24 @@ const SkillButton = ({src, subtitle, ...props}) => {
   
   return(
    <div className="skillBtn__container">
-      <button className="skillBtn__btn" ref={node} {...props}>
+      <button 
+        className="skillBtn__btn" 
+        ref={node} 
+        aria-labelledby={`${subtitle}Subtitle`}
+        {...props}
+      >
         <CircleImg 
           src={src} 
-          alt={"Circular button image with corresponding logo of skill/tool being represented"} 
+          alt={`${subtitle} logo`} 
         />
       </button>
-      <p className="skillBtn__subtitle">{subtitle}</p>
+      <p 
+        id={`${subtitle}Subtitle`} 
+        className="skillBtn__subtitle"
+        aria-hidden="true"
+      >
+        {subtitle}
+      </p>
    </div>
   );
 }

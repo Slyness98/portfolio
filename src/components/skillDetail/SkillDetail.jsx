@@ -7,7 +7,7 @@ const SkillDetail = () => {
 
   return (
     <SkillDetailStyled>
-      <button className="unsetButton" onClick={() => toggleView()} autoFocus>
+      <button className="unsetButton" onClick={() => toggleView()} aria-label="Close - Return to Skills Grid" autoFocus>
         <Icon className="far fa-times-circle"/>
       </button>
       <GridText />

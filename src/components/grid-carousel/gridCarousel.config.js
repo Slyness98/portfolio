@@ -4,10 +4,12 @@ export const navControlConfig = {
     arrowA: {
       icon: 'fas fa-angle-left',
       iconColor: 'white',
+      tabIndex: 1
     },
     arrowB: {
       icon: 'fas fa-angle-right',
-      iconColor: 'white'
+      iconColor: 'white',
+      tabIndex: 1
     },
   },
   dots: {
@@ -16,6 +18,7 @@ export const navControlConfig = {
      borderColor: "white",
      color: "#333",
      activeColor: "darkturquoise"
+    //  tabIndex: 1
   },
   keyboard: {
     decrementalKeys: ['ArrowLeft', 'ArrowDown', 'KeyA', 'KeyS'],
