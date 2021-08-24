@@ -20,8 +20,6 @@ const ContactInfo = ({nextTier, updateFieldValue, values}) => {
     last.setAttribute("value", lastName);
     emailField.setAttribute("value", email);
     company.setAttribute("value", companyName);
-
-    console.log("values are: ", values)
   }, [values]);
 
   return (

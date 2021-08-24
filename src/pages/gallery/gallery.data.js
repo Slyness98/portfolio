@@ -11,7 +11,7 @@ const Data = [
   },
   {
     title: "Blog CMS",
-    videoSrc: "",
+    videoSrc: "../../videos/blog2.mp4",
     isOpen: false,
     description: "My first unguided solo project, with the goal of being able to manage articles and subscribers via basic CRUD operations. It has a backend for admins to draft, edit and publish posts, integrate with Google Analytics, manage subscribers, and more; Mostly built with vanilla JS, PHP and MySQLi prepared statements (which also led me to PDO along the way) to a PostgreSQL database.",
     thumbnail: "../../images/thumbnails/cmsPHPSnippet.png",

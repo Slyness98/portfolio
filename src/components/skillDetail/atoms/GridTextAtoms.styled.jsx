@@ -50,4 +50,8 @@ export const Excerpt = styled.li`
   ${bp.phonelg`
     min-height: 25vh;
   `}
+
+  /* ${bp.tabmd`
+    font-size: 3rem;
+  `} */
 `;

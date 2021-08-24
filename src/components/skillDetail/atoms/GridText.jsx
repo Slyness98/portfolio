@@ -1,20 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDebounce } from "../../../assets/custom-hooks/hooks";
 import { useActiveSkillContext } from "../../../contexts/ActiveSkill.context";
-import { usePlatformContext } from '../../../contexts/Platform.context';
 import { TextWrapper, GridList, Excerpt } from "./GridTextAtoms.styled";
 
 const GridText = () => {
-  const platform  =usePlatformContext();
   const skillctx = useActiveSkillContext();
   const {details} = skillctx.currentSkill;
   const skillSummary = details[0];
   const skillDetails = details.slice(1);
-  
-  const [columnCount, setColumnCount] = useState(platform ? 1 : 2);
-  
-  const updateColumnCount = useCallback((val) => {
-    setColumnCount(val)
-  }, [setColumnCount]);
+  const screenWidth = window.innerWidth;
+  const [columnCount, setColumnCount] = useState(window.matchMedia("(min-width: 93.75em)").matches ? 2 : 1);
 
   const gridConfigProps = {
     $gridColumns: columnCount,
@@ -22,12 +17,20 @@ const GridText = () => {
     $leftoverItemCount: skillDetails.length % columnCount,
     $totalChildren: skillDetails.length,
     $alignLeftovers: "center"
-  }
-  
+  };
+
+  const handleResize = useDebounce(() => {
+    const threshold = window.matchMedia("(min-width: 93.75em)").matches;
+    const colCount = threshold ? 2 : 1;
+    setColumnCount(colCount)
+  }, 300);
+
   useEffect(() => {
-    const colCount = platform ? 1 : 2;
-    updateColumnCount(colCount);
-  }, [platform, updateColumnCount])
+    window.addEventListener("resize", handleResize);
+    return () => {	
+      window.removeEventListener("resize", handleResize);
+    }   
+  }, [screenWidth, handleResize]);
 
   return (
     <TextWrapper tabIndex={0}>

@@ -51,7 +51,8 @@ const TieredForm = () => {
         form.setResolution(res); //set form context; the response status being a success/failure and the array of messages produced by that outcome 
         resetForm(res); 
       })
-      .catch(error => console.log('ERROR', error));
+      // .catch(error => console.log('ERROR', error));
+      .catch(error => form.setResolution(error));
     }
   }
 

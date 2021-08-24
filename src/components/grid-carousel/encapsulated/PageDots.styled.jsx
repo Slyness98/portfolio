@@ -4,8 +4,6 @@ const Container = styled.div`
   display: inline-flex;
   width: 100%;
   position: absolute;
-  transform: translateY(26vh);
-  z-index: -2000;
   align-items: flex-end;
 `;
 
@@ -45,7 +43,7 @@ export const PageDots = ({numPages, currentPage, updatePage , ...dots}) => {
   const {display, ...dotProps} = {...dots};
   return(
     display
-    ?  <Container >
+    ?  <Container className="pageDots">
         <DotList>
           {
             arr.map((dot, i) => {

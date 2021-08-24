@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback, useRef} from 'react';
+import {debounce} from '../../../assets/utilities';
 import {useDebounce, usePrevious, useKeyDown} from '../../../assets/custom-hooks/hooks';
 import * as utils from './gridCarousel.functions';
 import {CarouselWrapper} from './CarouselWrapper.styled';
@@ -67,8 +68,8 @@ const GridCarousel = ({
 
   useKeyDown(keyboard.decrementalKeys, decrementPage);
   useKeyDown(keyboard.incrementalKeys, incrementPage);
+  const initialXCoord = useRef(0);
 
-  
   useEffect(() => {
     sessionStorage.setItem('currentPage', currentPage); 
   }, [currentPage]);
@@ -147,6 +148,8 @@ const GridCarousel = ({
         $leftoverItemCount = {leftoverItemCount}
         $alignLeftovers = {props.alignLeftovers || "center"}
         $displayLeftoversInline = {shouldDisplayLeftoversInline}
+        onTouchStart={(e) => {initialXCoord.current = utils.getClientX(e)}}
+        onTouchEnd={(e) => {utils.swipeNavigation(e, initialXCoord.current, incrementPage, decrementPage)}}
         {...props}
       >
         {[...children].slice(firstToRender, lastToRender)}

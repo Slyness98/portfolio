@@ -32,12 +32,34 @@
 
 .gridWrapper {
   height: 60vh;
-  transform: translateY(6vh);
+  transform: translateY(0vh);
+
+  @include bp("standard--ol") { //standard--ol
+    height: 90vh;
+    transform: translateY(-5vh);
+  }
+
+  @include bp("tab-md") {
+    transform: translateY(6vh);
+  }
 }
 
 .gridCarousel {
   height: fit-content;
   grid-gap: 10rem 0rem;
+
+  @include bp("standard--ol") {
+    grid-gap: 5rem 0rem;
+  }
+}
+
+.pageDots {
+  z-index: -2000;
+  transform: translateY(26vh);
+
+  @include bp("standard--ol") {
+    transform: translateY(42vh);
+  }
 }
 
 .unsetButton {

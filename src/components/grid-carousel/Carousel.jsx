@@ -6,13 +6,15 @@ import {navControlConfig, maxItemsPerPageByBp} from './gridCarousel.config'
 import GridCarousel from './encapsulated/GridCarousel';
 import SkillButton from '../buttons/skill-button/SkillButton';
 
+const widthMatchMedia = window.matchMedia("(max-width: 899px)").matches ? "95%" : "75%";
+
 const Carousel = () => {
-  const [gridWidth, setGridWidth] = useState(window.matchMedia("max-width: 899px").matches ? "100%" : "85%");
+  const [gridWidth, setGridWidth] = useState(widthMatchMedia);
   const skillContext = useActiveSkillContext();
   const {setActiveSkill, toggleView} = skillContext;
 
   const handleResize = useDebounce(() => {
-    setGridWidth(window.matchMedia("max-width: 899px").matches ? "100%" : "85%");
+    setGridWidth(widthMatchMedia);
   }, 300);
 
   useEffect(() => {

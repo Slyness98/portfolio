@@ -96,3 +96,35 @@ export const getSlideDirection = (currPage, lastPage, pageTotal) => {
      return true;
   }
 };
+
+export const getClientX = (e) => {
+  return e.changedTouches[0].clientX
+}
+
+export const swipeNavigation = (e, initialXCoord, swipeLeftCallback, swipeRightCallback) => {
+  const finalXCoord = e.changedTouches[0].clientX;
+  const coordDiffThreshold = 60;
+  const swipeTolerance = Math.abs(finalXCoord - initialXCoord) > coordDiffThreshold;
+  switch( (initialXCoord < finalXCoord) && swipeTolerance) {
+    case true: 
+      console.log('true condition ', swipeTolerance, `initial: ${initialXCoord}, final: ${finalXCoord}`, Math.abs(finalXCoord - initialXCoord))
+      if(swipeTolerance) {
+        swipeRightCallback();
+      }
+      break;
+
+    case false:
+      if(initialXCoord === finalXCoord) {
+        break;
+      } else {
+        console.log('false condition ', swipeTolerance, `initial: ${initialXCoord}, final: ${finalXCoord}`, Math.abs(finalXCoord - initialXCoord))
+        if(swipeTolerance) {
+          swipeLeftCallback();
+        }
+      }
+      break;
+
+    default:
+      break;
+  }
+}

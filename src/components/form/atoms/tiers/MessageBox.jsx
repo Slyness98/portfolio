@@ -28,7 +28,6 @@ const MessageBox = ({nextTier, previousTier, values}) => {
   
 
   useEffect(() => {
-    console.log("current values up to messageBox: ", values)
     const {messageHtml} = values.current;
     tinymce.activeEditor.setContent(messageHtml);
   }, [values]);
@@ -43,7 +42,6 @@ const MessageBox = ({nextTier, previousTier, values}) => {
     }
   
     const inside = iframeRef( document.getElementById('message_ifr') );//get document root mounted in tinymce's iframe
-    console.log(inside.body);
     inside.body.setAttribute("style", "color: white!important"); //enjoy yet another hack around tinymce's horrible customization/integration capabilitites
   }, [])
   
@@ -53,7 +51,6 @@ const MessageBox = ({nextTier, previousTier, values}) => {
         id="message"
         apiKey= {process.env.REACT_APP_TINYMCEKEY}
         init={{
-          // plugins: ['autoresize'],
           skin: false,
           content_css: false,
           height: 500,
@@ -62,16 +59,10 @@ const MessageBox = ({nextTier, previousTier, values}) => {
           mobile: {
             selector: "message",
             menubar: true,
-            // plugins: ['autoresize'],
             autoresize_min_height: 400,
             autoresize_max_height: 1000,
             toolbar: [ 'undo | bold italic underline | alignleft aligncenter alignright' ]
           },
-          // plugins: [
-          //   'advlist autolink autosave autoresize link image lists charmap hr anchor',
-          //   'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking',
-          //   'table template paste textcolor importcss textpattern spellchecker help'
-          // ],
           toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify |bullist numlist outdent indent | spellchecker | removeformat | help'
         }}
         onEditorChange={updateMessageField}

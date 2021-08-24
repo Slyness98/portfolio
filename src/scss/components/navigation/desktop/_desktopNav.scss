@@ -63,14 +63,14 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-size: 2rem;
+        font-size: 1.25rem;
 
         @include bp("tab-md--ar6/1") {
           font-size: 2.5rem;
         }
 
-        #drop2 &, #drop4 & {
-          font-size: 1.25rem;
+        #drop1 &, #drop2 &, #drop4 & {
+          font-size: 2rem;
         }  
       }
 
@@ -175,7 +175,7 @@
  top:0;
 
  .navbar__icon--social:hover {
-   transform: scale(1.25);;
+   transform: scale(1.25);
  }
 
  @include bp("tab-md--ar3/1") {

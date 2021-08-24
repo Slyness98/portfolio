@@ -259,39 +259,39 @@ const Data = [
     framework for building out the server-side of web applications. It contains a handful of methods for easily managing HTTP requests and responses, 
     error handling those requests, page routing and associated route handles, and ultimately, is used for building APIs.`,
 
-    `The express framework streamlines working with client request bodies and structuring the server's response to those requests. It exposes a small API
-     that logically and syntactically lines logical URL endpoints up really well with implementing basic CRUD operations with respect to the HTTP methods
-     that complement those operations (i.e Create, Read, Update, Delete => POST, GET, PUT, DELETE). Although, one shouldn't dogmatically equate 
-     'Update' with 'PUT'. The appropriate usage when 'Updating' depends on aligning what you truly intend to have happen by 'Updating' to the true 
-     difference between the POST and PUT methods, which is that a PUT request lacks additional side effects triggered by successive, repeat requests where as
-     POST implies additional side effects after repeating the same request. So ask, should this update action trigger additional side effects if it is 
-     repeated?  `, 
+    `The express framework streamlines working with client request bodies and structuring the server's response to those requests. It exposes a 
+     small API that logically and syntactically lines logical URL endpoints up really well with implementing basic CRUD operations with respect to 
+     the HTTP methods that complement those operations (i.e Create, Read, Update, Delete => POST, GET, PUT, DELETE). Although, one shouldn't 
+     dogmatically equate Update' with 'PUT'. The appropriate usage when 'Updating' depends on aligning what you truly intend to have happen by 
+     'Updating' to the true difference between the POST and PUT methods, which is that a PUT request lacks additional side effects triggered by 
+     successive, repeat requests where as POST implies additional side effects after repeating the same request. So ask, should this update action 
+     trigger additional side effects if it is repeated?`, 
      
-     `The objects exposed by Express's API are easy enough to utilize and compose server endpoints and middleware. By convention, declare a variable 'app', 
-      which is an instance of express(). From there, the basic endpoint looks like 'app.HTTPMETHOD('URLpathname', function (req, res) {callback})'. 
-      Broken down, app.HTTPMETHOD is one of several methods named after, and corresponding to, the HTTP method you want to use to execute the callback 
-      function you provide. That callback is executed when a request is made to the matching URL endpoint via the same HTTP method.`,
-      
-      `The 'app' object also has a .use() method for utilizing middleware. Middleware is just functions that run in between the request/response lifecycle.
-      Middleware can also be scoped to matching URL pathnames and involves pretty much the same syntax as composing app.METHOD endpoints. However, there 
-      are extra considerations to make when composing middleware. The order in which blocks of middleware functions are placed is important to execution order
-      of matching routes. Also, on emust call next(), the third parameter passed to .use(), in order to pass route control on to the next matching handle.
-      There are many more methods belonging to express's app object, but this is the core of developing with express.`,
-     
-     `Express also lends itself well to lining up with the REST architectural pattern (REpresentational State Transfer). However, many APIs that claim to 
-      be RESTful don't really go the full distance in being a REST API. Many are just simply APIs mapping CRUD operations to complementary 
-      HTTP methods and the buck stops there. They don't actually adhere to the last bit of REST's philosophy and that is the 'State Transfer' portion. REST
-      stresses that hypermedia drives application state; the API presents related resources/actions to its consumer as actions are completed. The consumer 
-      may follow through with those actions and in turn that drives the 'Transfer' of the application's 'State' over time. For example,
-      if I request to book a doctor's appointment online, a RESTful API may go about its business to complete the action, and when it is done present the option
-      to re-schedule the appointment ('Update' the record) or cancel it altogether ('Delete' the record).`,
-      
-     `The former point might seem like a nitpicky distinction to make, but its effect can be felt when the team designing the API is not part of the 
-      same organization developing the client. When a team is implementing both client and "RESTful" API, they can skimp on driving application state 
-      solely via the RESTful API. You can drive the state of an application client-side instead, only relying on data from/to the server to populate
-      it/interact with it. When developing APIs in a RESTful style as a third party that other clients are consuming, one can't make such assumptions 
-      about what that client is doing with the data and must rely on the options that it, itself exposes to drive the transfer of state across 
-      its RESTful service.`
+    `The objects exposed by Express's API are easy enough to utilize and compose server endpoints and middleware. By convention, declare a variable 
+    'app', which is an instance of express(). A basic endpoint of 'app' looks like 'app.HTTPMETHOD('URLpathname', function (req, res) {callback})'. 
+    Broken down, app.HTTPMETHOD is one of several methods named after, and corresponding to, the HTTP method you want to use when communicating with 
+    the URL pathname. That callback is executed when a request is made to the matching URL pathname via the specified HTTP method.`,
+    
+    `The 'app' object also has a .use() method for utilizing middleware. Middleware is just functions that run in between the request/response 
+    lifecycle. Middleware can also be scoped to matching URL pathnames and involves pretty much the same syntax as composing app.METHOD endpoints. 
+    However, there are extra considerations to make when composing middleware. The order in which blocks of middleware functions are placed is 
+    important to execution order of matching routes. Also, on emust call next(), the third parameter passed to .use(), in order to pass route control 
+    on to the next matching handle. There are many more methods belonging to express's app object, but this is the core of developing with express.`,
+    
+    `Express also lends itself well to lining up with the REST architectural pattern (REpresentational State Transfer). However, many APIs that claim 
+    to be RESTful don't really go the full distance in being a REST API. Many are just simply APIs mapping CRUD operations to complementary HTTP 
+    methods and the buck stops there. They don't actually adhere to the last bit of REST's philosophy and that is the 'State Transfer' portion. REST
+    stresses that hypermedia drives application state; the API presents related resources/actions to its consumer as actions are completed. The 
+    consumer may follow through with those actions and in turn that drives the 'Transfer' of the application's 'State' over time. For example,
+    if I request to book a doctor's appointment online, a RESTful API may go about its business to complete the action, and when it is done present 
+    the optionto re-schedule the appointment ('Update' the record) or cancel it altogether ('Delete' the record).`,
+    
+    `The former point might seem like a nitpicky distinction to make, but its effect can be felt when the team designing the API is not part of the 
+    same organization developing the client. When a team is implementing both client and "RESTful" API, they can skimp on driving application state 
+    solely via the RESTful API. You can drive the state of an application client-side instead, only relying on data from/to the server to populate
+    it/interact with it. When developing APIs in a RESTful style as a third party that other clients are consuming, one can't make such assumptions 
+    about what that client is doing with the data and must rely on the options that it, itself exposes to drive the transfer of state across 
+    its RESTful service.`
   ]
   },
   {
@@ -306,8 +306,9 @@ const Data = [
       `Working with either handlebars or EJS is a breeze when utilizing Express.Js. Simply take your 'app' instance and set the 'view engine' like so;
       app.set('view engine', 'hbs'). This is the setting for handlebars, but you could just as well swap out 'hbs' for 'ejs'. Set up a couple more 
       configurations with app.engine(), like public directory where static CSS resources are kept, and the root directory of where these template files 
-      are kept and you're pretty much good to go. From there, simply set up endpoints with app.get(), take the response object, and res.render() with the name of the template from the directory you keep template files in. 
-      I.e "app.get('/about', (req, res) => {res.render('about')})" refers to a file in your template directory called about.hbs.`,
+      are kept and you're pretty much good to go. From there, simply set up endpoints with app.get(), take the response object, and res.render() with 
+      the name of the template from the directory you keep template files in. I.e "app.get('/about', (req, res) => {res.render('about')})" refers to 
+      a file in your template directory called about.hbs.`,
 
       `The template contains an html-like syntax, but with placeholders delineated by double-brackets {{ }} (hey, those kinda look like handlebars!). These
        handlebars denote what data should be plugged into the template. The data to be plugged in is evaluated by the server and is then sent as
@@ -372,7 +373,7 @@ const Data = [
   ]
   },
   {
-    skillName: "A11Y / Mindful of ARIA compliance",
+    skillName: "Accessibility",
     gradient: "linear-gradient(140deg, hsl(180deg 11% 67%) 0%, hsl(335deg 10% 71%) 100%)",
     image: "./images/thumbnails/skillbtns/a11y.png",
     details: [
