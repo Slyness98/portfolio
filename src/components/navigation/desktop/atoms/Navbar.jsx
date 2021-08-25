@@ -7,7 +7,7 @@ const Navbar = () => {
   	<nav id ="navbar" className="navbar">
   	 <ul className="navbar__bg row">
        
-       <div className="col-fiveNinths navbar__container--links">
+       <div className="col-fiveSevenths navbar__container--links">
         <li className="navbar__item"> 
           <InternalLink
             buttonClass="navbar__link" 
@@ -50,10 +50,8 @@ const Navbar = () => {
         </li>
        </div>
      
-       <div className="col-fourNinths navbar__container--socialMedia">
+       <div className="col-twoSevenths navbar__container--socialMedia">
          <ExternalLink icon="fa-linkedin-in"     href="https://www.linkedin.com/in/seth-lyness-0630a2155/" />
-         <ExternalLink icon="fa-twitter-square"  href="https://twitter.com/SethLyness" />
-         <ExternalLink icon="fa-facebook-square" href="" />
          <ExternalLink icon="fa-github-square"   href="https://github.com/Slyness98" />
        </div>
   	 </ul>
