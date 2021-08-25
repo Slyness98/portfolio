@@ -67,6 +67,10 @@
       &:hover::after {
         width: 100%;
       }
+
+      &--1 .overlay__titleContainer__cPanel__links:nth-of-type(2){
+        display: none;  
+      }
     }
 
     &__cPanel {

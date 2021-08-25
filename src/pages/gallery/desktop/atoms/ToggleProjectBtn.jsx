@@ -32,11 +32,21 @@ const toggle = (i,swappedTitles, setSwappedTitles) => {
 const CPanel = ({i, project, swappedTitles, setSwappedTitles}) => {
   return (
     <div className={`overlay__titleContainer__item--${i} overlay__titleContainer__cPanel`}>
-      <a href={project.ghublink} className={"overlay__titleContainer__cPanel__links"}>
+      <a 
+        href={project.ghublink} 
+        className={"overlay__titleContainer__cPanel__links"} 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
         <FAIcon className="fab fa-github"/>
       </a>
       
-      <a href={project.link} className={"overlay__titleContainer__cPanel__links"}>
+      <a 
+        href={project.link} 
+        className={"overlay__titleContainer__cPanel__links"}
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
         <FAIcon className="fas fa-link" />
       </a>
 
