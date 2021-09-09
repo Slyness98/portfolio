@@ -20,7 +20,10 @@
     "styled-components": "^5.1.1",
     "tinymce": "^5.7.0"
   },
-  "homepage": "https://portfolio.contrivingcoder.com/",
+  "homepage": "https://lyness.codes/",
+  "engines": {
+    "npm": "7.x"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
