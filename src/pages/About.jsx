@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import ScrollPageContainer from '../components/containers/scroll/ScrollPageContainer.styled';
 import ScrollPageBlock from '../components/containers/scroll/ScrollPageBlock.styled';
-import {FilterBox} from '../components/containers/filterbox/Filterbox.styled';
+import { FilterBox } from '../components/containers/filterbox/Filterbox.styled';
 import { CircleImg } from '../components/circle-image/CircleImg.styled';
 import { LazyScroller } from '../components/lazy-scroller/LazyScroller.styled';
 import { IconicExcerpt } from '../components/iconicExcerpt/IconicExcerpt.styled';
